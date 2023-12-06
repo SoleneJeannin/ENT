@@ -17,9 +17,10 @@ if ($stmt->rowcount() == 1) {
     $hash = $result['user_mdp'];
 
     if (password_verify($mdpToCheck, $hash)) {
-
+        session_start();
         $_SESSION["login"] = $result["user_login"];
-        header("Location: index.php");
+        
+        header("Location: reservation_materiel.php");
     } else {
         header("Location: login.php?err=mdp");
         session_destroy();

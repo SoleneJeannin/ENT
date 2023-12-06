@@ -10,7 +10,7 @@ if (isset($_POST['reservation'])){
 
     //Récupération de l'utilisateur
     //Selectionne les attributs dans la bdd de l'utilisateur connecté 
-    $stmt2 = $db->query("SELECT * FROM user WHERE login = '" . $_SESSION['login'] . "'");
+    $stmt2 = $db->query("SELECT * FROM user WHERE user_login = '" . $_SESSION['login'] . "'");
     $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
     $_SESSION['id_user'] = $result2['id_user'];
 
