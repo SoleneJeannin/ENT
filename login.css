@@ -1,0 +1,55 @@
+.login {
+  background: url(./img/connexion/bg-connexion.svg) center/contain no-repeat white;
+  font-size: 20px;
+}
+.entete-login {
+  text-align: center;
+  padding-bottom: 30px;
+}
+.entete-login p {
+  margin: auto;
+  text-align: center;
+  width: 40%;
+  margin-top: -40px;
+}
+
+form {
+  margin: auto;
+  justify-content: center;
+  background-color: #fbedd7;
+  border-radius: 24px;
+  padding: 40px 30px;
+  width: 40%;
+}
+input {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+button {
+  font-size: 20px;
+  background-color: #f1c27a;
+  color: white;
+  border-radius: 25px;
+  border: none;
+  display: block;
+  margin: auto;
+  text-transform: uppercase;
+  padding: 15px 60px;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: #e5a74a;
+}
+::placeholder {
+  font-size: 16px;
+  margin: auto;
+  padding: 0 10px;
+}
+.connexion {
+  margin-top: 50px;
+}
