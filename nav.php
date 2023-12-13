@@ -1,7 +1,7 @@
 <nav>
 
     <div class="links">
-        <a href="">Acceuil </a>
+        <a href="">Accueil </a>
 
         <div class="dropdown">
             <a class="drop-bt" href="">Études <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 9 6" fill="none">
@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <a href="">Mail Universitaire</a>
+        <a href="">Mail</a>
 
 
         <div class="dropdown">
