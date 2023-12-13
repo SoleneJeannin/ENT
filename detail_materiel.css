@@ -1,0 +1,17 @@
+:root {
+    --grey: #E7E7E7;
+    --white-grey: #F4F4F4;
+    --yellow1: #FBEDD7;
+    --yellow2: #FFE3A1;
+    --yellow3: #F9D57F;
+    --yellow4: #F0c17b;
+    --black: #1c1b1b;
+    --blue: #302B52;
+}
+
+form {
+    background-color: var(--yellow1);
+    border-radius: 25px;
+    padding: 15px;
+    margin: 30px;
+}

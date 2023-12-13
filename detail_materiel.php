@@ -10,6 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
         rel="stylesheet">
         <link rel="stylesheet" href="style_de base.css">
+        <link rel="stylesheet" href="detail_materiel.css">
     <title>Réservation - matériel</title>
 
     
@@ -55,16 +56,23 @@
             <label for="fin">fin : </label>
             <input type="date" id="fin" name="fin">
             <br><br>
+            <input type="radio" id="conditions" name="conditions" value="conditions"/>
+            <label for="conditions">En cochant cette case, j’accepte <a href="">les règles d’utilisation</a></label>
+            <br><br>
             <input type="submit" name="reservation" value="Réserver">
         </form>
 
-        <!--Affiche le bouon de téléchargement de la notice (si il y en a une)-->
+        <!--Affiche le bouton de téléchargement de la notice (si il y en a une)-->
         <?php if($result['notice'] != ''){ ?>
         <a href="./document/notices/<?= $result['notice']?>">Télécharger la notice</a>
         <?php }else{
             echo '';
         }?>
 
+        <!--En cas de problème dans le formulaire-->
+        <?php
+        if(isset())
+        ?>
     </main>
 
 

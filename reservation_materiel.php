@@ -10,6 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
         rel="stylesheet">
         <link rel="stylesheet" href="style_de base.css">
+        <link rel="stylesheet" href="reservation_materiel.css">
     <title>Réservation - materiel</title>
 
     
