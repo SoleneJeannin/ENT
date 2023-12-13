@@ -20,6 +20,9 @@ font-family: 'Lusitana', serif; */
             --blue: #302B52;
             --green: #5c9c64;
             --violet: rgb(151, 71, 151);
+            --red: rgb(221, 139, 139);
+          
+
            
 
 
@@ -208,3 +211,162 @@ font-family: 'Lusitana', serif; */
     }
 /* end menu popups */
 
+
+/* design card pop-up */
+ 
+.student-card-wrapper {
+    position: absolute;
+    background-color: var(--grey);
+    width: 800px;
+    height: 320px;
+    display: flex;
+    top: 6vw;
+    right: 3vw;
+    place-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+.card {
+    background-color: white;
+    width: 500px;
+    height: 270px;
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.074);
+
+}
+
+.logo {
+    width: 200px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.info-card {
+    padding: 10px;
+}
+
+.info-card p {
+    margin: 5px;
+}
+
+.photo-card>img {
+    width: 100%;
+}
+
+.photo-card {
+    padding: 20px;
+    padding-bottom: 10px;
+}
+
+.photo-card>p {
+    margin: 0;
+    font-weight: 900;
+    text-align: center;
+}
+
+.deco-card {
+    overflow: hidden;
+    position: relative;
+}
+
+.deco-card>img {
+    height: 100%;
+}
+
+.deco-card>p {
+    background-color: rgb(117, 71, 115);
+    color: white;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 10px 5px 10px;
+    border-top: white 5px solid;
+    border-bottom: white 5px solid;
+    outline: none;
+
+}
+
+.izly > img {
+    width: 80%;
+
+}
+
+.izly {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 260px;
+    background-color: white;
+    height: 260px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.074);
+}
+/* end design card pop-up */
+
+
+/* profile */
+ 
+.profile-block-wrapper {
+    position: absolute;
+    top: 6vw;
+    right: 0.7vw;
+    width: 340px;
+    background-color: white;
+    text-align: center;
+    border: solid 18px var(--yellow2);
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.074);
+}
+
+.img-profile>img {
+    width: 100%;
+}
+
+.img-profile {
+    width: 170px;
+    margin: 30px auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.name-profile {
+    font-weight: 900;
+    font-size: 1.2rem;
+    font-family: 'Lusitana', serif;
+}
+
+.nav-profile {
+    text-align: center;
+}
+
+.nav-profile>a {
+    display: block;
+    margin: 0;
+    padding: 3px 30px;
+    line-height: normal;
+}
+
+#disconnect {
+    padding: 7px 20px;
+    border-radius: 5px;
+    background-color: var(--red);
+    border: none;
+    font-family: 'Lusitana', serif;
+    font-size: 20px;
+    margin: 15px auto 30px auto;
+
+}
+/* profile end */

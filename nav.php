@@ -1,10 +1,12 @@
 <nav>
 
     <div class="links">
-        <a href="">Acceuil</a>
+        <a href="">Acceuil </a>
 
         <div class="dropdown">
-            <a class="drop-bt" href="">Études</a>
+            <a class="drop-bt" href="">Études <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 9 6" fill="none">
+<path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)"/>
+</svg></a>
             <div class="dropdown-content drop1">
                 <a href="#">Agenda</a>
                 <a href="#">Notes</a>
@@ -17,7 +19,9 @@
 
 
         <div class="dropdown">
-            <a class="drop-bt" href="">Réservations</a>
+            <a class="drop-bt" href="">Réservations  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 9 6" fill="none">
+<path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)"/>
+</svg></a>
             <div class="dropdown-content drop2">
                 <a href="#">Salles</a>
                 <a href="#">Matériel</a>
@@ -27,7 +31,9 @@
 
 
         <div class="dropdown">
-            <a class="drop-bt" href="">Vie Universitaire</a>
+            <a class="drop-bt" href="">Vie Universitaire  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 9 6" fill="none">
+<path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)"/>
+</svg></a>
             <div class="dropdown-content drop3">
                 <a href="#">Carte GE</a>
                 <a href="#">Actualité</a>
@@ -40,22 +46,21 @@
     <div class="personne">
         <button id="theme">
 
-          
+
 
             <script>
-            document.addEventListener("DOMContentLoaded", function() {
-    var blockColors = document.querySelector(".drop-color");
-    var themeButton = document.getElementById("theme");
+                document.addEventListener("DOMContentLoaded", function() {
+                    var blockColors = document.querySelector(".drop-color");
+                    var themeButton = document.getElementById("theme");
 
-    themeButton.addEventListener("click", function() {
-        if (blockColors.style.display === "block") {
-            blockColors.style.display = "none";
-        } else {
-            blockColors.style.display = "block";
-        }
-    });
-});
-
+                    themeButton.addEventListener("click", function() {
+                        if (blockColors.style.display === "block") {
+                            blockColors.style.display = "none";
+                        } else {
+                            blockColors.style.display = "block";
+                        }
+                    });
+                });
             </script>
 
 
@@ -90,35 +95,33 @@
         <button id="carte">Ta carte</button>
 
 
-<style>
-    .student-card-wrapper {
-position: absolute;
-background-color: var(--grey);
-width: 400px;
-height: 300px;
-display: grid;
-place-items: center;
-    }
 
-    .card {
-        background-color: white;
-        width: 93%;
-        height: 93%;
-        
-    }
-</style>
 
-<div class="student-card-wrapper">
 
-<div class="card">
-    <div class="deco-card">
-        <div>Carte étudiante</div>
-    </div>
-    <div class="info-card"></div>
-    <div class="photo-card"></div>
-</div>
 
-</div>
+        <div class="student-card-wrapper" style="display: none;">
+
+            <div class="card">
+                <div class="deco-card">
+                    <img src="./img/logo//logo-eiffel.png" alt="">
+                    <p>carte étudiante</p>
+                </div>
+                <div class="info-card">
+                    <img class="logo" src="./img/logo//logo-eiffel.png" alt="">
+                    <p>Né(e) le : 01/01/2022</p>
+                    <p>N d'étudiant</p>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-student" src="./img/etudiants-card/111111.jpg" alt="">
+                    <p>Thomas DUPONT</p>
+                </div>
+            </div>
+
+            <div class="izly">
+                <img src="./img/izly/111111.jpg" alt="">
+            </div>
+
+        </div>
 
 
 
@@ -129,6 +132,62 @@ place-items: center;
                 </g>
             </svg>
         </button>
+
+       
+
+        <div class="profile-block-wrapper" style="display: none;">
+
+            <div class="img-profile">
+                <img src="./img/etudiants-card/111111.jpg" alt="">
+            </div>
+
+            <div class="nav-profile">
+                <p class="name-profile">Name SURNAME</p>
+                <a href="#">Mes documents</a>
+                <a href="">Retards 0 h </a>
+                <a href="">Absents 13 h</a>
+                <a href="#">Notes semestriel</a>
+                <button id="disconnect">Se déconnecter</button>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var cardButton = document.querySelector('#carte');
+                var card = document.querySelector('.student-card-wrapper');
+
+                function openCard() {
+                    if (card.style.display === 'none') {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+
+                cardButton.addEventListener('click', openCard);
+
+
+
+
+
+                // profile pop-up
+
+                var profile = document.querySelector('.profile-block-wrapper');
+                var profileButton = document.querySelector('#profile');
+
+                function openProfile() {
+                    if (profile.style.display === 'none') {
+                        profile.style.display = 'block';
+                    } else {
+                        profile.style.display = 'none';
+                    }
+                }
+
+                profileButton.addEventListener('click', openProfile);
+
+            });
+        </script>
+
 
     </div>
 </nav>
