@@ -20,7 +20,7 @@ if ($stmt->rowcount() == 1) {
         session_start();
         $_SESSION["login"] = $result["user_login"];
         
-        header("Location: reservation_materiel.php");
+        header("Location: actualites.php");
     } else {
         header("Location: login.php?err=mdp");
         session_destroy();
