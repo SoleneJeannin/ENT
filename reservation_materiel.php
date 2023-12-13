@@ -31,25 +31,33 @@
 
 
         <h1>Réservez votre matériel</h1>
+        <br>
         <!--Afficher les materiaux-->
         <h2>Caméra : </h2>
+
+        <div class="bloc_materiel">
         <?php
         $stmt_cam=$db->query("SELECT * FROM materiel WHERE type = 'camera' ");
         $result_cam=$stmt_cam->fetchAll(PDO::FETCH_ASSOC);
         foreach($result_cam as $cam){ ?>
             <!--Pour que ce soit cliquable-->
+            <div class="bloc_lien_img">
             <a class="materiel" href="detail_materiel.php?id=<?= $cam["id_materiel"]; ?>">
                 <!--Image-->
                 <?= $cam['image']?>
                 <!--Nom du materiel-->
                 <h3><?= $cam['materiel_titre']?></h3>
             </a>
+            </div>
             
         <?php
         }
         ?>
-
+</div>
+<br> <br> <br>
         <h2>Son : </h2>
+
+<div class="bloc_materiel">
         <?php
         $stmt_son=$db->query("SELECT * FROM materiel WHERE type = 'son' ");
         $result_son=$stmt_son->fetchAll(PDO::FETCH_ASSOC);
@@ -64,8 +72,11 @@
         <?php
         }
         ?>
-
+ </div>
+ <br> <br> <br>
         <h2>Lumière : </h2>
+
+<div class="bloc_materiel">
         <?php
         $stmt_lum=$db->query("SELECT * FROM materiel WHERE type = 'lumiere' ");
         $result_lum=$stmt_lum->fetchAll(PDO::FETCH_ASSOC);
@@ -79,7 +90,7 @@
         <?php
         }
         ?>
-
+</div>
     </main>
 
 
