@@ -1,0 +1,66 @@
+h1{
+    font-family: 'Lusitana', serif;
+    text-align: center;
+    font-size: 2.3rem;
+}
+
+h2{
+    font-family: 'Lusitana', serif;
+    font-size: 1.9rem;
+    padding-left: 20px;
+}
+
+h3{
+    font-weight: 300;
+}
+
+img{
+    width: auto;
+    height: 15vw;
+    min-height: 136px;
+    border: solid 2px black;
+    border-radius: 30px;
+    padding: 10px;
+    display: flex;
+    margin: auto;
+     transition: 0.3s; 
+}
+
+img:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
+
+.bloc_materiel{
+ display: flex;   
+ justify-content: space-evenly;
+ flex-wrap: wrap;
+}
+
+
+.materiel{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+
+.materiel:hover{
+    text-decoration: underline;
+}
+
+
+
+@media (max-width: 772px) {
+    h3{
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 562px) {
+    .bloc_materiel{
+        gap: 15px;
+    }
+}

@@ -1,0 +1,98 @@
+/* 2 blocs */
+.deux_bloc {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+/* tout les blocs et styles commun*/
+.bloc {
+    width: 35%;
+    border-radius: 20px;
+    padding: 14px;
+}
+
+.bloc a {
+    text-decoration: none;
+    color: black;
+    line-height: 27px;
+    width: fit-content;
+    display: block;
+}
+
+.bloc a:hover {
+    text-decoration: underline;
+}
+
+.titre_bloc {
+    margin: auto;
+}
+
+
+
+.bloc h2 {
+    text-align: center;
+    font-family: 'Lusitana', serif;
+    text-decoration: underline;
+    font-size: 2rem;
+    width: auto;
+}
+
+
+/* BLOC 1 PAR 1 */
+.sante {
+    border: solid 3px #92E5FF;
+    background-color: #D1F4FF;
+}
+
+.pratique {
+    border: solid 3px #A8FF89;
+    background-color: #DAFFCD;
+}
+
+.formation {
+    border: solid 3px #FF7777;
+    background-color: #FFBDBD;
+}
+
+.campus {
+    border: solid 3px #F9D57F;
+    background-color: #FBEDD7;
+}
+
+.informatique {
+    border: solid 3px #83F0C9;
+    background-color: #D7FBEE;
+}
+
+.international {
+    border: solid 3px #E084FF;
+    background-color: #F2D7FB;
+}
+
+
+@media (max-width: 1000px) {
+    .bloc {
+        padding: 0px;
+    }
+}
+
+@media (max-width: 859px) {
+    .deux_bloc {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .bloc {
+        width: 65%;
+        padding: 0px;
+    }
+}
+
+
+@media (max-width: 542px) {
+    .bloc {
+        width: 80%;
+    }
+}
