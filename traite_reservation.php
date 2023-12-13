@@ -2,6 +2,8 @@
 include('connexion.php');
 session_start();
 
+$id=$_GET['id'];
+
 if (isset($_POST['reservation']) && isset($_POST['conditions'])){
     //Récupération des infos du formulaire
     $date_debut = $_POST['debut'];
@@ -26,6 +28,6 @@ if (isset($_POST['reservation']) && isset($_POST['conditions'])){
     //Retour à la page de réservation
     header("Location:reservation_materiel.php");
 } else{
-    header('Location:detail_materiel.php?err=pblm');
+    header('Location:detail_materiel.php?err=pblm&&id='.$id);
 }
 ?>

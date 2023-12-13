@@ -19,7 +19,12 @@
 <body>
 
     <main>
-    
+        <!--En cas de problème dans le formulaire-->
+        <?php
+        if(isset($_GET['err'])){
+            echo 'Vous devez lire et accepter les règles d\'utilisation';
+        }
+        ?>
 
         <?php
 
@@ -46,7 +51,7 @@
         </div>
 
         <!--Formulaire de réservation-->
-        <form action="traite_reservation.php" method="POST">
+        <form action="traite_reservation.php?id=<?=$result['id_materiel']?>" method="POST">
             <input type="hidden" name="id_materiel" value="<?= $result['id_materiel']?>">
             <p>Date de réservation</p>
 
@@ -57,7 +62,7 @@
             <input type="date" id="fin" name="fin">
             <br><br>
             <input type="radio" id="conditions" name="conditions" value="conditions"/>
-            <label for="conditions">En cochant cette case, j’accepte <a href="">les règles d’utilisation</a></label>
+            <label for="conditions">En cochant cette case, j’accepte <a href="./document/regles_utilisation">les règles d’utilisation</a></label>
             <br><br>
             <input type="submit" name="reservation" value="Réserver">
         </form>
@@ -69,10 +74,7 @@
             echo '';
         }?>
 
-        <!--En cas de problème dans le formulaire-->
-        <?php
-        if(isset())
-        ?>
+        
     </main>
 
 
