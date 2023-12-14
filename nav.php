@@ -189,9 +189,9 @@
         </script>
 
     </div>
-
+<!-- 
     <img class="menu" src="./img/nav/menu.png" alt="menu">
-    <!-- menu hamburgur -->
+
 <script>
  const menuHamburger = document.querySelector(".menu");
     const navLinks = document.querySelector(".links");
@@ -199,7 +199,7 @@
     menuHamburger.addEventListener('click', () => {
         navLinks.classList.toggle('mobile_menu');
     });
-</script>
+</script> -->
 
 
 </nav>
