@@ -54,6 +54,11 @@ nav {
     align-items: center;
 }
 
+ .menu {
+    display: none;
+}
+
+
 nav a {
     text-decoration: none;
     color: var(--black);
@@ -393,39 +398,73 @@ nav a {
 
 
 
-@media (max-width: 1250px) {
+@media (max-width: 1184px) {
     #carte {
         font-size: 1.1rem;
     }
-}
 
-@media (max-width: 1242px) {
     .links {
         font-size: 1.33rem;
     }
 }
 
-@media (max-width: 1200px) {
+
+@media (max-width: 1057px) {
     .links {
         font-size: 1.3rem;
     }
-}
 
-@media (max-width: 1176px) {
     #carte {
         font-size: 1rem;
     }
 }
 
-@media (max-width: 1154px) {
-    .links{
+
+
+
+@media (max-width: 998px) {
+    .links {
         font-size: 1.22rem;
     }
-     }
+}
 
 
-     @media (max-width: 1112px) {
-        .links{
-            font-size: 1.19rem;
-        }
-         }
+@media (max-width: 946px) {
+    .links {
+        font-size: 1.19rem;
+    }
+}
+
+
+
+
+
+/* menu hamburgur */
+@media (max-width: 915px) {
+    #nav {
+        height: 100vh;
+        margin-left: -100%;
+        transition: all 0.5s ease;
+
+        /* SAFARI */
+        -webkit-backdrop-filter: blur(35px);
+
+        /* FIREFOX */
+        -moz-backdrop-filter: blur(35px);
+        backdrop-filter: blur(35px);
+    }
+
+    .menu {
+        display: flex;
+        width: 27px;
+        position: fixed;
+        right: 20px;
+        top: 40px;
+        z-index: 2;
+
+    }
+
+    .mobile_menu {
+        margin-left: 0;
+    }
+}

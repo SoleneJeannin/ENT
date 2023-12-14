@@ -10,7 +10,7 @@
             <div class="dropdown-content drop1">
                 <a href="#">Agenda</a>
                 <a href="#">Notes</a>
-                <a href="#">Évaluations</a>
+                <a href="evals.php">Évaluations</a>
                 <a href="#">Cours</a>
             </div>
         </div>
@@ -24,7 +24,7 @@
 </svg></a>
             <div class="dropdown-content drop2">
                 <a href="#">Salles</a>
-                <a href="#">Matériel</a>
+                <a href="reservation_materiel.php">Matériel</a>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
         </div>
 
 
-        <a href="">Applications</a>
+        <a href="">Applis</a>
     </div>
     <div class="personne">
         <button id="theme">
@@ -188,6 +188,19 @@
             });
         </script>
 
-
     </div>
+
+    <img class="menu" src="./img/nav/menu.png" alt="menu">
+    <!-- menu hamburgur -->
+<script>
+ const menuHamburger = document.querySelector(".menu");
+    const navLinks = document.querySelector(".links");
+
+    menuHamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile_menu');
+    });
+</script>
+
+
 </nav>
+
