@@ -35,7 +35,7 @@
 <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)"/>
 </svg></a>
             <div class="dropdown-content drop3">
-                <a href="#">Carte GE</a>
+                <a href="#">Campus</a>
                 <a href="#">Actualité</a>
             </div>
         </div>
@@ -48,20 +48,7 @@
 
 
 
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    var blockColors = document.querySelector(".drop-color");
-                    var themeButton = document.getElementById("theme");
-
-                    themeButton.addEventListener("click", function() {
-                        if (blockColors.style.display === "block") {
-                            blockColors.style.display = "none";
-                        } else {
-                            blockColors.style.display = "block";
-                        }
-                    });
-                });
-            </script>
+          
 
 
             <div class="drop-color">
@@ -151,7 +138,41 @@
             </div>
         </div>
 
-        <script>
+        
+
+    </div>
+
+    <!-- <img class="menu" src="./img/nav/menu.png" alt="menu"> -->
+    <!-- menu hamburgur -->
+<!-- <script>
+ const menuHamburger = document.querySelector(".menu");
+    const navLinks = document.querySelector(".links");
+
+    menuHamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile_menu');
+    });
+</script> -->
+
+
+</nav>
+
+<script>
+
+ 
+                document.addEventListener("DOMContentLoaded", function() {
+                    var blockColors = document.querySelector(".drop-color");
+                    var themeButton = document.getElementById("theme");
+
+                    themeButton.addEventListener("click", function() {
+                        if (blockColors.style.display === "block") {
+                            blockColors.style.display = "none";
+                        } else {
+                            blockColors.style.display = "block";
+                        }
+                    });
+                });
+          
+
             document.addEventListener('DOMContentLoaded', function() {
                 var cardButton = document.querySelector('#carte');
                 var card = document.querySelector('.student-card-wrapper');
@@ -187,20 +208,3 @@
 
             });
         </script>
-
-    </div>
-
-    <img class="menu" src="./img/nav/menu.png" alt="menu">
-    <!-- menu hamburgur -->
-<script>
- const menuHamburger = document.querySelector(".menu");
-    const navLinks = document.querySelector(".links");
-
-    menuHamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('mobile_menu');
-    });
-</script>
-
-
-</nav>
-
