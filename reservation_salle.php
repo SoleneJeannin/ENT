@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
         rel="stylesheet">
         <link rel="stylesheet" href="style_de base.css">
-    <title>CHAGE THIS</title>
+    <title>Réservation Salle</title>
 
     
 </head>
@@ -23,10 +23,27 @@
         <?php
 
         include('nav.php');
+        include('connexion.php');
+        session_start();
         
         ?>
-        
+        <h1>Réservez votre salle</h1>
 
+        <div>
+        <!--BARRE DE RECHERCHE-->
+        </div>
+
+        <div>
+            <?php
+            $stmt_cam=$db->query("SELECT * FROM salle");
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach($result as $row){ ?>
+                <!--Nom de la salle-->
+                <h3><?= $row['salle_nom']?></h3>               
+            <?php
+            }
+            ?>
+        </div>
     </main>
 
 
