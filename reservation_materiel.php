@@ -22,10 +22,10 @@
     
 
         <?php
-
+        session_start();
         include('nav.php');
         include('connexion.php');
-        session_start();
+        
         
         ?>
 

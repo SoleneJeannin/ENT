@@ -122,9 +122,55 @@ session_start();
 
 
                 <!-- dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
-                <!-- requet pour exam -->
+
                 <?php
-                $requete = "SELECT * FROM eval_projet, matiere, cours, user WHERE cours.ext_matiere = matiere.id_matiere AND eval_projet.ext_etudiant = user.id_user AND eval_projet.ext_cours = cours.id_cours;
+                $requete = "
+
+                SELECT
+        title_projet,
+        eval_date_fin,
+        eval_date_debut,
+        nom_matiere,
+        coefficient,
+        note,
+        commentaire_prof,
+        eval_projet.ext_etudiant AS etudiant_id,
+        matiere.ext_prof AS prof_id,
+        user_etudiant.user_nom AS etudiant_nom,
+        user_prof.user_nom AS prof_nom,
+        user_prof.user_prenom AS prof_prenom,
+        type
+    FROM
+        eval_projet
+    JOIN matiere ON eval_projet.ext_matiere = matiere.id_matiere
+    JOIN user AS user_etudiant ON eval_projet.ext_etudiant = user_etudiant.id_user
+    JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
+    WHERE
+        eval_projet.eval_date_fin > NOW()
+
+    UNION
+    SELECT
+        title_exam,
+        cours_temps_fin,
+        cours_temps_debut,
+        nom_matiere,
+        coefficient,
+        note,
+        commentaire,
+        eval_exam.ext_etudiant AS etudiant_id,
+        matiere.ext_prof AS prof_id,
+        user_etudiant.user_nom AS etudiant_nom,
+        user_prof.user_nom AS prof_nom,
+        user_prof.user_prenom AS prof_prenom,
+        type
+    FROM
+        eval_exam
+    JOIN cours ON cours.id_cours = eval_exam.ext_cours
+    JOIN matiere ON matiere.id_matiere = cours.ext_matiere
+    JOIN user AS user_etudiant ON eval_exam.ext_etudiant = user_etudiant.id_user
+    JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
+    WHERE
+        cours.cours_temps_fin > NOW();
                 
             ";
 
@@ -139,105 +185,90 @@ session_start();
 
 
 
+
+
                     // current date time
                     $currentDateTime = new DateTime();
                     $now = $currentDateTime->format('Y-m-d H:i:s');
                     $currentTime = $currentDateTime->format('H:i');
                     $currentDate = $currentDateTime->format('j F Y');
 
-                    // Format date for exam
-                    $date = new DateTime($row['cours_date'] ?? '1900-01-01');
-                    $formattedDate = $date->format('j F Y'); //date of eval to compare
-
-                    // Format time for examen
-                    $timeStart = new DateTime($row['cours_temps_debut']);
-                    $timeEnd = new DateTime($row['cours_temps_fin']);
-                    $formattedTime = $timeStart->format('H:i') . ' - ' . $timeEnd->format('H:i');
-                    $formattedDeadline = $timeEnd->format('H:i'); //time of eval to compare
 
 
-                    //combined deadline time for examen
 
-                    $combinedDateTimeString = $row['cours_date'] . ' ' . $row['cours_temps_fin'];
-                    $combinedDateTimeExam = new DateTime($combinedDateTimeString);
-                    $combinedDateTimeExamFormattedtoCompare = $combinedDateTimeExam->format('Y-m-d H:i:s');
+//format date and time
+$deadlineDate = new DateTime($row['eval_date_fin']);
+$deadlineDateFormatted = $deadlineDate->format('j F Y'); //day of exam or project
 
+$deadlineTime = new DateTime($row['eval_date_debut']);
+$deadlineTimeFormatted = $deadlineDate->format('H:i'); //last time for exam and project
 
-                    //format date and time for devoir
-
-                    $devoir = new DateTime($row['eval_date_fin'] ?? '1900-01-01');
-                    $devoirFormattedtoCompare = $devoir->format('Y-m-d H:i:s');
-                    $dateDevoir = $devoir->format('j F Y');
-                    $timeDevoir = $devoir->format('H:i');
-
-                    echo $now, "NOOOW", $devoirFormattedtoCompare,  " DEVOIR <br> ", $combinedDateTimeExamFormattedtoCompare, "EXAM <br> ENNNND LINE <br><br><br>";
+$startDate = new DateTime($row['eval_date_debut']);
+$startTime = $startDate->format('H:i'); // start of exam
 
 
-                    if ($row['type_eval'] == 1) {
-                        if ($combinedDateTimeExamFormattedtoCompare > $now) {
+// echo $deadlineDateFormatted, "   deadlineDateFormatted   ", $deadlineTimeFormatted, "  $deadlineTimeFormatted  ", $startTime;
+
+
                 ?>
 
-                            <!-- one eval  type devoir -->
-                            <div class="one-eval">
 
+                    <!-- one eval  type devoir -->
+                    <div class="one-eval">
 
-
-                                <div class="left-info-eval">
-                                    <a class="title-eval" href="#">
-                                        <h2>
-
-                                            <?php if ($row['type_eval'] == 1) : ?>
-                                                <span>Examen:</span>
-                                            <?php elseif ($row['type_eval'] == 2) : ?>
-                                                <span>Devoir:</span>
-                                            <?php endif; ?>
-
-                                            <?= $row['title_eval'] ?? ''   ?>
-                                        </h2>
-                                    </a>
-
-                                    <a href="#"> <?= $row['nom_matiere'] ?? ''   ?>
-                                    </a>
-
-                                    <?php
-                                    $requete2 = "SELECT * FROM user WHERE id_user = {$row['ext_prof']} ";
-                                    $stmt = $db->query($requete2);
-                                    $prof = $stmt->fetch(PDO::FETCH_ASSOC);
-                                    ?>
-
-
-                                    <a href=""><?= $prof['user_prenom'] ?? '' ?> <?= $prof['user_nom'] ?? '' ?> </a>
-                                </div>
-
-                                <div class="right-info-eval">
-
-                                    <!-- exam = take date and time from the cours during which we have exam-->
-                                    <?php if ($row['type_eval'] == 1) : ?>
-                                        <p class="date-eval"><?= $formattedDate ?? '' ?></p>
-                                        <p><?= $formattedTime ?? '' ?></p>
-                                        <p>Salle: <?= " " . $row['cours_salle'] ?? '' ?></p>
-
-                                        <!-- devoir = not connected to courses date and time -->
-                                    <?php elseif ($row['type_eval'] == 2) : ?>
-                                        <p class="date-eval"><?= $dateDevoire ?? '' ?></p>
-                                        <p>jusqu'à <?= ' ' . $timeDevoir ?? '' ?></p>
-                                        <button class="deposer">Deposer le travail</button>
+                        <div class="left-info-eval">
+                            <a class="title-eval" href="#">
+                                <h2> <?php if ($row['type'] == 1) : ?>
+                                        <span>Examen:</span>
+                                    <?php elseif ($row['type'] == 2) : ?>
+                                        <span>Projet:</span>
                                     <?php endif; ?>
 
 
 
-                                </div>
+                                    <?= $row['title_projet'] ?? '' ?>
+                                </h2>
+                            </a>
+                            <a href="#"> <?= $row['nom_matiere'] ?? '' ?></a>
+                            <a href=""> <?= $row['prof_prenom'] . ' ' . $row['prof_nom'] ?? '' ?></a>
+                        </div>
+
+
+                        <?php if ($row['type'] == 1) : ?>
+                          
+
+                            <div class="right-info-eval">
+                                <p class="date-eval"><?= $deadlineDateFormatted ?? '' ?></p>
+                                <p> <?= $startTime. " - ". $deadlineTimeFormatted ?? '' ?></p>
+                                <p class="deposer">Salle 32</p>
                             </div>
 
-                            <!-- one eval end-->
+
+
+                        <?php elseif ($row['type'] == 2) : ?>
+                          
+                            <div class="right-info-eval">
+                                <p class="date-eval"><?= $deadlineDateFormatted ?? '' ?></p>
+                                <p>jusqu'à <?= $deadlineTimeFormatted ?? '' ?></p>
+                                <button class="deposer">Deposer le travail</button>
+                            </div>
+
+                        <?php endif; ?>
+
+
+
+                    </div>
+
+                    <!-- one eval end -->
 
 
 
 
 
 
-                <?php   };
-                    };
+
+                <?php
+
                 };
                 ?>
 
@@ -262,63 +293,131 @@ session_start();
             <h1>Evaluations passées</h1>
 
             <div class="wrapper-past wrapper">
-                <?php
 
 
 
 
 
-                if ($combinedDateTimeExamFormattedtoCompare < $now  || $devoirFormattedtoCompare < $now) {
+            <?php
+                $requete2 = "
 
+                SELECT
+        title_projet,
+        eval_date_fin,
+        eval_date_debut,
+        nom_matiere,
+        coefficient,
+        note,
+        commentaire_prof,
+        eval_projet.ext_etudiant AS etudiant_id,
+        matiere.ext_prof AS prof_id,
+        user_etudiant.user_nom AS etudiant_nom,
+        user_prof.user_nom AS prof_nom,
+        user_prof.user_prenom AS prof_prenom,
+        type
+    FROM
+        eval_projet
+    JOIN matiere ON eval_projet.ext_matiere = matiere.id_matiere
+    JOIN user AS user_etudiant ON eval_projet.ext_etudiant = user_etudiant.id_user
+    JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
+    WHERE
+        eval_projet.eval_date_fin <= NOW()
+
+    UNION
+    SELECT
+        title_exam,
+        cours_temps_fin,
+        cours_temps_debut,
+        nom_matiere,
+        coefficient,
+        note,
+        commentaire,
+        eval_exam.ext_etudiant AS etudiant_id,
+        matiere.ext_prof AS prof_id,
+        user_etudiant.user_nom AS etudiant_nom,
+        user_prof.user_nom AS prof_nom,
+        user_prof.user_prenom AS prof_prenom,
+        type
+    FROM
+        eval_exam
+    JOIN cours ON cours.id_cours = eval_exam.ext_cours
+    JOIN matiere ON matiere.id_matiere = cours.ext_matiere
+    JOIN user AS user_etudiant ON eval_exam.ext_etudiant = user_etudiant.id_user
+    JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
+    WHERE
+        cours.cours_temps_fin <= NOW();
+                
+            ";
+
+                $stmt2 = $db->query($requete2);
+                $evals2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
+                foreach ($evals2 as $row2) {
+
+
+
+
+
+//format date and time
+$deadlineDate = new DateTime($row2['eval_date_fin']);
+$deadlineDateFormatted = $deadlineDate->format('j F Y'); //day of exam or project
+
+$deadlineTime = new DateTime($row2['eval_date_debut']);
+$deadlineTimeFormatted = $deadlineDate->format('H:i'); //last time for exam and project
+
+$startDate = new DateTime($row2['eval_date_debut']);
+$startTime = $startDate->format('H:i'); // start of exam
+
+
+// echo $deadlineDateFormatted, "   deadlineDateFormatted   ", $deadlineTimeFormatted, "  $deadlineTimeFormatted  ", $startTime;
 
 
                 ?>
 
-                    <!-- one eval  type noted -->
-                    <div class="one-eval">
 
-                        <div class="left-info-eval">
+
+
+
+                <!-- one eval  type noted -->
+                <div class="one-eval">
+
+                <div class="left-info-eval">
                             <a class="title-eval" href="#">
-                                <h2>
-
-                                    <?php if ($row['type_eval'] == 1) : ?>
+                                <h2> <?php if ($row2['type'] == 1) : ?>
                                         <span>Examen:</span>
-                                    <?php elseif ($row['type_eval'] == 2) : ?>
-                                        <span>Devoir:</span>
+                                    <?php elseif ($row2['type'] == 2) : ?>
+                                        <span>Projet:</span>
                                     <?php endif; ?>
 
-                                    <?= $row['title_eval'] ?? ''   ?>
+
+
+                                    <?= $row2['title_projet'] ?? '' ?>
                                 </h2>
                             </a>
-
-                            <a href="#"> <?= $row['nom_matiere'] ?? ''   ?>
-                            </a>
-
-                            <?php
-                            $requete2 = "SELECT * FROM user WHERE id_user = {$row['ext_prof']} ";
-                            $stmt = $db->query($requete2);
-                            $prof = $stmt->fetch(PDO::FETCH_ASSOC);
-                            ?>
-
-
-                            <a href=""><?= $prof['user_prenom'] ?? '' ?> <?= $prof['user_nom'] ?? '' ?> </a>
+                            <a href="#"> <?= $row2['nom_matiere'] ?? '' ?></a>
+                            <a href=""> <?= $row2['prof_prenom'] . ' ' . $row2['prof_nom'] ?? '' ?></a>
                         </div>
 
 
 
-                        <div class="right-info-eval">
-                            <p class="date-eval"><?= ' ' . $formattedDate ?? '' ?></p>
-                            <p class="note">Note: <span><?= " " . $row['note'] . ' / 20' ?? 'pas evalué' ?> </span></p>
-                        </div>
+
+
+                    <div class="right-info-eval">
+                        <p class="date-eval"><?= $deadlineDateFormatted ?? '' ?></p>
+                        <p class="note">Note: <span><?= " " . $row2['note'] . ' / 20' ?? 'pas evalué' ?> </span></p>
                     </div>
+                </div>
 
-                    <!-- one eval end-->
+                <!-- one eval end-->
 
                 <?php
 
-                };
-
-                ?>
+};
+?>
 
 
             </div>
