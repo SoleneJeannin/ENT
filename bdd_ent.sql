@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 06 déc. 2023 à 11:03
+-- Généré le : mer. 13 déc. 2023 à 10:31
 -- Version du serveur : 10.6.16-MariaDB
--- Version de PHP : 8.1.16
+-- Version de PHP : 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -249,23 +249,24 @@ INSERT INTO `mail` (`id_mail`, `mail_text`, `mail_document`, `mail_date`, `mail_
 CREATE TABLE `materiel` (
   `id_materiel` int(11) NOT NULL,
   `materiel_titre` varchar(100) NOT NULL,
-  `notice` varchar(100) NOT NULL,
+  `description` varchar(1000) NOT NULL,
   `type` varchar(50) NOT NULL,
-  `image` varchar(100) NOT NULL
+  `image` varchar(100) NOT NULL,
+  `notice` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Déchargement des données de la table `materiel`
 --
 
-INSERT INTO `materiel` (`id_materiel`, `materiel_titre`, `notice`, `type`, `image`) VALUES
-(1, 'Osmo mobile 6', 'L\'osmo est un appareil de stabilisateur.', 'camera', '<img src=\"./img/materiel/osmo.webp\" alt=\"\">'),
-(2, 'Micro Canon', 'Le micro-canon permet de cibler le son à une longue distance.', 'son', '<img src=\"./img/materiel/micro_cravate.webp\" alt=\"\">'),
-(3, 'Caméra interview', 'Une caméra permettant de filmer des interviews.', 'camera', '<img src=\"./img/materiel/camera.webp\" alt=\"\">'),
-(4, 'Lampe à LED', 'Une lampe puissante. ', 'lumiere', '<img src=\"./img/materiel/lampe_led.webp\" alt=\"\">'),
-(5, 'Micro Canon', '', 'son', '<img src=\"./img/materiel/micro_canon.webp\" alt=\"\">'),
-(6, 'Projecteur', '', 'lumiere', '<img src=\"./img/materiel/projecteur.webp\" alt=\"\">'),
-(7, 'Trépied', '', 'camera', '<img src=\"./img/materiel/trepied.webp\" alt=\"\">');
+INSERT INTO `materiel` (`id_materiel`, `materiel_titre`, `description`, `type`, `image`, `notice`) VALUES
+(1, 'Osmo mobile 6', 'L\'osmo est un appareil de stabilisateur.', 'camera', '<img src=\"./img/materiel/osmo.jpg\" alt=\"\">', 'notice_osmo.pdf'),
+(2, 'Micro Canon', 'Le micro-canon permet de cibler le son à une longue distance.', 'son', '<img src=\"./img/materiel/micro_cravate.webp\" alt=\"\">', NULL),
+(3, 'Caméra interview', 'Une caméra permettant de filmer des interviews.', 'camera', '<img src=\"./img/materiel/camera.webp\" alt=\"\">', NULL),
+(4, 'Lampe à LED', 'Une lampe puissante. ', 'lumiere', '<img src=\"./img/materiel/lampe_led.webp\" alt=\"\">', NULL),
+(5, 'Micro Canon', '', 'son', '<img src=\"./img/materiel/micro_canon.webp\" alt=\"\">', NULL),
+(6, 'Projecteur', '', 'lumiere', '<img src=\"./img/materiel/projecteur.webp\" alt=\"\">', NULL),
+(7, 'Trépied', '', 'camera', '<img src=\"./img/materiel/trepied.webp\" alt=\"\">', NULL);
 
 -- --------------------------------------------------------
 
