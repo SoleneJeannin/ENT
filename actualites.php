@@ -1,3 +1,10 @@
+<?php
+session_start();
+include('nav.php');
+include('connexion.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,10 +23,6 @@
     <main>
 
         <?php
-        include('nav.php');
-        include('connexion.php');
-        session_start();
-
         $stmt = $db->query("SELECT * FROM user WHERE user_login = '" . $_SESSION['login'] . "'");
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
