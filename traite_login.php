@@ -2,7 +2,6 @@
 
 include("connexion.php");
 
-
 $loginToCheck = $_POST["login"];
 $mdpToCheck = $_POST["mdp"];
 
@@ -19,8 +18,9 @@ if ($stmt->rowcount() == 1) {
     if (password_verify($mdpToCheck, $hash)) {
         session_start();
         $_SESSION["login"] = $result["user_login"];
+        $_SESSION['id_user'] = $result['id_user'];
         
-        header("Location: reservation_materiel.php");
+        header("Location: cours_todo_list.php");
     } else {
         header("Location: login.php?err=mdp");
         session_destroy();
