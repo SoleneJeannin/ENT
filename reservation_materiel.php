@@ -72,8 +72,8 @@
         <?php
         }
         ?>
- </div>
- <br> <br> <br>
+</div>
+<br> <br> <br>
         <h2>Lumière : </h2>
 
 <div class="bloc_materiel">

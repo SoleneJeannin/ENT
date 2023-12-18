@@ -57,9 +57,28 @@
                         echo 'Salle non disponible';
                     } else{ // Si non : ?>
                         <p>Salle disponible de ? à ?</p>
-                        <!--Faire juste 4 crénaux possibles (8-10 10-12 14-16 16-18)-->
-                        <form action="">
-                            <input type="submit" value="Réserver">
+                        <!--Faire juste 4 crénaux possibles (8-10 10-12 14-16 16-18)
+                    Comment on peut faire ? 
+                    * le statut sert plus à rien => occupé pour une durée seulement
+                    * ajouter créneau dans réervation ?
+                    * il faudrait qu'après et avant ce créaneau le chiffre repasse à 0 ? POSSIBLE ???
+                    
+                    -->
+                        <!--Formulaire de réservation-->
+                        <form action="traite_reservation.php?id=<?=$result['id_materiel']?>" method="POST">
+                            <input type="hidden" name="id_materiel" value="<?= $result['id_materiel']?>">
+                            <p>Date de réservation</p>
+
+                            <label for="debut">début : </label>
+                            <input type="date" id="debut" name="debut">
+                            <br>
+                            <label for="fin">fin : </label>
+                            <input type="date" id="fin" name="fin">
+                            <br><br>
+                            <input type="radio" id="conditions" name="conditions" value="conditions"/>
+                            <label for="conditions">En cochant cette case, j’accepte <a href="./document/regles_utilisation">les règles d’utilisation</a></label>
+                            <br><br>
+                            <input type="submit" name="reservation" value="Réserver">
                         </form>
                     <?php
                     }
