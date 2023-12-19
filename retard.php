@@ -22,31 +22,38 @@
     
 
         <?php
+        session_start();
+        include('nav.php');
+        include('connexion.php');
 
-        // include('nav.php');
-        
+        //Récupération de l'utilisateur
+        $stmt = $db->query("SELECT * FROM user WHERE user_login = '" . $_SESSION['login'] . "'");
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['id_user'] = $result['id_user'];
         ?>
         
 
         <h1>Mes documents</h1>
         <div class="bloc_document">
             <div class="first_colonne">
-                <a href="" class="lien_document">Certificat de scolarité</a>
-                <a href="" class="lien_document">Notification conditionnelle de bourse</a>
-                <a href="" class="lien_document">Carte étudiant éléctronique</a>
-                
+                <a href="./document/étudiants/<?=$_SESSION['id_user']?>/certificat_sco.pdf" class="lien_document">Certificat de scolarité</a>
+                <a href="./document/étudiants/<?=$_SESSION['id_user']?>/bourse.pdf" class="lien_document">Notification conditionnelle de bourse</a>
+                <a href="./document/étudiants/<?=$_SESSION['id_user']?>carte_etu.pdf" class="lien_document">Carte étudiant éléctronique</a>
             </div>
 
             <div class="ligne"></div>
 
             <div class="second_colonne">
-                <a href="" class="lien_document">Contrat de stage (2e semestre)</a>
-                <a href="" class="lien_document">Contrat de stage (4e semestre)</a>
-                <a href="" class="lien_document">Contrat d'alternance</a> 
+                <a href="./document/étudiants/<?=$_SESSION['id_user']?>/stage1.pdf" class="lien_document">Contrat de stage (2e semestre)</a>
+                <a href="./document/étudiants/<?=$_SESSION['id_user']?>/stage2.pdf" class="lien_document">Contrat de stage (4e semestre)</a>
+                <a href="./document/étudiants/<?=$_SESSION['id_user']?>/alternance.pdf" class="lien_document">Contrat d'alternance</a> 
             </div>
         </div>
 <br>
-    <p>[Retards et absences ici]</p>
+    <div>
+        <p>Retards : </p>
+        <p>Absences : </p>
+    </div>
     
 <br><br>
 
