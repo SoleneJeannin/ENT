@@ -1,7 +1,36 @@
 .todo-lists {
-  background-color: rgb(229, 196, 196);
+  border: solid 5px #F9D57F;
+  border-radius: 26px;
+  width: 30%;
+  padding: 20px;
+  margin-left: auto;
 }
+.todo-seul{
+  display: flex;
+  align-items: center;  
+  text-align: left;
+  background-color:#f2a900 ;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 26px;
+}
+.todo-seul label{
+  margin-left: 15px;
+}
+
+.todo-seul input[type="submit"] {
+  margin-left: auto;
+}
+
 .submit-button{
     margin-bottom: 30px;
     display: block;
+    
+}
+.todo-seul input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
 }
