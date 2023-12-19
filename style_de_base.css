@@ -45,7 +45,7 @@ main {
     border-radius: 25px;
 }
 
-nav {
+.bloc_nav_ordi {
     background-color: var(--yellow2);
 
     border-radius: 25px 25px 0 0;
@@ -55,7 +55,7 @@ nav {
 }
 
 
-nav a {
+.bloc_nav_ordi a {
     text-decoration: none;
     color: var(--black);
     /* padding: 13px; */
@@ -356,11 +356,11 @@ nav a {
     font-family: 'Lusitana', serif;
 }
 
-.nav-profile {
+.bloc_nav_ordi-profile {
     text-align: center;
 }
 
-.nav-profile>a {
+.bloc_nav_ordi-profile>a {
     display: block;
     margin: 0;
     padding: 3px 30px;
@@ -380,7 +380,9 @@ nav a {
 
 /* profile end */
 
-
+.bloc_nav_mobile{
+    display: none;
+}
 
 
 
@@ -435,10 +437,104 @@ nav a {
 
 
 
+/* menu halbergeur */
 
-/* menu hamburgur */
-/* @media (max-width: 915px) {
-    #nav {
+ @media (max-width: 915px) {
+    .bloc_nav_ordi{
+        display: none;
+    }
+
+    .bloc_nav_mobile{
+        display: block;
+    }
+
+
+    .bloc_nav_mobile a {
+        text-decoration: none;
+        color: var(--black);
+        /* padding: 13px; */
+        padding-block: 20px;
+        line-height: 40px;
+    }
+
+    .menu {
+        display: block;
+        width: 27px;
+        cursor: pointer;
+        z-index: 3;
+        position: relative;
+    }
+
+    .menu_personnage{
+        display: flex;
+        align-items: center;
+    }
+
+    .div_img_menu{
+        margin: auto;
+    }
+
+    body{
+        padding-top: 47px;
+    }
+
+    main{
+        background-color: var(--yellow4);
+    }
+
+
+    #path1, #path2{
+        background-color: var(--blue);
+    }
+
+    #svg{
+        background-color: var(--blue);
+    }
+
+    .personne {
+       width: 100%;
+    }
+
+    .links{
+        display: none;
+        background-color: var(--yellow2);
+        padding-left: 0px;
+        top: -40px;
+        height: 90vh;
+        border-radius: 15px; 
+        position: relative;
+        z-index: 3px;
+    }
+
+    .mobile_centrer_lien{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 90vh;
+    }
+
+    .links a{
+        padding-block: 9px;
+        line-height: 10px;
+    }
+
+
+    .dropdown-content {
+top: 43px;
+z-index: 99;
+    }
+
+    /* .mobile_lien_fen{
+        padding-block: 20px;
+    line-height: 20px;
+    } */
+
+    /* nav{
+        height: 10vh;
+    }
+
+    .links {
         height: 100vh;
         margin-left: -100%;
         transition: all 0.5s ease;
@@ -446,19 +542,17 @@ nav a {
         -webkit-backdrop-filter: blur(35px);
         -moz-backdrop-filter: blur(35px);
         backdrop-filter: blur(35px);
+        display: block;
     }
 
-    .menu {
-        display: flex;
-        width: 27px;
-        position: fixed;
-        right: 20px;
-        top: 40px;
-        z-index: 2;
-
-    }
+  
 
     .mobile_menu {
         margin-left: 0;
-    }
-} */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-color: var(--yellow2);
+    } */
+} 
