@@ -9,7 +9,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="style_de base.css">
+        <link rel="stylesheet" href="style_de_base.css">
         <link rel="stylesheet" href="detail_materiel.css">
     <title>Réservation - matériel</title>
 
@@ -27,54 +27,60 @@
         ?>
 
         <?php
-
+        session_start();
         include('nav.php');
         include('connexion.php');
-        session_start();
+        
         
         ?>
         
         <?php
+        
         $materiel_res = $_GET["id"];
         $stmt=$db->query("SELECT * FROM materiel WHERE id_materiel= '$materiel_res'");
         $result=$stmt->fetch(PDO::FETCH_ASSOC);
-        ?>
-        <!--Materiel selectionné à la page "reservation_materiel-->
-        <div>
-            <h2><?= $result['materiel_titre']?></h2>
+
+        if($result['stock'] > 0){ ?>
+            
+            <!--Materiel selectionné à la page "reservation_materiel-->
             <div>
-                <!--Image-->
-                <?= $result['image']?>
-                <!--Description-->
-                <?= $result['description']?>
+                <h2><?= $result['materiel_titre']?></h2>
+                <div>
+                    <!--Image-->
+                    <?= $result['image']?>
+                    <!--Description-->
+                    <?= $result['description']?>
+                </div>
             </div>
-        </div>
 
-        <!--Formulaire de réservation-->
-        <form action="traite_reservation.php?id=<?=$result['id_materiel']?>" method="POST">
-            <input type="hidden" name="id_materiel" value="<?= $result['id_materiel']?>">
-            <p>Date de réservation</p>
+            <!--Formulaire de réservation-->
+            <form action="traite_reservation.php?id=<?=$result['id_materiel']?>" method="POST">
+                <input type="hidden" name="id_materiel" value="<?= $result['id_materiel']?>">
+                <p>Date de réservation</p>
 
-            <label for="debut">début : </label>
-            <input type="date" id="debut" name="debut">
-            <br>
-            <label for="fin">fin : </label>
-            <input type="date" id="fin" name="fin">
-            <br><br>
-            <input type="radio" id="conditions" name="conditions" value="conditions"/>
-            <label for="conditions">En cochant cette case, j’accepte <a href="./document/regles_utilisation">les règles d’utilisation</a></label>
-            <br><br>
-            <input type="submit" name="reservation" value="Réserver">
-        </form>
+                <label for="debut">début : </label>
+                <input type="date" id="debut" name="debut">
+                <br>
+                <label for="fin">fin : </label>
+                <input type="date" id="fin" name="fin">
+                <br><br>
+                <input type="radio" id="conditions" name="conditions" value="conditions"/>
+                <label for="conditions">En cochant cette case, j’accepte <a href="./document/regles_utilisation">les règles d’utilisation</a></label>
+                <br><br>
+                <input type="submit" name="reservation" value="Réserver">
+            </form>
 
-        <!--Affiche le bouton de téléchargement de la notice (si il y en a une)-->
-        <?php if($result['notice'] != ''){ ?>
-        <a href="./document/notices/<?= $result['notice']?>">Télécharger la notice</a>
-        <?php }else{
-            echo '';
-        }?>
+            <!--Affiche le bouton de téléchargement de la notice (si il y en a une)-->
+            <?php if($result['notice'] != ''){ ?>
+            <a href="./document/notices/<?= $result['notice']?>">Télécharger la notice</a>
+            <?php }else{
+                echo '';
+            }
+        } else{
+            echo "Ce materiel n'est plus disponible ! Revenez quand il y en aura de nouveau en réserve.";
+        }
+        ?>
 
-        
     </main>
 
 

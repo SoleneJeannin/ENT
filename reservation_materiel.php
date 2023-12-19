@@ -9,7 +9,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="style_de base.css">
+        <link rel="stylesheet" href="style_de_base.css">
         <link rel="stylesheet" href="reservation_materiel.css">
     <title>Réservation - materiel</title>
 
@@ -22,10 +22,10 @@
     
 
         <?php
-
+        session_start();
         include('nav.php');
         include('connexion.php');
-        session_start();
+        
         
         ?>
 
@@ -72,8 +72,8 @@
         <?php
         }
         ?>
- </div>
- <br> <br> <br>
+</div>
+<br> <br> <br>
         <h2>Lumière : </h2>
 
 <div class="bloc_materiel">

@@ -25,6 +25,10 @@ if (isset($_POST['reservation']) && isset($_POST['conditions'])){
         ':user' => $_SESSION['id_user']
     ));
 
+    //Diminue le stock de 1
+    $stmt_nv_stock = $db->prepare("UPDATE materiel SET stock = stock-1 WHERE id_materiel = $materiel");
+    $stmt_nv_stock->execute();
+
     //Retour à la page de réservation
     header("Location:reservation_materiel.php");
 } else{

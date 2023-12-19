@@ -1,8 +1,5 @@
 <?php
 session_start();
-include('nav.php');
-include('connexion.php');
-
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +11,7 @@ include('connexion.php');
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style_de base.css">
+    <link rel="stylesheet" href="style_de_base.css">
     <link rel="stylesheet" href="css/actualites.css">
     <title>Actualités</title>
 </head>
@@ -23,6 +20,9 @@ include('connexion.php');
     <main>
 
         <?php
+        include('nav.php');
+        include('connexion.php');
+        
         $stmt = $db->query("SELECT * FROM user WHERE user_login = '" . $_SESSION['login'] . "'");
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
@@ -79,7 +79,7 @@ include('connexion.php');
                         <!-- Titre -->
                         <h3><?= $row['actu_titre'] ?></h3>
                         <!--Texte-->
-                        <p><?= $row['actu_text'] ?></p>
+                        <p><?= $row['actu_accroche'] ?></p>
                         <!--Image-->
                         <img src="./img/actualites/<?= $row['actu_img'] ?>" alt="">
                         <?php
