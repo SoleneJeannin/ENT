@@ -10,6 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
         rel="stylesheet">
         <link rel="stylesheet" href="style_de_base.css">
+        <link rel="stylesheet" href="reservation_salle.css">
     <title>Réservation Salle</title>
 
     
@@ -31,62 +32,33 @@
         <!--BARRE DE RECHERCHE-->
         </div>
 
-        <div>
+        <div class="des_salles">
             <?php
             $stmt=$db->query("SELECT * FROM salle");
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $row){ 
             //Affiche toutes les salles + quand on clique sur une des salles ça envoie son numéro en GET
+            $num_salle = $row['id_salle'];
             ?>
-                <a href="reservation_salle?id=<?= $row['id_salle']?>">
+                <div class="une_salle">
                     <!--Numéro de la salle-->
-                    <?= $row['id_salle']?>
-                </a>             
-            <?php
-            }
-            //Si on a cliqué sur une salle : 
-            if(isset($_GET['id'])){ 
-                $num_salle = $_GET['id'];
-                ?>
-                <div>
-                    <h2>Salle <?= $num_salle ?></h2> <?php 
-                     $stmt_salle=$db->query("SELECT * FROM salle WHERE id_salle = $num_salle");
-                    $result_salle=$stmt_salle->fetch(PDO::FETCH_ASSOC);
-                    //Est ce que la salle est occupée ?
-                    if($result_salle['statut'] == '1'){ // Si oui : 
-                        echo 'Salle non disponible';
-                    } else{ // Si non : ?>
-                        <p>Salle disponible de ? à ?</p>
-                        <!--Faire juste 4 crénaux possibles (8-10 10-12 14-16 16-18)
-                    Comment on peut faire ? 
-                    * le statut sert plus à rien => occupé pour une durée seulement
-                    * ajouter créneau dans réervation ?
-                    * il faudrait qu'après et avant ce créaneau le chiffre repasse à 0 ? POSSIBLE ???
-                    
-                    -->
-                        <!--Formulaire de réservation-->
-                        <form action="traite_reservation.php?id=<?=$result['id_materiel']?>" method="POST">
-                            <input type="hidden" name="id_materiel" value="<?= $result['id_materiel']?>">
-                            <p>Date de réservation</p>
-
-                            <label for="debut">début : </label>
-                            <input type="date" id="debut" name="debut">
-                            <br>
-                            <label for="fin">fin : </label>
-                            <input type="date" id="fin" name="fin">
-                            <br><br>
-                            <input type="radio" id="conditions" name="conditions" value="conditions"/>
-                            <label for="conditions">En cochant cette case, j’accepte <a href="./document/regles_utilisation">les règles d’utilisation</a></label>
-                            <br><br>
-                            <input type="submit" name="reservation" value="Réserver">
-                        </form>
+                    <?= $num_salle?>
                     <?php
-                    }
-                    ?>                    
+                    // Sélectionne les créneaux non réservés pour la salle spécifiée
+                    $stmt_creneau = $db->prepare('SELECT * FROM creneau WHERE id_creneau NOT IN (SELECT ext_creneau FROM reservation WHERE ext_salle = :num_salle AND DATE(res_date_debut) = CURDATE())');
+                    $stmt_creneau->bindParam(':num_salle', $num_salle, PDO::PARAM_INT);
+                    $stmt_creneau->execute();
+
+                    $result_creneau = $stmt_creneau->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($result_creneau as $row){ ?>
+                        <a href="traite_reservation_salle?id=<?= $num_salle; ?>&&creneau=<?= $row["id_creneau"]; ?>"><?= $row["horaire"]; ?></a>
+                    <?php } ?>
+                    
+                    </div>             
+                    <?php
+                    }?>                    
                 </div>
-            <?php
-            }
-            ?>
         </div>
     </main>
 

@@ -31,7 +31,7 @@ if (isset($_POST['reservation']) && isset($_POST['conditions'])){
 
     //Retour à la page de réservation
     header("Location:reservation_materiel.php");
-} else{
+}else{
     header('Location:detail_materiel.php?err=pblm&&id='.$id);
 }
 ?>

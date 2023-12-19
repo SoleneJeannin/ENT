@@ -18,7 +18,7 @@ if (isset($_SESSION["login"])) {
         $stmt->bindParam(':ext_user', $idUser, PDO::PARAM_INT);
         $stmt -> execute();
 
-        echo 'OK C BON';
+        header("Location: cours_todo_list.php");
     }
 }
 
