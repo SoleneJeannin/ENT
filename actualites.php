@@ -12,7 +12,7 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style_de_base.css">
-    <link rel="stylesheet" href="css/actualites.css">
+    <link rel="stylesheet" href="actualites.css">
     <title>Actualités</title>
 </head>
 
@@ -27,8 +27,10 @@ session_start();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
 
-        <div >
-            <h2>Les actus <?= $result['user_programme'] ?>:</h2>
+        <div>
+            <h2 class="titre">Les actus <?= $result['user_programme'] ?>:</h2>
+
+            <div class="bloc_mmi">
             <?php
             // Catégorie à sélectionner
             $ma_categorie = $result['user_programme'];
@@ -51,7 +53,7 @@ session_start();
                         ?>
                         <!-- Pour que ce soit cliquable -->
                         <a class="actu_categ" href="detail_actualite.php?id=<?= $actu["id_actu"]; ?>">
-                            <div class="actu">
+                            <div class="un_mmi">
                                 <!-- Titre -->
                                 <h3><?= $actu['actu_titre'] ?></h3>
                                 <!-- Image -->
@@ -66,10 +68,12 @@ session_start();
                 }
             }
             ?>
+            </div>
         </div>
+        <br><br>
         <div class="toutes_actus">
-            <h2>Toutes les actus :</h2>
-            <div>
+            <h2 class="titre">Toutes les actus :</h2>
+            <div class="bloc_global_actus">
                 <?php
                 $stmt_tt_actu = $db->query("SELECT * FROM actualite");
                 $result_tt_actus = $stmt_tt_actu->fetchAll(PDO::FETCH_ASSOC);

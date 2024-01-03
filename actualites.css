@@ -1,0 +1,94 @@
+:root {
+    --grey: #E7E7E7;
+    --white-grey: #F4F4F4;
+    --yellow1: #FBEDD7;
+    --yellow2: #FFE3A1;
+    --yellow3: #F9D57F;
+    --yellow4: #F0c17b;
+    --black: #1c1b1b;
+    --blue: #302B52;
+    --pink: #FFBDBD;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+
+/* bouton */
+.actu .ma_cat {
+    background-color: var(--pink);
+    padding: 5px 30px;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+.un_mmi .ma_cat {
+    background-color: var(--pink);
+    padding: 5px 30px;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+
+
+.titre {
+    text-align: center;
+    font-family: 'Lusitana', serif;
+    text-decoration: underline;
+    font-size: 2rem;
+    width: auto;
+}
+
+
+/* les gros blocs qui contient les autres blocs*/
+.bloc_global_actus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.bloc_mmi {
+    display: flex;
+    gap: 25px;
+    padding-left: 20px;
+}
+
+
+/* le bloc de chaque actu */
+.actu,
+.un_mmi {
+    background-color: var(--white-grey);
+    border-radius: 25px;
+    padding: 13px;
+}
+
+.actu {
+    width: 90vw;
+}
+
+.un_mmi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    width: 29vw;
+    height: 431px;
+    min-width: 335px;
+
+}
+
+
+
+
+@media (max-width: 840px) {
+    .bloc_mmi {
+        gap: 10px;
+        padding-left: 2px;
+    }
+}
