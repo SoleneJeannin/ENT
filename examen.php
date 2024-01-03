@@ -157,6 +157,8 @@ session_start();
                 <?php
                 $idExam = $_GET['id'];
 
+                $_SESSION['id_user'] = 2; 
+
                 $requete = "SELECT
         title_exam,
         cours_temps_fin,
@@ -164,34 +166,27 @@ session_start();
         nom_matiere,
         coefficient,
         description_exam,
-        eval_exam.ext_etudiant AS etudiant_id,
         matiere.ext_prof AS prof_id,
-        user_etudiant.user_nom AS etudiant_nom,
         user_prof.user_nom AS prof_nom,
         user_prof.user_prenom AS prof_prenom,
         type,
-        id_eval_exam AS id_eval,
-        cours_salle,
-        note_exam.note_exam,
-        note_exam.commentaire_exam
+        id_eval_exam,
+        cours_salle
     FROM
         eval_exam
     JOIN cours ON cours.id_cours = eval_exam.ext_cours
     JOIN matiere ON matiere.id_matiere = cours.ext_matiere
-    JOIN user AS user_etudiant ON eval_exam.ext_etudiant = user_etudiant.id_user
     JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
-    JOIN note_exam ON note_exam.ext_eval_exam = eval_exam.id_eval_exam
-    WHERE
-        note_exam.ext_etudiant = user_etudiant.id_user
-        AND id_eval_exam = :id";
+WHERE
+    id_eval_exam = :id";
+
+$stmt = $db->prepare($requete);
+$stmt->bindValue(':id', $idExam, PDO::PARAM_INT);
+$stmt->execute();
+$exam = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-
-                $stmt = $db->prepare($requete);
-                $stmt->bindValue(':id', $idExam, PDO::PARAM_INT);
-                $stmt->execute();
-                $exam = $stmt->fetch(PDO::FETCH_ASSOC);
-
+              
                 $dateStart = new DateTime($exam['cours_temps_debut']);
                 $dateEnd = new DateTime($exam['cours_temps_fin']);
 
@@ -223,16 +218,29 @@ session_start();
                 </div>
             </div>
 
+<?php
+
+$requete = " SELECT * FROM `note_exam` WHERE ext_eval_exam = :id AND ext_etudiant = :id_user";
+            $stmt = $db->prepare($requete);
+$stmt->bindValue(':id', $idExam, PDO::PARAM_INT);
+$stmt->bindValue(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
+$stmt->execute();
+$exam2 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+           
+?>
+
             <div class="exam-noted block">
 
                 <div class="wrapper-botom">
                     <div class="info">
                         <h3>Note</h3>
-                        <p class="note"> <?= $exam['note_exam'] ?? 'Pas evalué' ?> / 20</p>
+                        <p class="note"> <?= $exam2['note_exam'] ?? '-' ?> / 20</p>
                     </div>
                     <div class="comment">
                         <h4>Commentaire de l'enseignant.e:</h4>
-                        <p><?= $exam[' commentaire_exam'] ?? 'Pas de commentaire' ?> </p>
+                        <p><?= $exam2[' commentaire_exam'] ?? 'Pas de commentaire' ?> </p>
                     </div  >
 
 
@@ -254,7 +262,7 @@ $stmt->bindValue(':id',   $idExam, PDO::PARAM_INT);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-echo $result['average_note'];
+echo $result['average_note']?? '-';
 
 
 ?>

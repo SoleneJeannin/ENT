@@ -248,6 +248,10 @@ justify-content: space-between;}
 
                 <?php
                 $idProjet = $_GET['id'];
+                $_SESSION['id_user'] = 1; 
+                $_SESSION['nom_user'] = "Ana";
+                $_SESSION['prenom_user'] = "Bon";
+                
 
                 $requete = "SELECT
 
@@ -258,27 +262,22 @@ justify-content: space-between;}
                             eval_date_debut,
                             nom_matiere,
                             coefficient,
-                            note,
                             description_projet,
-                            commentaire_prof,
-                            eval_projet.ext_etudiant AS etudiant_id,
+                         
+                           
                             matiere.ext_prof AS prof_id,
-                            user_etudiant.user_nom AS etudiant_nom,
-                            user_etudiant.user_prenom AS etudiant_prenom,
+                         
                             user_prof.user_nom AS prof_nom,
                             user_prof.user_prenom AS prof_prenom,
+                            consignes_projet,
                             type,
-                            id_eval_projet AS id_eval,
-                            note_projet.note_projet,
-                            note_projet.commentaire_projet
+                            id_eval_projet AS id_eval
                         FROM
                             eval_projet
                         JOIN matiere ON matiere.id_matiere = eval_projet.ext_matiere
-                        JOIN user AS user_etudiant ON eval_projet.ext_etudiant = user_etudiant.id_user
+                       
                         JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
-                        JOIN note_projet ON note_projet.ext_projet = eval_projet.id_eval_projet
-                        WHERE
-                            note_projet.ext_etudiant = user_etudiant.id_user
+                      
                             AND id_eval_projet = :id";
 
 
@@ -324,7 +323,13 @@ justify-content: space-between;}
                         <div class="description">
                             <h4>Description:</h4>
                             <p><?= $projet['description_projet'] ?? 'Pas de description ajoutée' ?></p>
-                            <a class="consigne button" href="./projet/<?= $projet['id_eval_projet'] ?>/consignes_projet<?= $projet['id_eval_projet'] ?>.pdf">Consignes</a>
+                            <?php
+if ($projet['consignes_projet'] !== null) {
+    echo "<a class='consigne button' href='./projet/{$projet['id_eval_projet']}/consignes/{$projet['consignes_projet']}.pdf'>Consignes</a>";
+}
+?>
+
+
                         </div>
 
 
@@ -338,7 +343,7 @@ justify-content: space-between;}
                                
                                 <input type="hidden" name="title_projet" value="<?= $projet['title_projet'] ?>">
                                 <input type="hidden" name="id_projet" value="<?= $projet['id_eval_projet'] ?>">
-                                <input type="hidden" name="student_name" value="<?= $projet['etudiant_prenom'] . "_" . $projet['etudiant_nom'] ?>">
+                                <input type="hidden" name="student_name" value="<?=  $_SESSION['prenom_user'] . "_" .  $_SESSION['nom_user'] ?>">
                                 <button type="submit" id="upload" class="button">Envoyer</button>
                             </form>
                             <p id="fileNameDisplay"></p>
@@ -355,11 +360,29 @@ justify-content: space-between;}
                 <div class="wrapper-botom">
                     <div class="info">
                         <h3>Note</h3>
-                        <p class="note"> <?= $projet['note_projet'] ?? 'Pas evalué' ?> / 20</p>
+
+
+
+                        <?php
+
+$requete2 = " SELECT * FROM `note_projet` WHERE ext_projet = :id AND ext_etudiant = :id_user";
+            $stmt2 = $db->prepare($requete2);
+$stmt2->bindValue(':id', $idProjet, PDO::PARAM_INT);
+$stmt2->bindValue(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
+$stmt2->execute();
+$projet2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+
+           
+?>
+
+
+
+                        <p class="note"> <?= $projet2['note_projet'] ?? 'Pas evalué' ?> / 20</p>
                     </div>
                     <div class="comment">
                         <h4>Commentaire de l'enseignant.e:</h4>
-                        <p><?= $projet['commentaire_projet'] ?? 'Pas de commentaire' ?> </p>
+                        <p><?= $projet2['commentaire_projet'] ?? 'Pas de commentaire' ?> </p>
                     </div>
 
                     <div>
@@ -412,7 +435,7 @@ echo $result['average_note'];
             fileNameDisplay.innerHTML = ''; // Clear the display if no file is selected
         }
     } else {
-        console.error("File input element not found.");
+        console.error("Le fichier n'est pas trouvé pas");
     }
 }
 

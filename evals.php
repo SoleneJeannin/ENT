@@ -132,11 +132,11 @@ session_start();
                 eval_date_debut,
                 nom_matiere,
                 coefficient,
-                note,
-                commentaire_prof,
-                eval_projet.ext_etudiant AS etudiant_id,
+               
+               
+             
                 matiere.ext_prof AS prof_id,
-                user_etudiant.user_nom AS etudiant_nom,
+                
                 user_prof.user_nom AS prof_nom,
                 user_prof.user_prenom AS prof_prenom,
                 type,
@@ -144,7 +144,7 @@ session_start();
             FROM
                 eval_projet
             JOIN matiere ON eval_projet.ext_matiere = matiere.id_matiere
-            JOIN user AS user_etudiant ON eval_projet.ext_etudiant = user_etudiant.id_user
+            
             JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
             WHERE
                 eval_projet.eval_date_fin > NOW()
@@ -156,11 +156,11 @@ session_start();
                 cours_temps_debut,
                 nom_matiere,
                 coefficient,
-                note,
-                commentaire,
-                eval_exam.ext_etudiant AS etudiant_id,
+                
+               
+              
                 matiere.ext_prof AS prof_id,
-                user_etudiant.user_nom AS etudiant_nom,
+                
                 user_prof.user_nom AS prof_nom,
                 user_prof.user_prenom AS prof_prenom,
                 type,
@@ -169,7 +169,7 @@ session_start();
                 eval_exam
             JOIN cours ON cours.id_cours = eval_exam.ext_cours
             JOIN matiere ON matiere.id_matiere = cours.ext_matiere
-            JOIN user AS user_etudiant ON eval_exam.ext_etudiant = user_etudiant.id_user
+      
             JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
             WHERE
                 cours.cours_temps_fin > NOW();
@@ -311,11 +311,11 @@ session_start();
         eval_date_debut,
         nom_matiere,
         coefficient,
-        note,
-        commentaire_prof,
-        eval_projet.ext_etudiant AS etudiant_id,
+     
+      
+       
         matiere.ext_prof AS prof_id,
-        user_etudiant.user_nom AS etudiant_nom,
+    
         user_prof.user_nom AS prof_nom,
         user_prof.user_prenom AS prof_prenom,
         type,
@@ -323,7 +323,7 @@ session_start();
     FROM
         eval_projet
     JOIN matiere ON eval_projet.ext_matiere = matiere.id_matiere
-    JOIN user AS user_etudiant ON eval_projet.ext_etudiant = user_etudiant.id_user
+ 
     JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
     WHERE
         eval_projet.eval_date_fin <= NOW()
@@ -335,11 +335,10 @@ session_start();
         cours_temps_debut,
         nom_matiere,
         coefficient,
-        note,
-        commentaire,
-        eval_exam.ext_etudiant AS etudiant_id,
+   
+    
         matiere.ext_prof AS prof_id,
-        user_etudiant.user_nom AS etudiant_nom,
+    
         user_prof.user_nom AS prof_nom,
         user_prof.user_prenom AS prof_prenom,
         type,
@@ -348,7 +347,7 @@ session_start();
         eval_exam
     JOIN cours ON cours.id_cours = eval_exam.ext_cours
     JOIN matiere ON matiere.id_matiere = cours.ext_matiere
-    JOIN user AS user_etudiant ON eval_exam.ext_etudiant = user_etudiant.id_user
+     
     JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
     WHERE
         cours.cours_temps_fin <= NOW();
@@ -395,14 +394,14 @@ session_start();
                         <h2>
 
 
-<?php if ($row['type'] == 1) : ?>
-    <a class="title-eval" href="./examen.php?id=<?= $row['id_eval'] ?>">
-    <?php elseif ($row['type'] == 2) : ?>
-        <a href="./projet.php?id=<?= $row['id_eval'] ?>">
+<?php if ($row2['type'] == 1) : ?>
+    <a class="title-eval" href="./examen.php?id=<?= $row2['id_eval'] ?>">
+    <?php elseif ($row2['type'] == 2) : ?>
+        <a class="title-eval" href="./projet.php?id=<?= $row2['id_eval'] ?>">
         <?php endif; ?>
 
-        <span><?php if ($row['type'] == 1) : ?>Examen:<?php elseif ($row['type'] == 2) : ?>Projet:<?php endif; ?></span>
-        <?= $row['title_projet'] ?? '' ?>
+        <span><?php if ($row2['type'] == 1) : ?>Examen:<?php elseif ($row2['type'] == 2) : ?>Projet:<?php endif; ?></span>
+        <?= $row2['title_projet'] ?? '' ?>
         </a>
 </h2>
                             <a href="#"> <?= $row2['nom_matiere'] ?? '' ?></a>
@@ -411,11 +410,33 @@ session_start();
 
 
 
+                      
+            
 
+            
 
                         <div class="right-info-eval">
                             <p class="date-eval"><?= $deadlineDateFormatted ?? '' ?></p>
-                            <p class="note">Note: <span><?= " " . $row2['note'] . ' / 20' ?? 'pas evalué' ?> </span></p>
+                            <p class="note">Note: <span>
+                                
+                            
+                            <?php
+                      if ($row2['type'] == 1) {
+                        $requete3 = "SELECT * FROM `note_exam` WHERE ext_eval_exam = {$row2['id_eval']}";
+                        $stmt3 = $db->query($requete3);
+                        $evals3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+                    }
+                    if ($row2['type'] == 2) {
+                        $requete3 = "SELECT * FROM `note_projet` WHERE ext_projet = {$row2['id_eval']}";
+                        $stmt3 = $db->query($requete3);
+                        $evals3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+                    }
+
+
+                    echo " " . ($evals3['note_projet'] ?? 'pas evalué') . ' / 20';
+                    ?>
+                            
+                              </span></p>
                         </div>
                     </div>
 
