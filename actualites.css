@@ -49,8 +49,8 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding-right: 15px;
-    padding-left: 15px;
+    /* padding-right: 15px;
+    padding-left: 15px; */
 }
 
 .bloc_mmi {
@@ -79,7 +79,7 @@ a {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     width: 29vw;
     height: 431px;
-    min-width: 335px;
+    min-width: 280px;
 
 }
 
@@ -92,3 +92,35 @@ a {
         padding-left: 2px;
     }
 }
+
+@media (max-width: 1075px) {
+    .un_mmi {
+    height: 488px;
+    }
+}
+
+@media (max-width: 695px) {
+    .un_mmi {
+      height: 578px;
+      min-width: 40vw;
+    }
+
+  }
+
+
+  @media (max-width: 568px) {
+    .un_mmi {
+        height: 676px;
+      min-width: 40vw;
+    }
+
+    .bloc_mmi {
+        gap: 5px;
+    }
+  }
+
+  @media (max-width: 488px) {
+    .un_mmi {
+        height: 750px;
+    }
+  }
