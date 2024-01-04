@@ -27,10 +27,16 @@
         include('connexion.php');
         ?>
         <h1>Réservez votre salle</h1>
+        <div class="sous_titre">Cliquez sur l'heure souhaitée située en dessous de la bonne salle</div>
+        <br>
 
-        <div>
-        <!--BARRE DE RECHERCHE-->
+         <!--BARRE DE RECHERCHE-->
+        <div class="bloc_recherche">
+            <input type="search" placeholder="recherche...">
+            <img class="img_loupe" src="./img/salle/loupe.png" alt="">
         </div>
+
+    <br>
 
         <div class="des_salles">
             <?php

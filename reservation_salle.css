@@ -10,3 +10,33 @@
     grid-template-rows: 50% 50% 50% 50% 50%;
 }
 /*Utiliser display grid pour qu'il y ait pas de problème même s'il y a pas le même nombre de créneau libre (genre s'il y a 2 lignes sous 023 et 4 lignes sous 120, que les salles s'en dessous soient quand meme aligné */
+
+
+h1{
+    margin: auto;
+    text-align: center;
+    font-family: 'Lusitana', serif;
+    text-decoration: underline;
+    font-size: 2rem;
+}
+
+.sous_titre{
+    font-style: italic;
+    text-align: center;
+    font-weight: 300;
+}
+
+.bloc_recherche{
+    display: flex;
+    height: 25px;
+    justify-content: center;
+}
+
+input{
+    border-radius: 5px;
+}
+
+.img_loupe{
+    margin-left: -28px;
+    cursor: pointer;
+}
