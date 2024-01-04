@@ -1,3 +1,9 @@
+<!-- 
+<img src="./img/actualites/chatgpt.png" alt="">
+chatgpt.png
+
+ -->
+
 <?php
 session_start();
 ?>
@@ -57,7 +63,7 @@ session_start();
                                 <!-- Titre -->
                                 <h3><?= $actu['actu_titre'] ?></h3>
                                 <!-- Image -->
-                                <img src="./img/actualites/<?= $actu['actu_img'] ?>" alt="">
+                                <img class="img_actu" src="./img/actualites/<?= $actu['actu_img'] ?>" alt="">
                                 <!-- Début du contenu -->
                                 <p><?= $actu['actu_accroche'] ?></p>
                                 <p class="ma_cat"><?= $ma_categorie ?></p>
@@ -85,7 +91,7 @@ session_start();
                         <!--Texte-->
                         <p><?= $row['actu_accroche'] ?></p>
                         <!--Image-->
-                        <img src="./img/actualites/<?= $row['actu_img'] ?>" alt="">
+                        <img class="img_actu" src="./img/actualites/<?= $row['actu_img'] ?>" alt="">
                         <?php
                         //Récupérer les catégories de chaque article
                         $id_actu = $row['id_actu'];
