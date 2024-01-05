@@ -12,6 +12,69 @@
 form {
     background-color: var(--yellow1);
     border-radius: 25px;
-    padding: 15px;
-    margin: 30px;
+    padding: 23px;
+    margin: auto;
+    width: 514px;
+    display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bloc_general{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  justify-content: space-around;
+}
+
+.titre_descr{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.img_mat0{
+    width: 9vw;
+    min-width: 115px;
+}
+
+.img_mat{
+    width: 15vw;
+}
+
+.titre{
+    text-align: center;
+    font-family: 'Lusitana', serif;
+    font-size: 2rem;
+}
+
+.notice{
+    border: 1px solid black;
+    font-size: 1.2em;
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.notice:hover{
+    background-color: var(--yellow1);
+    color: black;
+    border-radius: 4px;
+}
+
+.div_lien{
+    padding-top: 10px;
+}
+
+.titre_date{
+    text-align: center;
+    font-family: 'Lusitana', serif;
+    font-size: 1.7rem;
+    margin: 0px;
+}
+
+.reserver{
+    float: right;
+    border-radius: 4px;
+    font-size: 1rem;
+  background-color: white;
 }
