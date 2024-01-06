@@ -50,7 +50,7 @@ form {
 
 .notice{
     border: 1px solid black;
-    font-size: 1.2em;
+    font-size: 1.2rem;
   padding: 3px;
   border-radius: 4px;
 }
@@ -78,3 +78,66 @@ form {
     font-size: 1rem;
   background-color: white;
 }
+
+.bloc_pasdispo{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+@media (max-width: 1232px) {
+    .img_mat{
+        min-width: 178px;
+    }   
+}
+
+
+@media (max-width: 914px) {
+    .img_mat0{
+        min-width: 100px;
+    } 
+    
+    .img_mat{
+        min-width: 148px;
+    }  
+}
+
+
+@media (max-width: 589px) {
+    .img_mat0 {
+      min-width: 82px;
+    }
+
+    .titre{
+        font-size: 1.5rem;
+    }
+
+    .notice{
+        font-size: 1rem;
+    }
+
+    .img_mat {
+        min-width: 136px;
+      }
+  }
+
+  
+  @media (max-width: 550px) {
+    form{
+       width: 86vw; 
+    }
+  }
+
+  @media (max-width: 538px) {
+  .img_mat {
+    min-width: 111px;
+  }
+}
+
+  @media (max-width: 471px) {
+    .img_mat0 {
+      min-width: 69px;
+    }
+  }
+
+
