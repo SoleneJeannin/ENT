@@ -1,0 +1,59 @@
+.appli a{
+    border: solid 1px black;
+    padding: 5px;
+    border-radius: 10px;
+    width: 76px;
+  height: 76px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bloc_general{
+    display: flex;
+    flex-direction: column;
+    width: 96vw;
+    justify-content: center;
+    gap: 80px;
+    align-items: center;
+}
+
+.bloc_general1{
+    display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.bloc_appli, .bloc_appli2{
+    display: flex;
+    align-items: center;
+}
+
+.bloc_appli{
+    padding-right: 25px;
+}
+
+.appli{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+h1, .titre2{
+    font-family: 'Lusitana', serif;
+    font-size: 2rem;
+    justify-content: start;
+    height: 162px;
+    display: flex;
+}
+
+.titre2{
+    height: 240px;
+}
+
+ @media (max-width: 887px) {
+.pls{
+    width: 163px;
+}
+}  
