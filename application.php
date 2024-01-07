@@ -18,22 +18,22 @@
         include('connexion.php');
         ?>
 
-<div class="bloc_general">
+ <div class="bloc_general">
 <div class="bloc_general1">
     
     <div class="bloc_appli">
-        <h1>Stockage</h1>
+        <h1 class="titre0">Stockage</h1>
         <div class="appli">
-            <a href="">File Transfert</a>
-            <a href="">Drive</a>
+            <a href="https://filesender.renater.fr/?s=guests">File Transfert</a>
+            <a href="https://drive.google.com/drive/my-drive?hl=fr">Drive</a>
         </div>
     </div>
 
     <div class="bloc_appli2">
-        <h1>Développement</h1>
+        <h1 class="titre1">Développement</h1>
         <div class="appli">
-            <a href="">O2 Switch</a>
-            <a href="">GitHub</a>
+            <a href="https://www.o2switch.fr/">O2 Switch</a>
+            <a href="https://github.com/">GitHub</a>
         </div>
     </div>
 
@@ -44,26 +44,26 @@
 <div class="bloc_general1">
     
     <div class="bloc_appli">
-        <h1 class="titre2">Création</h1>
+        <h1 class="titre3">Création</h1>
         <div class="appli">
-            <a href="">Creative Cloud</a>
-            <a href="">Media Coder</a>
-            <a href="">Figma</a>
-            <a href="">Canva</a>
+            <a href="https://creativecloud.adobe.com/fr">Creative Cloud</a>
+            <a href="https://www.mediacoderhq.com/">Media Coder</a>
+            <a href="https://www.figma.com/">Figma</a>
+            <a href="https://www.canva.com/">Canva</a>
         </div>
     </div>
 
     <div class="bloc_appli2">
-        <h1 class="titre2">Communication</h1>
-        <div class="appli pls">
-            <a href="">Zoom</a>
-            <a href="">Notion</a>
-            <a href="">Miro</a>
+        <h1 class="titre4">Communication</h1>
+        <div class="appli">
+            <a href="https://zoom.us/fr/signin">Zoom</a>
+            <a href="https://www.notion.so/fr-fr">Notion</a>
+            <a href="https://miro.com/fr/">Miro</a>
         </div>
     </div>
 
 
-</div>
+</div> 
 
 
 
