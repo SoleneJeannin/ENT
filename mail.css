@@ -1,0 +1,95 @@
+.bloc_general{
+    display: flex;
+    height: 75vh;
+}
+
+.bloc_setting{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+    padding: 20px;
+  /* height: 100vh; */
+  gap: 10px;
+  width: 20%;
+  margin: 10px;
+}
+
+.nv_mess{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.bloc_setting p{
+    margin: 0;
+}
+
+.first_list{
+    padding-top: 30px;
+}
+
+
+
+
+
+.bloc_mess{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    margin: 10px;
+}
+
+
+.bloc_recherche{
+    display: flex;
+    justify-content: center;
+}
+
+input{
+    border-radius: 5px;
+    width: 40%;
+  height: 42px;
+}
+
+.img_loupe{
+    margin-left: -29px;
+    cursor: pointer;
+    margin-top: 6px;
+    height: 29px;
+}
+
+
+.bloc_reception{
+    border: 2px solid black;
+}
+
+.bloc_right{
+    display: flex;
+    align-items: center;
+    gap: 37px;
+}
+
+
+.affichage{
+    display: flex;
+    /* gap: 40px; */
+    align-items: center;
+    padding-left: 10px;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.carre{
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+.mail_sujet{
+    font-weight: 700;
+}
+
+.descr{
+    padding-left: 31px
+} 
+
