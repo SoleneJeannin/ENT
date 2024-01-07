@@ -85,27 +85,29 @@ session_start();
                 $result_tt_actus = $stmt_tt_actu->fetchAll(PDO::FETCH_ASSOC);
                 //Afficher l'article
                 foreach ($result_tt_actus as $row){ ?>
-                    <div class="actu">
-                        <!-- Titre -->
-                        <h3><?= $row['actu_titre'] ?></h3>
-                        <!--Texte-->
-                        <p><?= $row['actu_accroche'] ?></p>
-                        <!--Image-->
-                        <img class="img_actu" src="./img/actualites/<?= $row['actu_img'] ?>" alt="">
-                        <?php
-                        //Récupérer les catégories de chaque article
-                        $id_actu = $row['id_actu'];
-                        //Passage dans la table de relation (actu-catégorie)
-                        $stmt_cat_actu_2 = $db->query("SELECT * FROM categorie_actu, categorie WHERE ext_actu = $id_actu AND ext_categorie = id_categorie");
-                        $result_cat_actu_2 = $stmt_cat_actu_2->fetchAll(PDO::FETCH_ASSOC);
-                        //Table des catégories
-                        
-                        // Écrire les actualités qui sont de la bonne catégorie
-                        foreach ($result_cat_actu_2 as $row2) { ?>
-                            <p class="ma_cat"><?= $row2['categorie_titre'] ?></p>
-                        <?php
-                        } ?>
+                    <a class="actu_categ" href="detail_actualite.php?id=<?= $row["id_actu"]; ?>">
+                        <div class="actu">
+                            <!-- Titre -->
+                            <h3><?= $row['actu_titre'] ?></h3>
+                            <!--Texte-->
+                            <p><?= $row['actu_accroche'] ?></p>
+                            <!--Image-->
+                            <img class="img_actu" src="./img/actualites/<?= $row['actu_img'] ?>" alt="">
+                            <?php
+                            //Récupérer les catégories de chaque article
+                            $id_actu = $row['id_actu'];
+                            //Passage dans la table de relation (actu-catégorie)
+                            $stmt_cat_actu_2 = $db->query("SELECT * FROM categorie_actu, categorie WHERE ext_actu = $id_actu AND ext_categorie = id_categorie");
+                            $result_cat_actu_2 = $stmt_cat_actu_2->fetchAll(PDO::FETCH_ASSOC);
+                            //Table des catégories
+                            
+                            // Écrire les actualités qui sont de la bonne catégorie
+                            foreach ($result_cat_actu_2 as $row2) { ?>
+                                <p class="ma_cat"><?= $row2['categorie_titre'] ?></p>
+                            <?php
+                            } ?>
                         </div>
+                    </a>
                     <?php } ?>
             </div>
         </div>

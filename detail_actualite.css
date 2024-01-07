@@ -1,0 +1,14 @@
+.article{
+    margin: 0 20px;
+}
+
+.date {
+    text-align: right;
+}
+
+img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
