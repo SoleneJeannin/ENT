@@ -6,9 +6,8 @@
 .bloc_setting{
     display: flex;
     flex-direction: column;
-    border: 3px solid black;
+    border: 2px solid black;
     padding: 20px;
-  /* height: 100vh; */
   gap: 10px;
   width: 20%;
   margin: 10px;
@@ -17,10 +16,12 @@
 .nv_mess{
     border: 1px solid black;
     padding: 5px;
+    text-align: center;
 }
 
 .bloc_setting p{
     margin: 0;
+    font-family: 'Lusitana', serif;
 }
 
 .first_list{
@@ -49,6 +50,7 @@ input{
     border-radius: 5px;
     width: 40%;
   height: 42px;
+  border: 1px solid black;
 }
 
 .img_loupe{
@@ -60,7 +62,7 @@ input{
 
 
 .bloc_reception{
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .bloc_right{
@@ -72,11 +74,7 @@ input{
 
 .affichage{
     display: flex;
-    /* gap: 40px; */
-    align-items: center;
-    padding-left: 10px;
-    justify-content: space-between;
-    padding-right: 10px;
+    flex-direction: column;
 }
 
 .carre{
@@ -93,3 +91,49 @@ input{
     padding-left: 31px
 } 
 
+.mail{
+    display: flex;
+    align-items: center;
+  padding-left: 10px;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+.bouton_aff{
+    display: none;
+}
+
+@media (max-width: 999px) {
+    .bloc_setting{
+        width: 25%;
+    }
+}
+
+@media (max-width: 914px) {
+    .bloc_reception, .bloc_setting{
+        background-color: var(--yellow1);
+    }
+
+    .bloc_general {
+        height: 92vh;
+      }
+}
+
+@media (max-width: 795px) {
+    .bloc_setting{
+        display: none;
+    }
+
+.bloc_mess{
+    width: 100%;
+}
+
+.bouton_aff{
+    display: block;
+    width: 23px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 16px;
+}
+
+}

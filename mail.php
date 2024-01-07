@@ -42,6 +42,7 @@
     <div class="bloc_mess">
 
         <div class="bloc_recherche">
+            <div><img class="bouton_aff" src="./img/nav/menu.png" alt=""></div>
             <input type="search" placeholder="recherche...">
             <img class="img_loupe" src="./img/salle/loupe.png" alt="">
         </div>
@@ -49,18 +50,36 @@
         <div class="bloc_reception">
 
             <div class="affichage">
+<!-- Le code en dessous c'est le code pour 1 mail-->
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Elementor</p>
+                        <p class="descr">It's Black Friday Today !</p>
+                    </div>
 
-                <div class="bloc_right">
-                    <div class="carre"> </div>
-                    <p class="mail_sujet">Elementor</p>
-                    <p class="descr">It's Black Friday Today !</p>
+                    <div class="date">
+                        <p>date</p>
+                    </div>
+                </div>
+<!-- ---------------------------------------------- -->
+
+<!-- 2e mail (le même code) placé dans la div class="bloc_reception":  -->
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
                 </div>
 
-                <div class="date">
-                    <p>date</p>
-                </div>
 
-            </div>
+
+
 
         </div>
 
