@@ -1,6 +1,5 @@
 .bloc_general{
     display: flex;
-    height: 75vh;
 }
 
 .bloc_setting{
@@ -44,6 +43,7 @@
 .bloc_recherche{
     display: flex;
     justify-content: center;
+    padding-top: 10px;
 }
 
 input{
@@ -104,6 +104,12 @@ input{
     display: none;
 }
 
+  .bloc_reception.overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur d'assombrissement avec une opacité de 0.5 */
+  }
+
+
+
 @media (max-width: 999px) {
     .bloc_setting{
         width: 25%;
@@ -114,15 +120,20 @@ input{
     .bloc_reception, .bloc_setting{
         background-color: var(--yellow1);
     }
-
-    .bloc_general {
-        height: 92vh;
-      }
 }
 
 @media (max-width: 795px) {
     .bloc_setting{
         display: none;
+        width: 94%;
+    position: absolute;
+    z-index: 3;
+    margin-top: 75px;
+    border: 5px solid black;
+    /* top: %; */
+    left: 1%;
+transform : translate (-50%, -50%);
+        
     }
 
 .bloc_mess{
@@ -153,4 +164,29 @@ input{
     .date{
         font-size: 0.7rem;
     }
+}
+
+@media (max-width: 406px) {
+    .bloc_right {
+      gap: 0px;
     }
+
+    .carre {
+        width: 15px;
+        height: 15px;
+    }
+
+    .descr {
+        padding-left: 15px;
+        width: 50%;
+      }
+  }
+
+  @media (max-width: 390px) {
+  .mail {
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+
+}
+

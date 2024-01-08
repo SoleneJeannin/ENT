@@ -26,7 +26,7 @@
 
 <div class="bloc_general">
     
-    <div class="bloc_setting">
+    <div id="settingBloc" class="bloc_setting">
         <p class="nv_mess">Nouveau message</p>
         <p class="first_list">Boite de réception</p>
         <p>Messages suivis</p>
@@ -77,6 +77,117 @@
                     </div>
                 </div>
 
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
+                </div>
+                
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
+                </div>
+
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
+                </div>
+
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
+                </div>
+
+
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
+                </div>
+
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
+                </div>
+
+
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
+                </div>
+
+
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
+                </div>
+
+                <div class="mail">
+                    <div class="bloc_right">
+                        <div class="carre"> </div>
+                        <p class="mail_sujet">Objet</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    </div>
+
+                    <div class="date">
+                        <p>07/01/2024</p>
+                    </div>
+                </div>
+
 
 
 
@@ -87,6 +198,28 @@
 
 
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var contactImage = document.querySelector('.bouton_aff');
+  var settingBloc = document.getElementById('settingBloc');
+  var blocRec = document.querySelector('.bloc_reception');
+
+  var isOpen = false; // Ajout d'une variable pour suivre l'état du pop-up
+
+  contactImage.addEventListener('click', function() {
+    if (isOpen) {
+        settingBloc.style.display = 'none';
+        blocRec.classList.remove('overlay');
+    } else {
+        settingBloc.style.display = 'block';
+        blocRec.classList.add('overlay');
+    }
+
+    isOpen = !isOpen; 
+  });
+});
+</script>
 
 
     </main>
