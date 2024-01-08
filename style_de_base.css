@@ -466,7 +466,7 @@ main {
 
 
 
-/* menu halbergeur */
+/* menu hambergeur */
 
  @media (max-width: 915px) {
     .bloc_nav_ordi{
@@ -566,34 +566,10 @@ top: 43px;
 z-index: 99;
     }
 
-    /* .mobile_lien_fen{
-        padding-block: 20px;
-    line-height: 20px;
-    } */
-
-    /* nav{
-        height: 10vh;
-    }
-
-    .links {
-        height: 100vh;
-        margin-left: -100%;
-        transition: all 0.5s ease;
-
-        -webkit-backdrop-filter: blur(35px);
-        -moz-backdrop-filter: blur(35px);
-        backdrop-filter: blur(35px);
-        display: block;
-    }
-
-  
-
-    .mobile_menu {
-        margin-left: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        background-color: var(--yellow2);
-    } */
 } 
+
+@media (max-width: 424px) {
+body{
+    padding: 5px;
+}
+}

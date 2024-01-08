@@ -10,7 +10,7 @@
                         <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                     </svg></a>
                 <div class="dropdown-content drop1">
-                    <a href="#">Agenda</a>
+                    <a href="edt.php">Agenda</a>
                     <a href="notes.php">Notes</a>
                     <a href="evals.php">Évaluations</a>
                     <a href="cours_todo_list.php">Cours</a>
@@ -41,6 +41,7 @@
                 <div class="dropdown-content drop3">
                     <a href="campus.php">Campus</a>
                     <a href="actualites.php">Actualité</a>
+                    <a href="vie_etudiant.php">Vie étudiante</a>
                 </div>
             </div>
 
@@ -278,10 +279,10 @@
                 </div>
             </div>
         </div>
-
+<!-- ici -->
         <div class="links" id="contactBloc">
             <div class="mobile_centrer_lien">
-                <a href="">Accueil </a>
+                <a href="index.php">Accueil </a>
 
                 <div class="dropdown">
                     <a class="drop-bt" href="">Études <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
@@ -289,14 +290,14 @@
                             <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                         </svg></a>
                     <div class="dropdown-content drop1">
-                        <a href="#">Agenda</a>
-                        <a href="#">Notes</a>
+                        <a href="edt.php">Agenda</a>
+                        <a href="notes.php">Notes</a>
                         <a href="evals.php">Évaluations</a>
-                        <a href="#">Cours</a>
+                        <a href="cours_todo_list.php">Cours</a>
                     </div>
                 </div>
 
-                <a href="">Mail</a>
+                <a href="mail.php">Mail</a>
 
 
                 <div class="dropdown">
@@ -305,7 +306,7 @@
                             <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                         </svg></a>
                     <div class="dropdown-content drop2">
-                        <a href="#">Salles</a>
+                        <a href="#reservation_salle.php">Salles</a>
                         <a href="reservation_materiel.php">Matériel</a>
                     </div>
                 </div>
@@ -318,13 +319,15 @@
                             <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                         </svg></a>
                     <div class="dropdown-content drop3">
-                        <a href="#">Campus</a>
-                        <a href="#">Actualité</a>
+                        <a href="campus.php">Campus</a>
+                        <a href="actualites.php">Actualité</a>
+                        <a href="vie_etudiant.php">Vie étudiante</a>
+                        
                     </div>
                 </div>
 
 
-                <a href="">Applis</a>
+                <a href="application.php">Applis</a>
             </div>
         </div>
         <script>
@@ -347,17 +350,6 @@
         </script>
 
 </nav>
-
-<!-- </div>
-    <img class="menu" src="./img/nav/menu.png" alt="menu"> 
-    <script>
-        const menuHamburger = document.querySelector(".menu");
-        const navLinks = document.querySelector(".links");
-
-        menuHamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('mobile_menu');
-        });
-    </script> -->
 
 
 <script>
