@@ -27,15 +27,15 @@
 <div class="bloc_general">
     
     <div id="settingBloc" class="bloc_setting">
-        <p class="nv_mess">Nouveau message</p>
-        <p class="first_list">Boite de réception</p>
-        <p>Messages suivis</p>
-        <p>En attente</p>
-        <p>Messages envoyés</p>
-        <p>Brouillons</p>
-        <p>Spam</p>
-        <p>Corbeille</p>
-        <p>Tous les messages</p>
+        <a class="nv_mess" href="">Nouveau message</a>
+        <a class="first_list" href="">Boite de réception</a>
+        <a href="">Messages suivis</a>
+        <a href="">En attente</a>
+        <a href="">Messages envoyés</a>
+        <a href="">Brouillons</a>
+        <a href="">Spam</a>
+        <a href="">Corbeille</a>
+        <a href="">Tous les messages</a>
     </div>
 
 
@@ -53,13 +53,13 @@
 <!-- Le code en dessous c'est le code pour 1 mail-->
                 <div class="mail">
                     <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Elementor</p>
-                        <p class="descr">It's Black Friday Today !</p>
+                    <div><div class="carre"> </div></div>
+                        <a class="mail_sujet" href="">Présidence de l'Uni.</a> 
+                        <a class="descr" href="">Voeux 2024</a> 
                     </div>
 
                     <div class="date">
-                        <p>date</p>
+                        <p>14:30</p>
                     </div>
                 </div>
 <!-- ---------------------------------------------- -->
@@ -67,127 +67,51 @@
 <!-- 2e mail (le même code) placé dans la div class="bloc_reception":  -->
                 <div class="mail">
                     <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    <div><div class="carre"> </div></div>
+                        <a class="mail_sujet" href="">DAVID Sophie</a> 
+                        <a class="descr" href="">Bonne fêtes !</a> 
                     </div>
 
                     <div class="date">
-                        <p>07/01/2024</p>
+                        <p>20/12/2023</p>
                     </div>
                 </div>
 
                 <div class="mail">
                     <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    <div><div class="carre"> </div></div>
+                        <a class="mail_sujet" href="">BERTHET Matthieu</a> 
+                        <a class="descr" href="">Notes des tp test</a> 
                     </div>
 
                     <div class="date">
-                        <p>07/01/2024</p>
+                        <p>19/12/2023</p>
                     </div>
                 </div>
-                
+               
                 <div class="mail">
                     <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                        <div><div class="carre"> </div></div>
+                        <a class="mail_sujet" href="">BISTER Florence</a> 
+                        <a class="descr" href="">Suite à la seconde séance de TD </a> 
                     </div>
 
                     <div class="date">
-                        <p>07/01/2024</p>
-                    </div>
-                </div>
-
-                <div class="mail">
-                    <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
-                    </div>
-
-                    <div class="date">
-                        <p>07/01/2024</p>
+                        <p>18/12/2023</p>
                     </div>
                 </div>
 
                 <div class="mail">
                     <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
+                    <div><div class="carre"> </div></div>
+                        <a class="mail_sujet" href="">Merci de ne pas répondre</a> 
+                        <a class="descr" href="">Vous avez remis un travail pour le devoir « Dépot du compte rendu »</a> 
                     </div>
 
                     <div class="date">
-                        <p>07/01/2024</p>
+                        <p>14/12/2023</p>
                     </div>
                 </div>
-
-
-                <div class="mail">
-                    <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
-                    </div>
-
-                    <div class="date">
-                        <p>07/01/2024</p>
-                    </div>
-                </div>
-
-                <div class="mail">
-                    <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
-                    </div>
-
-                    <div class="date">
-                        <p>07/01/2024</p>
-                    </div>
-                </div>
-
-
-                <div class="mail">
-                    <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
-                    </div>
-
-                    <div class="date">
-                        <p>07/01/2024</p>
-                    </div>
-                </div>
-
-
-                <div class="mail">
-                    <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
-                    </div>
-
-                    <div class="date">
-                        <p>07/01/2024</p>
-                    </div>
-                </div>
-
-                <div class="mail">
-                    <div class="bloc_right">
-                        <div class="carre"> </div>
-                        <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
-                    </div>
-
-                    <div class="date">
-                        <p>07/01/2024</p>
-                    </div>
-                </div>
-
 
 
 
