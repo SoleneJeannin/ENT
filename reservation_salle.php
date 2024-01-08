@@ -17,6 +17,12 @@
 </head>
 
 <body>
+    <script>
+        //Apparition de la popup
+        function popup() {
+            document.getElementsByClassName("popup")[0].style.top = "140px";
+        }
+    </script>
 
     <main>
     
@@ -26,6 +32,26 @@
         include('nav.php');
         include('connexion.php');
         ?>
+
+        <?php
+        //Si on vient de reserver une salle
+        if(isset($_GET['etat'])){
+            $id_salle=$_GET['id'];
+            $creneau_salle = $_GET['creneau'];
+            ?>
+            <div class="popup">
+                <p>Vous avez bien réservé la salle <?=$id_salle?> sur le <?=$creneau_salle?>e créneau de la journée.</p>
+            </div>
+            
+            <?php 
+            //Appel la fonction js qui fait apparaitre la popup
+            echo "<script> popup(); </script>"; 
+        
+        }
+        //Sinon la popup ne s'affiche juste pas
+        ?>
+
+
         <h1>Réservez votre salle</h1>
         <div class="sous_titre">Cliquez sur l'heure souhaitée située en dessous de la bonne salle</div>
         <br>

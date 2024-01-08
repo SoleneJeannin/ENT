@@ -17,6 +17,12 @@
 </head>
 
 <body>
+    <script>
+        //Apparition de la popup
+        function popup() {
+            document.getElementsByClassName("popup")[0].style.top = "140px";
+        }
+    </script>
 
     <main>
     
@@ -26,7 +32,18 @@
         include('nav.php');
         include('connexion.php');
         
+        //Si on vient de reserver une salle
+        if(isset($_GET['etat'])){ ?>
+            <div class="popup">
+                <p>La réservation a fonctionné !</p>
+            </div>
+            
+            <?php 
+            //Appel la fonction js qui fait apparaitre la popup
+            echo "<script> popup(); </script>"; 
         
+        }
+        //Sinon la popup ne s'affiche juste pas
         ?>
 
 

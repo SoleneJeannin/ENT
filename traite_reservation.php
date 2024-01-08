@@ -30,7 +30,7 @@ if (isset($_POST['reservation']) && isset($_POST['conditions'])){
     $stmt_nv_stock->execute();
 
     //Retour à la page de réservation
-    header("Location:reservation_materiel.php");
+    header("Location:reservation_materiel.php?etat=reserve");
 }else{
     header('Location:detail_materiel.php?err=pblm&&id='.$id);
 }

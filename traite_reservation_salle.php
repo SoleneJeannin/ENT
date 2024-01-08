@@ -22,5 +22,5 @@ $creneau_salle = $_GET['creneau'];
     ));
 
     //Retour à la page de réservation
-    header("Location:reservation_salle.php");
+    header("Location:reservation_salle.php?etat=reserve&&id=$id_salle&&creneau=$creneau_salle");
 ?>
