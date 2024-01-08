@@ -93,8 +93,12 @@
         <?php
         $requetEvaluation = "SELECT * FROM eval_exam"
             ?>
-        <div class="evaluation">
-
+        <div class="evaluation cours">
+            <h2>Vos Évaluations</h2>
+            <?php 
+            // Je souhaite obtenir les évaluations 
+            
+            ?>
         </div>
 
     </main>

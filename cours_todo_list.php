@@ -37,6 +37,7 @@
 
 
             <div class="cours">
+            <h2>Vos Cours</h2>
                 <?php
 
                 // Je vérifie que l'utilisateur logué soit dans le bon programme.
@@ -87,7 +88,7 @@
 
 
                         ?>
-                        
+
                         <a href="cours.php?id=<?= $row["ext_contenu"] ?>" class="cours-link">
                             <div class="<?= $style ?> cours-solo cours<?= $row["id_matiere"] ?>">
                                 <p class="nom-matiere">
@@ -114,10 +115,13 @@
 
 
             <div class="todo-lists">
+                <h2>Votre TodoList</h2>
                 <form class="actualisation" action="cours_todo_list.php">
+
                     <input class="reactualisation" type="submit" name="reactualisationTodo"
                         value="Réactualisation du Todo">
                 </form>
+
                 <?php
 
                 if (isset($_GET['reactualisationTodo'])) {
