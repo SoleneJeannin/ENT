@@ -5,6 +5,8 @@
   padding: 20px;
   margin-right: 5%;
   margin-left: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .todo-seul {
   display: flex;
@@ -109,7 +111,7 @@
   padding: 0;
   margin: 0;
 }
-.cours-link{
+.cours-link {
   text-decoration: none;
   color: black;
 }
@@ -118,17 +120,55 @@
   background-color: #d1f4ff;
 }
 .color-blue:hover {
+  transition: 0.2s;
   background-color: #8be1fb;
 }
 .color-red {
+  transition: 0.2s;
   background-color: #ffbdbd;
 }
 .color-red:hover {
+  transition: 0.2s;
   background-color: #ff8e8e;
 }
 .color-green {
+  transition: 0.2s;
   background-color: #daffcd;
 }
 .color-green:hover {
+  transition: 0.2s;
   background-color: #adff8f;
+}
+
+.task-none {
+  color: rgb(255, 45, 45);
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
+}
+.cours{
+  margin-left: 20px
+}
+@media (max-width: 916px) {
+  .container-cours-todo {
+    display: block;
+  }
+  .cours-solo {
+    margin: 0;
+    padding: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .todo-lists {
+    border: solid 5px #f9d57f;
+    border-radius: 26px;
+    padding: 20px;
+    width: 100%;
+    margin: 0;
+    margin-top: 50px;
+  }
 }
