@@ -23,7 +23,7 @@ h3{
     padding: 10px;
     display: flex;
     margin: auto;
-     transition: 0.3s; 
+    transition: 0.3s; 
 }
 
 .img_mat0:hover{
@@ -41,9 +41,9 @@ h3{
 
 
 .bloc_materiel{
- display: flex;   
- justify-content: space-evenly;
- flex-wrap: wrap;
+    display: flex;   
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 
@@ -67,6 +67,23 @@ h3{
     border: 4px #A8FF89 solid;
     border-radius: 12px;
 }
+input {
+    width: 4rem;
+}
+
+main .bouton {
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    font-family: 'Lexend Deca', sans-serif;
+    margin: 0 15px;
+    width: fit-content;
+}
+
+form{
+    margin: 0 15px;
+}
+
 
 
 @media (max-width: 772px) {
