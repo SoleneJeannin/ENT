@@ -88,7 +88,8 @@ input{
 }
 
 .descr{
-    padding-left: 31px
+    padding-left: 31px;
+    width: 65%;
 } 
 
 .mail{
@@ -135,5 +136,21 @@ input{
     margin-top: 10px;
     margin-right: 16px;
 }
-
 }
+
+@media (max-width: 597px) {
+.bloc_right{
+    gap: 7px;
+}
+}
+
+@media (max-width: 452px) {
+   
+    .bloc_mess{
+        margin: 1px;
+    }
+
+    .date{
+        font-size: 0.7rem;
+    }
+    }

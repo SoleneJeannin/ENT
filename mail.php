@@ -69,7 +69,7 @@
                     <div class="bloc_right">
                         <div class="carre"> </div>
                         <p class="mail_sujet">Objet</p>
-                        <p class="descr">Blbalbalbalblallbblabblabl</p>
+                        <p class="descr">Blbalbalbalblallbblabblabl vfgfffffffffff fffffffffffffffffffffffff ffffffffffffffffff ffffffffffffffff ffffffffffff fffffffffffffffffff</p>
                     </div>
 
                     <div class="date">
