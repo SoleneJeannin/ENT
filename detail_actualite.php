@@ -32,13 +32,17 @@
         ?>
             
         <div class="article">
-            <?php
-            if(isset($id_actu)){
-            ?>
-            <h1><?= $result['actu_titre']?></h1>
-            <p class="date"><?= $date ?></p>
-            <img src="./img/actualites/<?= $result['actu_img']?>" alt="">
-            <p><?= $result['actu_text']?></p>
+        <p class="date"><?= $date ?></p>
+            <div class="titre_img">
+                <?php
+                if(isset($id_actu)){
+                ?>
+                <h1><?= $result['actu_titre']?></h1>
+                
+                <img src="./img/actualites/<?= $result['actu_img']?>" alt="">
+            </div>
+            
+            <p class="text_actu"><?= $result['actu_text']?></p>
 
             <?php } else { ?>
             <p>Cet article n'est pas disponible</p>
