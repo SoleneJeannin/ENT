@@ -27,174 +27,173 @@
         include('connexion.php');
 
         if (isset($_SESSION["login"])) {
-            echo "";
-        } else {
-            echo "Vous n'êtes pas connecté";
-        }
-        ?>
 
-        <div class="container-cours-todo">
+            ?>
+
+            <div class="container-cours-todo">
 
 
-            <div class="cours">
-            <h2>Vos Cours</h2>
-                <?php
+                <div class="cours">
+                    <h2>Vos Cours</h2>
+                    <?php
 
-                // Je vérifie que l'utilisateur logué soit dans le bon programme.
-                $idUser = $_SESSION['id_user'];
-                $requeteProgrammeUser = "SELECT user_programme FROM user WHERE id_user=:idUser";
-                $stmtProgrammeUser = $db->prepare($requeteProgrammeUser);
-                $stmtProgrammeUser->bindParam(':idUser', $idUser, PDO::PARAM_INT);
-                $stmtProgrammeUser->execute();
-                $resultsProgrammeUser = $stmtProgrammeUser->fetch(PDO::FETCH_ASSOC);
+                    // Je vérifie que l'utilisateur logué soit dans le bon programme.
+                    $idUser = $_SESSION['id_user'];
+                    $requeteProgrammeUser = "SELECT user_programme FROM user WHERE id_user=:idUser";
+                    $stmtProgrammeUser = $db->prepare($requeteProgrammeUser);
+                    $stmtProgrammeUser->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+                    $stmtProgrammeUser->execute();
+                    $resultsProgrammeUser = $stmtProgrammeUser->fetch(PDO::FETCH_ASSOC);
 
-                // Je récupère les informations de la table cours
-                $requeteCours = "SELECT * FROM matiere";
-                $stmtCours = $db->prepare($requeteCours);
-                $stmtCours->execute();
-                $resultsCours = $stmtCours->fetchAll(PDO::FETCH_ASSOC);
+                    // Je récupère les informations de la table cours
+                    $requeteCours = "SELECT * FROM matiere";
+                    $stmtCours = $db->prepare($requeteCours);
+                    $stmtCours->execute();
+                    $resultsCours = $stmtCours->fetchAll(PDO::FETCH_ASSOC);
 
-                ?>
+                    ?>
 
-                L'utilisateur est de programme :
-                <?= $resultsProgrammeUser["user_programme"]; ?>
-                <br><br><br>
-                <?php
+                    L'utilisateur est de programme :
+                    <?= $resultsProgrammeUser["user_programme"]; ?>
+                    <br><br><br>
+                    <?php
 
-                $CoursProgramme = false;
+                    $CoursProgramme = false;
 
-                foreach ($resultsCours as $row) {
-                    $programme = $row["programme"];
-                    // Pour chaque cours je vérifie qu'il est du programme
-                    if (isset($resultsProgrammeUser["user_programme"]) && $resultsProgrammeUser["user_programme"] == $programme) {
-                        $CoursProgramme = true;
-                        $requeteProfesseur = "SELECT user_nom,user_prenom FROM user WHERE id_user=:ext_prof";
-                        $stmtProfesseur = $db->prepare($requeteProfesseur);
-                        $stmtProfesseur->bindParam(':ext_prof', $row["ext_prof"], PDO::PARAM_INT);
-                        $stmtProfesseur->execute();
-                        $resultsProfesseur = $stmtProfesseur->fetch(PDO::FETCH_ASSOC);
+                    foreach ($resultsCours as $row) {
+                        $programme = $row["programme"];
+                        // Pour chaque cours je vérifie qu'il est du programme
+                        if (isset($resultsProgrammeUser["user_programme"]) && $resultsProgrammeUser["user_programme"] == $programme) {
+                            $CoursProgramme = true;
+                            $requeteProfesseur = "SELECT user_nom,user_prenom FROM user WHERE id_user=:ext_prof";
+                            $stmtProfesseur = $db->prepare($requeteProfesseur);
+                            $stmtProfesseur->bindParam(':ext_prof', $row["ext_prof"], PDO::PARAM_INT);
+                            $stmtProfesseur->execute();
+                            $resultsProfesseur = $stmtProfesseur->fetch(PDO::FETCH_ASSOC);
 
-                        $couleur = $row["couleur"];
-                        // Vérifie que la condition "$couleur" soit égale à blue, si oui alors $style="color-blue", sinon rien.
-                        if ($style = ($couleur == "blue")) {
-                            $style = "color-red";
-                        } elseif ($style = ($couleur == "red")) {
-                            $style = "color-blue";
-                        } elseif ($style = ($couleur == "green")) {
-                            $style = "color-green";
-                        } else {
-                            $style = "";
+                            $couleur = $row["couleur"];
+                            // Vérifie que la condition "$couleur" soit égale à blue, si oui alors $style="color-blue", sinon rien.
+                            if ($style = ($couleur == "blue")) {
+                                $style = "color-red";
+                            } elseif ($style = ($couleur == "red")) {
+                                $style = "color-blue";
+                            } elseif ($style = ($couleur == "green")) {
+                                $style = "color-green";
+                            } else {
+                                $style = "";
+                            }
+
+
+                            ?>
+
+                            <a href="cours.php?id=<?= $row["ext_contenu"] ?>" class="cours-link">
+                                <div class="<?= $style ?> cours-solo cours<?= $row["id_matiere"] ?>">
+                                    <p class="nom-matiere">
+                                        <?= $row["nom_matiere"] ?>
+                                    </p><br>
+                                    <p class="nom-prof">
+                                        <?= ucwords($resultsProfesseur["user_nom"]) . " " . ucwords($resultsProfesseur["user_prenom"]) ?>
+                                    </p>
+                                </div>
+                            </a>
+
+
+                            <?php
                         }
 
-
-                        ?>
-
-                        <a href="cours.php?id=<?= $row["ext_contenu"] ?>" class="cours-link">
-                            <div class="<?= $style ?> cours-solo cours<?= $row["id_matiere"] ?>">
-                                <p class="nom-matiere">
-                                    <?= $row["nom_matiere"] ?>
-                                </p><br>
-                                <p class="nom-prof">
-                                    <?= ucwords($resultsProfesseur["user_nom"]) . " " . ucwords($resultsProfesseur["user_prenom"]) ?>
-                                </p>
-                            </div>
-                        </a>
-
-
-                        <?php
+                    }
+                    if (!$CoursProgramme) {
+                        echo "Vous n'avez pas de cours dans votre programme";
                     }
 
-                }
-                if (!$CoursProgramme) {
-                    echo "Vous n'avez pas de cours dans votre programme";
-                }
-
-                ?>
-            </div>
-
-
-
-            <div class="todo-lists">
-                <h2>Votre TodoList</h2>
-                <form class="actualisation" action="cours_todo_list.php">
-
-                    <input class="reactualisation" type="submit" name="reactualisationTodo"
-                        value="Réactualisation du Todo">
-                </form>
-
-                <?php
-
-                if (isset($_GET['reactualisationTodo'])) {
-                    $requeteTodo = 'SELECT * FROM todo_list WHERE ext_user=:id ORDER BY todo_list_status';
-                } else {
-                    $requeteTodo = 'SELECT * FROM todo_list WHERE ext_user=:id';
-                }
-
-
-
-
-
-                $stmt = $db->prepare($requeteTodo);
-                $stmt->bindParam(':id', $idUser, PDO::PARAM_INT);
-                $stmt->execute();
-
-                $resultTodo = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                if (empty($resultTodo)) {
                     ?>
-                    <p class="task-none">Aucune tâches</p>
-                    <?php
-                } else {
-                    $compteTodo = 0;
-                    $compteTodoCheck = 0;
-                    foreach ($resultTodo as $row) {
-                        if ($row["todo_list_status"] == 1) {
-                            $compteTodoCheck++;
-                        }
+                </div>
 
+
+
+                <div class="todo-lists">
+                    <h2>Votre TodoList</h2>
+                    <form class="actualisation" action="cours_todo_list.php">
+
+                        <input class="reactualisation" type="submit" name="reactualisationTodo"
+                            value="Réactualisation du Todo">
+                    </form>
+
+                    <?php
+
+                    if (isset($_GET['reactualisationTodo'])) {
+                        $requeteTodo = 'SELECT * FROM todo_list WHERE ext_user=:id ORDER BY todo_list_status';
+                    } else {
+                        $requeteTodo = 'SELECT * FROM todo_list WHERE ext_user=:id';
+                    }
+
+
+
+
+
+                    $stmt = $db->prepare($requeteTodo);
+                    $stmt->bindParam(':id', $idUser, PDO::PARAM_INT);
+                    $stmt->execute();
+
+                    $resultTodo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    if (empty($resultTodo)) {
                         ?>
-                        <div class="todo-seul">
-                            <!-- Formulaire pour le checkbox dans bdd -->
-                            <form action="cours_todo_checkbox.php">
-                                <input type="checkbox" id="todo<?= $row["id_todo_list"] ?>"
-                                    name="todo<?= $row["id_todo_list"] ?> " <?= $row["todo_list_status"] == 1 ? 'checked' : '' ?>
-                                    onclick="updateDatabase(this)" />
-                                <!-- Je souhaite récupérer la valeur du status -->
-                                <label class="todo-text" for="todo<?= $row["id_todo_list"] ?>">
-                                    <?= $row["todo_list_text"] ?>
-                                </label>
-                            </form>
-                            <!-- Formulaire pour supprimer todo dans bdd -->
-                            <form action="cours_todo_list_supprime.php" method="GET">
-                                <input type="hidden" name="idTodo" value="<?= $row["id_todo_list"] ?>">
-                                <input class="supprimer" type="submit" value="Supprimer">
-                            </form>
+                        <p class="task-none">Aucune tâches</p>
+                        <?php
+                    } else {
+                        $compteTodo = 0;
+                        $compteTodoCheck = 0;
+                        foreach ($resultTodo as $row) {
+                            if ($row["todo_list_status"] == 1) {
+                                $compteTodoCheck++;
+                            }
+
+                            ?>
+                            <div class="todo-seul">
+                                <!-- Formulaire pour le checkbox dans bdd -->
+                                <form action="cours_todo_checkbox.php">
+                                    <input type="checkbox" id="todo<?= $row["id_todo_list"] ?>"
+                                        name="todo<?= $row["id_todo_list"] ?> " <?= $row["todo_list_status"] == 1 ? 'checked' : '' ?>
+                                        onclick="updateDatabase(this)" />
+                                    <!-- Je souhaite récupérer la valeur du status -->
+                                    <label class="todo-text" for="todo<?= $row["id_todo_list"] ?>">
+                                        <?= $row["todo_list_text"] ?>
+                                    </label>
+                                </form>
+                                <!-- Formulaire pour supprimer todo dans bdd -->
+                                <form action="cours_todo_list_supprime.php" method="GET">
+                                    <input type="hidden" name="idTodo" value="<?= $row["id_todo_list"] ?>">
+                                    <input class="supprimer" type="submit" value="Supprimer">
+                                </form>
+                            </div>
+                            <?php
+                            $compteTodo++;
+
+                        }
+                        ?>
+                        <div class="pourcentage">
+                            <?php echo round(($compteTodoCheck * 100) / $compteTodo, 1) . "% des tâches réalisés" ?>
                         </div>
                         <?php
-                        $compteTodo++;
-
-                    }
-                    ?>
-                    <div class="pourcentage">
-                        <?php echo round(($compteTodoCheck * 100) / $compteTodo, 1) . "% des tâches réalisés" ?>
-                    </div>
-                    <?php
-                } ?>
+                    } ?>
 
 
-                <!-- Formulaire pour ajouter une todo dans bdd -->
-                <form class="ajout-todo" action="cours_todo_list_traite.php" method="GET">
-                    <br>
-                    <label for="writetodo">Entrée votre tâche à réaliser</label>
-                    <br>
-                    <input type="text" id="writetodo" name="writetodo">
-                    <br>
-                    <br>
-                    <input class="ajout-btn" type="submit" value="Ajouter">
-                </form>
+                    <!-- Formulaire pour ajouter une todo dans bdd -->
+                    <form class="ajout-todo" action="cours_todo_list_traite.php" method="GET">
+                        <br>
+                        <label for="writetodo">Entrée votre tâche à réaliser</label>
+                        <br>
+                        <input type="text" id="writetodo" name="writetodo">
+                        <br>
+                        <br>
+                        <input class="ajout-btn" type="submit" value="Ajouter">
+                    </form>
+                </div>
             </div>
-        </div>
-    </main>
-
+        </main>
+    <?php } else {
+            echo "Vous n'êtes pas connecté";
+        } ?>
 
     <script>
         // Aidé par ChatGPT 

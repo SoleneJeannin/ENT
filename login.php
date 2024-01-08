@@ -28,18 +28,28 @@
             </div>
 
             <div class="connexion">
+
                 <img src="" alt="">
                 <form action="traite_login.php" method="POST">
+                    <?php
+                    if (isset($_GET["err"])) {
+                        ?>
+                        <p class="red erreur">Vous n'avez pas entrée le bon login et/ou mot de passe</p>
+                        <?php
+                    }
+                    ?>
+                 
                     <label for="login">Login : </label> <br>
                     <input type="text" id="login" name="login" placeholder="Adresse mail universitaire">
                     <br> <br>
                     <label for="mdp">Mot de passe : </label> <br>
                     <input type="password" id="mdp" name="mdp" placeholder="Mot de passe">
                     <br> <br>
-                    <button type="submit" name="connexion_user" >Connexion</button>
+                    <button type="submit" name="connexion_user">Connexion</button>
                 </form>
             </div>
         </div>
+
 
     </main>
 

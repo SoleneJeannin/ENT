@@ -384,14 +384,19 @@ main {
 }
 
 #disconnect {
+    transition: 0.2s;
     padding: 7px 20px;
     border-radius: 5px;
     background-color: var(--red);
-    border: none;
+    border: 2px solid  var(--red) ;
     font-family: 'Lusitana', serif;
     font-size: 20px;
     margin: 15px auto 30px auto;
+    cursor: pointer;
+}
 
+#disconnect:hover{
+    background-color:white;
 }
 
 /* profile end */
