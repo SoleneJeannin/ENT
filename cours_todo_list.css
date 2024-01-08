@@ -1,24 +1,23 @@
 .todo-lists {
-  border: solid 5px #F9D57F;
+  border: solid 5px #f9d57f;
   border-radius: 26px;
-  width: 30%;
+  width: 40%;
   padding: 20px;
+  margin-right: 5%;
   margin-left: auto;
 }
-.todo-seul{
+.todo-seul {
   display: flex;
-  align-items: center;  
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
-  background-color:#f2a900 ;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  background-color: #f7b210;
+  padding: 20px 5px;
+  margin: 10px 0;
+  padding-left: 30px;
   border-radius: 26px;
 }
-.todo-seul label{
+.todo-seul label {
   margin-left: 15px;
 }
 
@@ -26,11 +25,110 @@
   margin-left: auto;
 }
 
-.submit-button{
-    margin-bottom: 30px;
-    display: block;
-    
+.submit-button {
+  margin-bottom: 30px;
+  display: block;
 }
 .todo-seul input[type="checkbox"]:checked + label {
   text-decoration: line-through;
+}
+
+.actualisation {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reactualisation {
+  justify-content: center;
+  cursor: pointer;
+  border: #ffcc54 solid 3px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+.reactualisation:hover {
+  transition: 0.1s;
+  border: #ffcc54 solid 3px;
+  background-color: #ffcc54;
+}
+
+.supprimer {
+  cursor: pointer;
+  margin-right: 30px;
+  color: white;
+  background-color: #e74e4e;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+.supprimer:hover {
+  background-color: #ae3d3d;
+}
+
+.pourcentage {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.ajout-todo {
+  text-align: center;
+}
+
+.ajout-btn {
+  cursor: pointer;
+  border-radius: 26px;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: #ffcc54 solid 3px;
+  background-color: #ffcc54;
+}
+.ajout-btn:hover {
+  transition: 0.2s;
+  background-color: white;
+}
+
+.container-cours-todo {
+  display: flex;
+}
+
+.cours-solo {
+  border-radius: 26px;
+  margin: 25px 0 20px 50px;
+  padding: 25px 100px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.nom-matiere {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.nom-matiere,
+.nom-prof {
+  padding: 0;
+  margin: 0;
+}
+.cours-link{
+  text-decoration: none;
+  color: black;
+}
+
+.color-blue {
+  background-color: #d1f4ff;
+}
+.color-blue:hover {
+  background-color: #8be1fb;
+}
+.color-red {
+  background-color: #ffbdbd;
+}
+.color-red:hover {
+  background-color: #ff8e8e;
+}
+.color-green {
+  background-color: #daffcd;
+}
+.color-green:hover {
+  background-color: #adff8f;
 }
