@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style_de_base.css">
+    <link rel="stylesheet" href="cours.css">
     <title>Cours - contenu</title>
 
 
@@ -23,30 +24,90 @@
         include('nav.php');
         include('connexion.php');
         ?>
-        <!-- Note à plus tard à moi même
-        : Je souhaite afficher le contenu de cours de chaque matière avec l'idetifiant correspondant. Un cours possède plusieurs contenu. Ainsi, je veux faire une condition pour savoir si la clé externe du contenu correspondent bien à l'identifiant de du cours en question.
-    -->
+
         <?php
-        $requeteContenu = "SELECT * FROM matiere_contenu";
+
+        $requeteContenu = "SELECT * FROM info_matiere WHERE ext_matiere=:id_matiere";
         $stmtContenu = $db->prepare($requeteContenu);
+        $stmtContenu->bindParam(':id_matiere', $_GET["id"], PDO::PARAM_INT);
         $stmtContenu->execute();
-        $resultsContenu = $stmtContenu->fetchAll(PDO::FETCH_ASSOC);
+        $resultsContenu = $stmtContenu->fetchall(PDO::FETCH_ASSOC);
 
-        if (isset($_GET["id"])) {
-            foreach ($resultsContenu as $row) {
+        $requeteMatiere = "SELECT * FROM matiere WHERE id_matiere=:id_matiere";
+        $stmtMatiere = $db->prepare($requeteMatiere);
+        $stmtMatiere->bindParam(':id_matiere', $_GET["id"], PDO::PARAM_INT);
+        $stmtMatiere->execute();
+        $resultsMatiere = $stmtMatiere->fetch(PDO::FETCH_ASSOC);
+        $ext_prof = $resultsMatiere["ext_prof"];
+
+        $requeteProfesseur = "SELECT user_nom,user_prenom FROM user WHERE id_user=:ext_prof";
+        $stmtProfesseur = $db->prepare($requeteProfesseur);
+        $stmtProfesseur->bindParam(':ext_prof', $ext_prof, PDO::PARAM_INT);
+        $stmtProfesseur->execute();
+        $resultsProfesseur = $stmtProfesseur->fetch(PDO::FETCH_ASSOC);
+        ?>
+        <div class="cours">
+            <div>
+                <p class="nom_matiere">
+                    <?= $resultsMatiere["nom_matiere"]; ?>
+                </p>
+                <p class="nom_prof">
+                    <?= ucwords($resultsProfesseur["user_nom"]) . " " . ucwords($resultsProfesseur["user_prenom"]) ?>
+                </p>
+            </div>
+            <?php
+            if ($stmtContenu->rowCount() > 0) {
+
+                foreach ($resultsContenu as $row) {
+
+                    ?>
+
+
+                    <div>
+                        <button class="visible cours-contenu" onclick="toggleAnswer('coursContenu<?= $row['id_info'] ?>')">
+
+                            <img class="toggle-img" src="./img/cours/arrow-down-circle.svg" alt="">
+                            <span class="cours-titre">
+
+                                <?= $row["info_titre"] ?>
+                            </span><br>
+                        </button>
+                        <div class="cours-contenu-information hidden" id="coursContenu<?= $row['id_info'] ?>">
+                            <p>
+                                <?= $row["information"] ?>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <?php
+                }
+            } else {
                 ?>
-
-                <?= $row["matiere_contenu_titre"] ?><br>
-
+                <div>
+                    <p>Le professeur n'a pas encore posté de contenu pour votre matière</p>
+                </div>
                 <?php
-            }
-        } ?>
+            } ?>
+        </div>
+        <?php
+        $requetEvaluation = "SELECT * FROM eval_exam"
+            ?>
+        <div class="evaluation">
 
-
+        </div>
 
     </main>
 
 
 </body>
+<script>
+
+    function toggleAnswer(coursId) {
+        var coursContenu = document.getElementById(coursId);
+        coursContenu.classList.toggle("hidden");
+        coursContenu.classList.toggle("animSmooth");
+    }
+</script>
 
 </html>

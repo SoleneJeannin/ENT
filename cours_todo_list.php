@@ -27,9 +27,9 @@
         include('connexion.php');
 
         if (isset($_SESSION["login"])) {
-            echo "Bonjour {$_SESSION["login"]}<br>";
+            echo "";
         } else {
-            echo "nn";
+            echo "Vous n'êtes pas connecté";
         }
         ?>
 
@@ -38,48 +38,74 @@
 
             <div class="cours">
                 <?php
+
+                // Je vérifie que l'utilisateur logué soit dans le bon programme.
+                $idUser = $_SESSION['id_user'];
+                $requeteProgrammeUser = "SELECT user_programme FROM user WHERE id_user=:idUser";
+                $stmtProgrammeUser = $db->prepare($requeteProgrammeUser);
+                $stmtProgrammeUser->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+                $stmtProgrammeUser->execute();
+                $resultsProgrammeUser = $stmtProgrammeUser->fetch(PDO::FETCH_ASSOC);
+
                 // Je récupère les informations de la table cours
                 $requeteCours = "SELECT * FROM matiere";
                 $stmtCours = $db->prepare($requeteCours);
                 $stmtCours->execute();
                 $resultsCours = $stmtCours->fetchAll(PDO::FETCH_ASSOC);
 
+                ?>
 
+                L'utilisateur est de programme :
+                <?= $resultsProgrammeUser["user_programme"]; ?>
+                <br><br><br>
+                <?php
 
+                $CoursProgramme = false;
 
                 foreach ($resultsCours as $row) {
+                    $programme = $row["programme"];
+                    // Pour chaque cours je vérifie qu'il est du programme
+                    if (isset($resultsProgrammeUser["user_programme"]) && $resultsProgrammeUser["user_programme"] == $programme) {
+                        $CoursProgramme = true;
+                        $requeteProfesseur = "SELECT user_nom,user_prenom FROM user WHERE id_user=:ext_prof";
+                        $stmtProfesseur = $db->prepare($requeteProfesseur);
+                        $stmtProfesseur->bindParam(':ext_prof', $row["ext_prof"], PDO::PARAM_INT);
+                        $stmtProfesseur->execute();
+                        $resultsProfesseur = $stmtProfesseur->fetch(PDO::FETCH_ASSOC);
 
-                    $requeteProfesseur = "SELECT user_nom,user_prenom FROM user WHERE id_user=:ext_prof";
-                    $stmtProfesseur = $db->prepare($requeteProfesseur);
-                    $stmtProfesseur->bindParam(':ext_prof', $row["ext_prof"], PDO::PARAM_INT);
-                    $stmtProfesseur->execute();
-                    $resultsProfesseur = $stmtProfesseur->fetch(PDO::FETCH_ASSOC);
+                        $couleur = $row["couleur"];
+                        // Vérifie que la condition "$couleur" soit égale à blue, si oui alors $style="color-blue", sinon rien.
+                        if ($style = ($couleur == "blue")) {
+                            $style = "color-red";
+                        } elseif ($style = ($couleur == "red")) {
+                            $style = "color-blue";
+                        } elseif ($style = ($couleur == "green")) {
+                            $style = "color-green";
+                        } else {
+                            $style = "";
+                        }
 
-                    $couleur = $row["couleur"];
-                    // Vérifie que la condition "$couleur" soit égale à blue, si oui alors $style="color-blue", sinon rien.
-                    if ($style = ($couleur == "blue")) {
-                        $style = "color-red";
-                    } elseif ($style = ($couleur == "red")) {
-                        $style = "color-blue";
-                    } elseif ($style = ($couleur == "green")) {
-                        $style = "color-green";
-                    } else {
-                        $style = "";
+
+                        ?>
+                        
+                        <a href="cours.php?id=<?= $row["ext_contenu"] ?>" class="cours-link">
+                            <div class="<?= $style ?> cours-solo cours<?= $row["id_matiere"] ?>">
+                                <p class="nom-matiere">
+                                    <?= $row["nom_matiere"] ?>
+                                </p><br>
+                                <p class="nom-prof">
+                                    <?= ucwords($resultsProfesseur["user_nom"]) . " " . ucwords($resultsProfesseur["user_prenom"]) ?>
+                                </p>
+                            </div>
+                        </a>
+
+
+                        <?php
                     }
 
-
-                    ?>
-                    <!-- Un cours contient plusieurs contenu. Un contenu est unique MAIS possède une clé externe qui est LA MATIERE  -->
-                    <a href="cours.php?id=<?=$row["ext_contenu"]?>" class="cours-link"><div class="<?= $style ?> cours-solo cours<?= $row["id_matiere"] ?>">
-                        <p class="nom-matiere">
-                            <?= $row["nom_matiere"] ?>
-                        </p><br>
-                        <p class="nom-prof"><?= $resultsProfesseur["user_nom"] . " " . $resultsProfesseur["user_prenom"]?></p>
-                    </div>
-                    </a>
-
-
-                    <?php
+                }
+                if (!$CoursProgramme) {
+                    echo "Vous n'avez pas de cours dans votre programme";
                 }
 
                 ?>
@@ -101,7 +127,7 @@
                 }
 
 
-                $idUser = $_SESSION['id_user'];
+
 
 
                 $stmt = $db->prepare($requeteTodo);
@@ -109,38 +135,47 @@
                 $stmt->execute();
 
                 $resultTodo = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                $compteTodo = 0;
-                $compteTodoCheck = 0;
-                foreach ($resultTodo as $row) {
-                    if ($row["todo_list_status"] == 1) {
-                        $compteTodoCheck++;
-                    }
-
+                if (empty($resultTodo)) {
                     ?>
-                    <div class="todo-seul">
-                        <!-- Formulaire pour le checkbox dans bdd -->
-                        <form action="cours_todo_checkbox.php">
-                            <input type="checkbox" id="todo<?= $row["id_todo_list"] ?>"
-                                name="todo<?= $row["id_todo_list"] ?> " <?= $row["todo_list_status"] == 1 ? 'checked' : '' ?>
-                                onclick="updateDatabase(this)" />
-                            <!-- Je souhaite récupérer la valeur du status -->
-                            <label class="todo-text" for="todo<?= $row["id_todo_list"] ?>">
-                                <?= $row["todo_list_text"] ?>
-                            </label>
-                        </form>
-                        <!-- Formulaire pour supprimer todo dans bdd -->
-                        <form action="cours_todo_list_supprime.php" method="GET">
-                            <input type="hidden" name="idTodo" value="<?= $row["id_todo_list"] ?>">
-                            <input class="supprimer" type="submit" value="Supprimer">
-                        </form>
+                    <p class="task-none">Aucune tâches</p>
+                    <?php
+                } else {
+                    $compteTodo = 0;
+                    $compteTodoCheck = 0;
+                    foreach ($resultTodo as $row) {
+                        if ($row["todo_list_status"] == 1) {
+                            $compteTodoCheck++;
+                        }
+
+                        ?>
+                        <div class="todo-seul">
+                            <!-- Formulaire pour le checkbox dans bdd -->
+                            <form action="cours_todo_checkbox.php">
+                                <input type="checkbox" id="todo<?= $row["id_todo_list"] ?>"
+                                    name="todo<?= $row["id_todo_list"] ?> " <?= $row["todo_list_status"] == 1 ? 'checked' : '' ?>
+                                    onclick="updateDatabase(this)" />
+                                <!-- Je souhaite récupérer la valeur du status -->
+                                <label class="todo-text" for="todo<?= $row["id_todo_list"] ?>">
+                                    <?= $row["todo_list_text"] ?>
+                                </label>
+                            </form>
+                            <!-- Formulaire pour supprimer todo dans bdd -->
+                            <form action="cours_todo_list_supprime.php" method="GET">
+                                <input type="hidden" name="idTodo" value="<?= $row["id_todo_list"] ?>">
+                                <input class="supprimer" type="submit" value="Supprimer">
+                            </form>
+                        </div>
+                        <?php
+                        $compteTodo++;
+
+                    }
+                    ?>
+                    <div class="pourcentage">
+                        <?php echo round(($compteTodoCheck * 100) / $compteTodo, 1) . "% des tâches réalisés" ?>
                     </div>
                     <?php
-                    $compteTodo++;
-
                 } ?>
-                <div class="pourcentage">
-                    <?php echo round(($compteTodoCheck * 100) / $compteTodo, 1) . "% des tâches réalisés" ?>
-                </div>
+
 
                 <!-- Formulaire pour ajouter une todo dans bdd -->
                 <form class="ajout-todo" action="cours_todo_list_traite.php" method="GET">
