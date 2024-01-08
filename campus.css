@@ -1,0 +1,13 @@
+h1{
+    text-align: center;
+}
+
+.carte{
+    display: flex;
+    padding: 20px;
+}
+
+.img_carte {
+    max-width: 45vw;
+    margin-right: 20px;
+}

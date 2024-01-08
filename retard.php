@@ -73,7 +73,7 @@
             }
             
         ?>
-        <p>Absences : <?= $abs_justif ?> justifiée(s) et <?= $abs_non_justif ?> non justifiée(s)</p>
+        <p>Absences : <?= $abs_justif ?> heure(s) justifiée(s) et <?= $abs_non_justif ?> heure(s) non justifiée(s)</p>
         
     </div>
     
