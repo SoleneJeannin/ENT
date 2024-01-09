@@ -1,25 +1,159 @@
+h1, h2{
+    text-align: center;
+    font-family: 'Lusitana', serif;
+    font-size: 2rem;
+}
+
 h1{
     text-align: center;
 }
 
+h2{
+    margin: 0px;
+}
+
 .carte{
     display: flex;
-    padding: 20px;
+    /* padding: 20px; */
+    justify-content: center;
+    padding-bottom: 10px;
 }
 
 .img_carte {
-    max-width: 45vw;
+    width: 45vw;
     margin-right: 20px;
+    object-fit: contain;
+    min-width: 438px;
 }
 
-@media (max-width: 1060px){
+.legende{
+    border: 3px solid black;
+    justify-content: space-around;
+  align-items: center;
+  display: flex;
+  padding: 10px;
+
+  justify-content: center;
+  gap: 14px;
+  flex-direction: column;
+}
+
+.bloc_logo{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+figure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+    justify-content: center;
+}
+
+.etoile{
+    width: 5vw;
+}
+
+.carre{
+    width: 3.5vw;
+}
+
+.bloc_description{
+    display: flex;
+    justify-content: center;
+  align-items: center;
+  gap: 74px;
+  padding-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+
+}
+
+.texte{
+    display: flex;
+    flex-direction: column;
+}
+
+.texte p{
+    /* width: 48vw; */
+    margin: 0px;
+}
+
+.esiee{
+    width: 30vw;
+}
+
+
+
+
+@media (max-width: 914px){
+.bloc_description{
+    padding-left: 25px;
+    padding-right: 25px;
+    gap: 5px;
+}
+
+.esiee{
+    min-width: 260px;
+}
+
+
+
+}
+
+
+ @media (max-width: 678px){
     .carte{
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
-    .img_carte{
-        min-width: 80vw;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
+
+    .legende{
+        flex-direction: row;
+        border: 1px solid black;
+        gap: 40px;
+        justify-content: center;
+    align-items: center;
     }
+
+    figcaption{
+        text-align: center;
+        width: 92px;
+    }
+
+    h2{
+        font-size: 1.5rem;
+    }
+
+    .bloc_logo {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bloc_description{
+        flex-direction: column;
+    }
+
+
+} 
+
+
+@media (max-width: 558px){
+    .bloc_logo {
+        flex-direction: column;
+    }
+
+    .etoile{
+        min-width: 32px;
+    }
+
+    .carre{
+        min-width: 19.45px;
+    }
+
 }
+

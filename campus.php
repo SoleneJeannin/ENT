@@ -31,19 +31,34 @@
 
             <div class="legende">
                 <h2>Légende</h2>
+
+                <div class="bloc_logo">
                 <figure>
-                    <img src="./img/campus/crous.png" alt="">
+                    <img class="etoile" src="./img/campus/crous.png" alt="">
                     <figcaption>Restaurant CROUS</figcaption>
                 </figure>
                 <figure>
-                    <img src="./img/campus/sport.png" alt="">
+                    <img class="carre" src="./img/campus/sport.png" alt="">
                     <figcaption>Gymnase et stade</figcaption>
                 </figure>
                 <figure>
-                    <img src="./img/campus/bibliotheque.png" alt="">
+                    <img class="etoile" src="./img/campus/bibliotheque.png" alt="">
                     <figcaption>Bibliothèque</figcaption>
                 </figure>
+                </div>
             </div>
+        </div>
+<br><br>
+        <div class="bloc_description">
+            <div class="texte">
+                <h2>CROUS DE l’ESIEE</h2>
+            <p>Le restaurant universitaire (RU)
+D’une capacité de 550 élèves, le restaurant universitaire est ouvert uniquement le midi, du lundi au vendredi, de 11 h 30 à 14 h 00. Il est organisé selon différents pôles afin de proposer des plats variés : végétariens, pizzas, poissons, viandes…</p>
+</div>
+            <img class="esiee" src="./img/campus/esiee.jpg" alt="">
+
+
+
         </div>
     </main>
 
