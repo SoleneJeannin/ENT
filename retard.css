@@ -10,11 +10,11 @@ h1{
     display: flex;
     justify-content: space-evenly;
     border: solid 1px black;
-  padding-top: 19px;
-  padding-bottom: 24px;
-  width: 90%;
-  border-radius: 10px;
-  margin: auto;
+    padding-top: 19px;
+    padding-bottom: 24px;
+    width: 90%;
+    border-radius: 10px;
+    margin: auto;
 }
 
 .first_colonne, .second_colonne{
@@ -57,17 +57,39 @@ h1{
 
 
 @media (max-width: 737px) {
-   .bloc_document{
-    flex-direction: column;
-    align-items: center;
-   }
+    .bloc_document{
+        flex-direction: column;
+        align-items: center;
+    }
 
-   .ligne{
-    display: none;
-   }
+    .ligne{
+        display: none;
+    }
 
-   .first_colonne, .second_colonne{
-  
-    width: 288px;
-   }
+    .first_colonne, .second_colonne{
+    
+        width: 288px;
+    }
+}
+
+/*Partie ADMIN*/
+
+form{
+    margin-left: 15px;
+}
+input{
+    width: 8rem;
+}
+main .bouton {
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    font-family: 'Lexend Deca', sans-serif;
+    margin: 0 15px;
+    width: fit-content;
+}
+select{
+    padding: 4px 10px;
+    font-family: 'Lexend Deca', sans-serif;
+    margin-bottom: 15px;
 }
