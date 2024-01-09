@@ -94,7 +94,17 @@
                 </svg>
             </button>
 
+            <?php
 
+            include('connexion.php');
+            $idUser = $_SESSION['id_user'];
+            $requeteUser = "SELECT * FROM user WHERE id_user=:idUser";
+            $stmtUser = $db->prepare($requeteUser);
+            $stmtUser->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $stmtUser->execute();
+            $resultsUser = $stmtUser->fetch(PDO::FETCH_ASSOC);
+
+            ?>
 
             <button id="carte">Ta carte</button>
 
@@ -112,12 +122,18 @@
                     </div>
                     <div class="info-card">
                         <img class="logo" src="./img/logo//logo-eiffel.png" alt="">
-                        <p>Né(e) le : 01/01/2022</p>
-                        <p>N d'étudiant</p>
+                        <p>Né(e) le :
+                            <?= $resultsUser["user_naissance"] ?>
+                        </p>
+                        <p>N d'étudiant :
+                            <?= $resultsUser["id_user"] ?>
+                        </p>
                     </div>
                     <div class="photo-card">
-                        <img class="photo-student" src="./img/etudiants-card/111111.jpg" alt="">
-                        <p>Thomas DUPONT</p>
+                        <img class="photo-student" src="./img/etudiants-card/neroli-prak.jpeg" alt="">
+                        <p>
+                            <?= ucwords($resultsUser["user_prenom"]) . " " . ucwords($resultsUser["user_nom"]) ?>
+                        </p>
                     </div>
                 </div>
 
@@ -140,20 +156,61 @@
                 </svg>
             </button>
 
+            <?php
+            $stmt = $db->query("SELECT * FROM user WHERE user_login = '" . $_SESSION['login'] . "'");
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['id_user'] = $result['id_user'];
 
+            //Récupérer les absences de l'utilisateur
+            $id_user = $_SESSION['id_user'];
+
+            $stmt2 = $db->query("SELECT * FROM absence WHERE ext_etudiant = '" . $id_user . "'");
+            $result2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+            $abs_justif = 0;
+            $abs_non_justif = 0;
+            foreach ($result2 as $row) {
+                //Si le champ "jusitifcation" n'est pas vide (que l'absence est justifiée)
+                if (isset($row['abs_justificatif'])) {
+                    //Additionner toutes les absences
+                    if (is_numeric($row['abs_duree'])) {
+                        $abs_justif += $row['abs_duree'];
+                    }
+                }
+                //Si le champ "jusitifcation" vaut "NULL" (que l'absence est NON justifiée)
+                else {
+                    if (is_numeric($row['abs_duree'])) {
+                        $abs_non_justif += $row['abs_duree'];
+                    }
+                }
+            }
+
+
+            ?>
 
             <div class="profile-block-wrapper" style="display: none;">
 
                 <div class="img-profile">
-                    <img src="./img/etudiants-card/111111.jpg" alt="">
+                    <img src="./img/etudiants-card/<?= $resultsUser["user_photo"] ?>" alt="">
                 </div>
 
                 <div class="nav-profile">
-                    <p class="name-profile">Name SURNAME</p>
-                    <a href="#">Mes documents</a>
-                    <a href="retard.php">Retards 0 h </a>
-                    <a href="">Absents 13 h</a>
-                    <a href="notes.php">Notes semestriel</a>
+                    <p class="name-profile">
+                        <?= ucwords($resultsUser["user_prenom"]) . " " . ucwords($resultsUser["user_nom"]) ?>
+                    </p>
+                    <a class="document" href="retard.php"><img src="./img/nav/file-text.svg" alt="">Mes documents</a>
+                    <a href="retard.php"><img src="./img/nav/clock.svg" alt=""> Retards :
+                        <?php if ($result["user_retard"] !== NULL) {
+                            echo $result['user_retard'];
+
+                        } else {
+                            echo 0;
+                        } ?>
+                        minutes
+                    </a>
+                    <a href="retard.php"><img src="./img/nav/watch.svg" alt="">
+                        Absences : <?= $abs_non_justif ?> heures
+                    </a>
+                    <a href="notes.php"><img src="./img/nav/note.svg" alt="">Notes semestriel</a>
                     <form action="deconnexion.php"><button id="disconnect">Se déconnecter</button></form>
                 </div>
             </div>
@@ -279,7 +336,7 @@
                 </div>
             </div>
         </div>
-<!-- ici -->
+        <!-- ici -->
         <div class="links" id="contactBloc">
             <div class="mobile_centrer_lien">
                 <a href="index.php">Accueil </a>
@@ -322,7 +379,7 @@
                         <a href="campus.php">Campus</a>
                         <a href="actualites.php">Actualité</a>
                         <a href="vie_etudiant.php">Vie étudiante</a>
-                        
+
                     </div>
                 </div>
 

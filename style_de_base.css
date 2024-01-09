@@ -75,6 +75,9 @@ main {
     gap: 20px;
     padding-left: 10px;
 }
+.links a:hover{
+    text-decoration: underline;
+}
 
 .personne {
     display: flex;
@@ -397,6 +400,20 @@ main {
 
 #disconnect:hover{
     background-color:white;
+}
+.nav-profile a{
+    transition: 0.2s;
+    padding-block: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-profile a:hover{
+    text-decoration: underline;
+    font-size: 18px;
+}
+.nav-profile img{
+    margin-right:10px;
 }
 
 /* profile end */
