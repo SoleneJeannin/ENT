@@ -37,13 +37,19 @@
                         <p class="red erreur">Vous n'avez pas entrée le bon login et/ou mot de passe</p>
                         <?php
                     }
+                    if (isset($_GET["errConnexion"])) {
+                        ?>
+                        <p class="red erreur">Reconnectez-vous pour revenir sur une page</p>
+                        <?php
+                    }
+
                     ?>
-                 
+
                     <label for="login">Login : </label> <br>
-                    <input type="text" id="login" name="login" placeholder="Adresse mail universitaire">
+                    <input type="text" id="login" name="login" placeholder="Adresse mail universitaire" required>
                     <br> <br>
                     <label for="mdp">Mot de passe : </label> <br>
-                    <input type="password" id="mdp" name="mdp" placeholder="Mot de passe">
+                    <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
                     <br> <br>
                     <button type="submit" name="connexion_user">Connexion</button>
                 </form>
