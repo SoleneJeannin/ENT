@@ -134,7 +134,7 @@ session_start();
                 coefficient,
                
                
-             
+                NULL AS salle,
                 matiere.ext_prof AS prof_id,
                 
                 user_prof.user_nom AS prof_nom,
@@ -156,7 +156,7 @@ session_start();
                 cours_temps_debut,
                 nom_matiere,
                 coefficient,
-                
+                cours_salle,
                
               
                 matiere.ext_prof AS prof_id,
@@ -225,7 +225,7 @@ session_start();
                                 <?php if ($row['type'] == 1) : ?>
                                     <a class="title-eval" href="./examen.php?id=<?= $row['id_eval'] ?>">
                                     <?php elseif ($row['type'] == 2) : ?>
-                                        <a href="./projet.php?id=<?= $row['id_eval'] ?>">
+                                        <a class="title-eval" href="./projet.php?id=<?= $row['id_eval'] ?>">
                                         <?php endif; ?>
 
                                         <span><?php if ($row['type'] == 1) : ?>Examen:<?php elseif ($row['type'] == 2) : ?>Projet:<?php endif; ?></span>
@@ -244,7 +244,7 @@ session_start();
                             <div class="right-info-eval">
                                 <p class="date-eval"><?= $deadlineDateFormatted ?? '' ?></p>
                                 <p> <?= $startTime . " - " . $deadlineTimeFormatted ?? '' ?></p>
-                                <p class="deposer">Salle 32</p>
+                                <p class="deposer">Salle <?= $row['salle'] ?? '' ?></p>
                             </div>
 
 

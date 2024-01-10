@@ -12,7 +12,7 @@ if (isset($_FILES['file'])) { // Check if the form is submitted
     $content_dir = './projet/';
     $user_id = $_SESSION["id_user"];
 
-    $user_dir = $content_dir .'/'.  $idProjet .'/'. $user_id .'/';
+    $user_dir = $content_dir .'/'.  $idProjet .'/';
     $tmp_file = $_FILES['file']['tmp_name'];
 
     if (!is_uploaded_file($tmp_file)) {

@@ -325,7 +325,7 @@ justify-content: space-between;}
                             <p><?= $projet['description_projet'] ?? 'Pas de description ajoutée' ?></p>
                             <?php
 if ($projet['consignes_projet'] !== null) {
-    echo "<a class='consigne button' href='./projet/{$projet['id_eval_projet']}/consignes/{$projet['consignes_projet']}.pdf'>Consignes</a>";
+    echo "<a class='consigne button' href='./projet/{$projet['id_eval_projet']}/consignes/{$projet['consignes_projet']}'>Consignes</a>";
 }
 ?>
 
@@ -346,6 +346,7 @@ if ($projet['consignes_projet'] !== null) {
                                 <input type="hidden" name="student_name" value="<?=  $_SESSION['prenom_user'] . "_" .  $_SESSION['nom_user'] ?>">
                                 <button type="submit" id="upload" class="button">Envoyer</button>
                             </form>
+                            <p style="font-size: 0.8rem;">Les formats: pdf, jpeg, zip</p>
                             <p id="fileNameDisplay"></p>
                         </div>
                     </div>
