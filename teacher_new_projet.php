@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 ?>
 
@@ -49,7 +49,16 @@ session_start();
     border-radius: 5px;
     font-size: 1.1rem;
         }
-            
+        @media (max-width: 900px) {
+                    main {background-color: white;
+                    padding: 10px;}
+
+                    .big-wrapper {
+                        margin: 0 auto;
+                        width: 50%;
+                    
+                    }
+                }
             </style>
 
 <div class="big-wrapper">
@@ -100,7 +109,7 @@ WHERE   ext_prof = :prof ";
     
     <label for="desc"> Description: <textarea  id="desc" name="desc"></textarea></label>
     <br><br>
-<label for="file">Consignes (pas obligatoire): </label> <br><br>
+<label for="file">Consignes PDF (pas obligatoire): </label> <br><br>
     <input type="file" name="file" id="file">
 <br><br><br>
     <input type="submit" value="Ajouter" class="submit">

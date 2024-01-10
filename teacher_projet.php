@@ -15,24 +15,7 @@ session_start();
     <link rel="stylesheet" href="style_de_base.css">
     <title>Projet</title>
 
-
-</head>
-
-
-<body>
-
-    <main>
-
-
-        <?php
-
-        include('nav-teacher.php');
-
-        ?>
-
-
-
-        <style>
+    <style>
             main {
                 background-color: var(--grey);
                 position: relative;
@@ -181,7 +164,11 @@ session_start();
                             font-size: 1.1rem;
                         }
                
-
+                        @media (max-width: 900px) {
+                            main {
+                                background-color: transparent !important;
+                            }
+                        }
             
         @media (max-width: 800px) {
  
@@ -214,8 +201,38 @@ padding-left: 0;
  table {
      width: 100%;
  }
+
+  .ajouter-notes  {
+    flex-direction: column;
+  }
+
+  #aj {
+    display: block;
+    margin: auto;
+  }
+
+  .moyen {
+    text-align: center;
+  }
 }
         </style>
+
+</head>
+
+
+<body>
+
+    <main>
+
+
+        <?php
+
+        include('nav-teacher.php');
+
+        ?>
+
+
+
 
 
 
@@ -301,7 +318,7 @@ padding-left: 0;
                         <p><?= $projet['description_projet'] ?? 'Pas de description ajoutée' ?></p>
                         <?php
                         if ($projet['consignes_projet'] !== null) {
-                            echo "<a class='consigne button' href='./projet/{$projet['id_eval_projet']}/consignes/{$projet['consignes_projet']}.pdf'>Consignes</a>";
+                            echo "<a class='consigne button' href='./projet/{$projet['id_eval_projet']}/consignes/{$projet['consignes_projet']}'>Consignes</a>";
                         }
                         ?>
                     </div>

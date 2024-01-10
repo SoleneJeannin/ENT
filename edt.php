@@ -35,21 +35,25 @@ session_start();
 
 
 
-        @media screen and (max-width: 600px) {
-            .time-slot {
-                display: none;
+        @media  (max-width: 600px) {
+            .schedule {
+                grid-template-rows:
+                    [tracks] auto [time-0800] 1fr [time-0815] 1fr [time-0830] 1fr [time-0845] 1fr [time-0900] 1fr [time-0915] 1fr [time-0930] 1fr [time-0945] 1fr [time-1000] 1fr [time-1015] 1fr [time-1030] 1fr [time-1045] 1fr [time-1100] 1fr [time-1115] 1fr [time-1130] 1fr [time-1145] 1fr [time-1200] 1fr [time-1215] 1fr [time-1230] 1fr [time-1245] 1fr [time-1300] 1fr [time-1315] 1fr [time-1330] 1fr [time-1345] 1fr [time-1400] 1fr [time-1415] 1fr [time-1430] 1fr [time-1445] 1fr [time-1500] 1fr [time-1515] 1fr [time-1530] 1fr [time-1545] 1fr [time-1600] 1fr [time-1615] 1fr [time-1630] 1fr [time-1645] 1fr [time-1700] 1fr [time-1715] 1fr [time-1730] 1fr [time-1745] 1fr [time-1800] 1fr;
+              
+
+                grid-template-columns:
+                    [times] 2rem [Mon-start] 1fr [Mon-end Tue-start] 1fr [Tue-end Wed-start] 1fr [Wed-end Thu-start] 1fr [Thu-end Fri-start] 1fr [Fri-end Sat-start] 1fr [Sat-end];
             }
 
             .schedule-wrapper {
+                padding: 10px !important;
 
                 width: 100% !important;
             }
 
-            .schedule {
-                grid-template-columns:
-                    [Mon-start] 1fr [Mon-end Tue-start] 1fr [Tue-end Wed-start] 1fr [Wed-end Thu-start] 1fr [Thu-end Fri-start] 1fr [Fri-end Sat-start] 1fr [Sat-end];
-            }
+           
         }
+
 
 
 
@@ -59,7 +63,7 @@ session_start();
 
         .track-slot {
             display: none;
-            /* hidden on small screens and browsers without grid support */
+           
         }
 
 
