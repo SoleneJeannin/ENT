@@ -16,7 +16,7 @@ include('connexion.php');
         rel="stylesheet">
         <link rel="stylesheet" href="style_de_base.css">
         <link rel="stylesheet" href="reservation_materiel.css">
-    <title>Réservation - materiel</title>
+    <title>Réservation - matériel</title>
 
     
 </head>
@@ -158,7 +158,7 @@ include('connexion.php');
     <?php
     if($role == 'Admin'){  ?> 
 
-        <h1>Mise à jour du stock du materiel</h1>
+        <h1>Mise à jour du stock du matériel</h1>
         <form action="traite_stock.php" method="POST">
         <?php
             $stmt_stock=$db->query("SELECT * FROM materiel");
