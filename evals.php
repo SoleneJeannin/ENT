@@ -105,6 +105,11 @@ session_start();
                 .wrapper {
                     width: 100%;
                 }
+
+                .one-eval {
+                    width: 96%;
+                    margin: 5px auto;
+                }
             }
 
 
@@ -279,7 +284,7 @@ session_start();
                             <div class="right-info-eval">
                                 <p class="date-eval"><?= $deadlineDateFormatted ?? '' ?></p>
                                 <p>jusqu'à <?= $deadlineTimeFormatted ?? '' ?></p>
-                                <button class="deposer">Deposer le travail</button>
+                                <!-- <button class="deposer">Deposer le travail</button> -->
                             </div>
 
                         <?php endif; ?>

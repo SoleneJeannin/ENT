@@ -24,8 +24,15 @@ if ($stmt->rowcount() == 1) {
         $_SESSION['groupe_user'] = $result['user_groupe'];
         $_SESSION['user_nom'] = $result['user_nom'];
         $_SESSION['user_prenom'] = $result['user_prenom'];
+        $_SESSION['role'] = $result['ext_role'];
+
+if ($result['ext_role']== 1) {
+    header("Location: index.php");
+}
+if ($result['ext_role']== 2) {
+    header("Location: teacher_page.php");
+}
         
-        header("Location: index.php");
     } else {
         header("Location: login.php?err=mdp");
         session_destroy();
