@@ -132,7 +132,7 @@ session_start();
 
         <div id="future">
 
-            <h1>Evaluations prochaines</h1>
+            <h1>Évaluations prochaines</h1>
             <div class="wrapper-future wrapper">
 
 
@@ -324,7 +324,7 @@ session_start();
         </div>
 
         <div id="past">
-            <h1>Evaluations passées</h1>
+            <h1>Évaluations passées</h1>
 
             <div class="wrapper-past wrapper">
 
@@ -521,7 +521,7 @@ session_start();
                     <a class="title-eval" href="#">
                         <h2><span>Devoir:</span> Anglais </h2>
                     </a>
-                    <a href="#"> R1.2 Angalais</a>
+                    <a href="#"> R1.2 Anglais</a>
                     <a href="">Alexander Leroi</a>
                 </div>
 
@@ -542,7 +542,7 @@ session_start();
                     <a class="title-eval" href="">
                         <h2><span>Examen:</span> Anglais </h2>
                     </a>
-                    <a href="#"> R1.2 Angalais</a>
+                    <a href="#"> R1.2 Anglais</a>
                     <a href="">Alexander Leroi</a>
                 </div>
 

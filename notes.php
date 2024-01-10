@@ -226,9 +226,9 @@ foreach ($mmi1_matieres as $mmi1_matiere) {
              <table >
                      <thead>
                 <tr>
-                    <th>Matiere</th>
+                    <th>Matière</th>
                     <th> Coefficient</th>
-                    <th>Final Note</th>
+                    <th>Note finale</th>
                 </tr>
                      </thead>
                      <tbody>
