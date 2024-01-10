@@ -15,24 +15,9 @@ session_start();
     <link rel="stylesheet" href="style_de_base.css">
     <title>Examen</title>
 
+<style>
 
-</head>
-
-
-<body>
-
-    <main>
-
-
-        <?php
-
-        include('nav.php');
-
-        ?>
-
-
-
-        <style>
+ 
             main {
                 background-color: var(--grey);
                 position: relative;
@@ -145,7 +130,26 @@ session_start();
                 text-align: center;
 
             }
-        </style>
+  
+
+
+
+</style>
+</head>
+
+
+<body>
+
+    <main>
+
+
+        <?php
+
+        include('nav.php');
+
+        ?>
+
+
 
 
 
@@ -157,7 +161,7 @@ session_start();
                 <?php
                 $idExam = $_GET['id'];
 
-                $_SESSION['id_user'] = 2; 
+                
 
                 $requete = "SELECT
         title_exam,

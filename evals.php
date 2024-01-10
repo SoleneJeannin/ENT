@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 ?>
 
@@ -16,28 +16,15 @@ session_start();
     <title>Évaluations</title>
 
 
-</head>
+    <style>
 
-<body>
-
-    <main>
-
-
-        <?php
-
-        include('nav.php');
-
-        ?>
-
-
-
-        <style>
+ 
             h1 {
                 font-family: 'Lusitana', serif;
                 margin-left: 4vw;
             }
 
-            main {}
+         
 
 
             .wrapper {
@@ -113,7 +100,25 @@ session_start();
 
                 padding: 10px 0;
             }
-        </style>
+    
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <main>
+
+
+        <?php
+
+        include('nav-teacher.php');
+
+        ?>
+
+
 
         <div id="future">
 
@@ -124,6 +129,8 @@ session_start();
                 <!-- dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
 
                 <?php
+              
+                 $sessionGroup = $_SESSION['groupe_user'];
                 $requete = "
 
                 SELECT
@@ -132,8 +139,9 @@ session_start();
                 eval_date_debut,
                 nom_matiere,
                 coefficient,
+               programme,
                
-               
+               NULL AS groupe,
                 NULL AS salle,
                 matiere.ext_prof AS prof_id,
                 
@@ -146,8 +154,8 @@ session_start();
             JOIN matiere ON eval_projet.ext_matiere = matiere.id_matiere
             
             JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
-            WHERE
-                eval_projet.eval_date_fin > NOW()
+            WHERE programme = :sessionProgramme AND
+                eval_projet.eval_date_fin > NOW() 
         
             UNION
             SELECT
@@ -156,6 +164,8 @@ session_start();
                 cours_temps_debut,
                 nom_matiere,
                 coefficient,
+                programme,
+                groupe,
                 cours_salle,
                
               
@@ -171,15 +181,25 @@ session_start();
             JOIN matiere ON matiere.id_matiere = cours.ext_matiere
       
             JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
-            WHERE
-                cours.cours_temps_fin > NOW();
-                
-            ";
+            WHERE programme = :sessionProgramme AND   
+                cours.cours_temps_fin > NOW()";
 
-                $stmt = $db->query($requete);
+ if ($sessionGroup === 'C') {
+                    $requete .= " AND cours.groupe IN ('C', 'CD', 'M')";
+                } elseif ($sessionGroup === 'A') {
+                    $requete .= " AND cours.groupe IN ('A', 'AB', 'M')";
+                } elseif ($sessionGroup === 'B') {
+                    $requete .= " AND cours.groupe IN ('B', 'AB', 'M')";
+                } elseif ($sessionGroup === 'D') {
+                    $requete .= " AND cours.groupe IN ('D', 'CD', 'M')";
+                }
+                $stmt = $db->prepare($requete);
+
+                // Bind the parameters
+                $stmt->bindParam(':sessionProgramme', $_SESSION['programme_user'], PDO::PARAM_STR);
+                // echo $requete;
+                $stmt->execute();
                 $evals = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
 
 
 
@@ -303,58 +323,78 @@ session_start();
 
 
                 <?php
-                $requete2 = "
+               
+                $sessionGroup = $_SESSION['groupe_user'];
 
-                SELECT
-        title_projet,
-        eval_date_fin,
-        eval_date_debut,
-        nom_matiere,
-        coefficient,
-     
-      
-       
-        matiere.ext_prof AS prof_id,
-    
-        user_prof.user_nom AS prof_nom,
-        user_prof.user_prenom AS prof_prenom,
-        type,
-        id_eval_projet AS id_eval
-    FROM
-        eval_projet
-    JOIN matiere ON eval_projet.ext_matiere = matiere.id_matiere
+                $requete2 = " 
  
-    JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
-    WHERE
-        eval_projet.eval_date_fin <= NOW()
-
-    UNION
-    SELECT
-        title_exam,
-        cours_temps_fin,
-        cours_temps_debut,
-        nom_matiere,
-        coefficient,
-   
-    
-        matiere.ext_prof AS prof_id,
-    
-        user_prof.user_nom AS prof_nom,
-        user_prof.user_prenom AS prof_prenom,
-        type,
-        id_eval_exam AS id_eval
-    FROM
-        eval_exam
-    JOIN cours ON cours.id_cours = eval_exam.ext_cours
-    JOIN matiere ON matiere.id_matiere = cours.ext_matiere
-     
-    JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
-    WHERE
-        cours.cours_temps_fin <= NOW();
+                SELECT
+                title_projet,
+                eval_date_fin,
+                eval_date_debut,
+                nom_matiere,
+                coefficient,
+               programme,
+               
+               NULL AS groupe,
+                NULL AS salle,
+                matiere.ext_prof AS prof_id,
                 
-            ";
+                user_prof.user_nom AS prof_nom,
+                user_prof.user_prenom AS prof_prenom,
+                type,
+              id_eval_projet AS id_eval
+            FROM
+                eval_projet
+            JOIN matiere ON eval_projet.ext_matiere = matiere.id_matiere
+            
+            JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
+            WHERE programme = :sessionProgramme AND
+                eval_projet.eval_date_fin < NOW() 
+        
+            UNION
+            SELECT
+                title_exam,
+                cours_temps_fin,
+                cours_temps_debut,
+                nom_matiere,
+                coefficient,
+                programme,
+                groupe,
+                cours_salle,
+               
+              
+                matiere.ext_prof AS prof_id,
+                
+                user_prof.user_nom AS prof_nom,
+                user_prof.user_prenom AS prof_prenom,
+                type,
+                id_eval_exam AS id_eval
+            FROM
+                eval_exam
+            JOIN cours ON cours.id_cours = eval_exam.ext_cours
+            JOIN matiere ON matiere.id_matiere = cours.ext_matiere
+      
+            JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
+            WHERE programme = :sessionProgramme AND   
+                cours.cours_temps_fin < NOW()";
 
-                $stmt2 = $db->query($requete2);
+                if ($sessionGroup === 'C') {
+                    $requete2 .= " AND cours.groupe IN ('C', 'CD', 'M')";
+                } elseif ($sessionGroup === 'A') {
+                    $requete2 .= " AND cours.groupe IN ('A', 'AB', 'M')";
+                } elseif ($sessionGroup === 'B') {
+                    $requete2 .= " AND cours.groupe IN ('B', 'AB', 'M')";
+                } elseif ($sessionGroup === 'D') {
+                    $requete2 .= " AND cours.groupe IN ('D', 'CD', 'M')";
+                }
+                $stmt2 = $db->prepare($requete2);
+// echo $requete2;
+                // Bind the parameters
+                $stmt2->bindParam(':sessionProgramme', $_SESSION['programme_user'], PDO::PARAM_STR);
+                
+                $stmt2->execute();
+
                 $evals2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 

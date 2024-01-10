@@ -1,7 +1,9 @@
 <?php
-include('connexion.php');
+include('connexion_offline.php');
 session_start();
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -26,7 +28,12 @@ session_start();
                 grid-gap: 0.1rem;
                 grid-template-rows:
                     [tracks] auto [time-0800] 1fr [time-0815] 1fr [time-0830] 1fr [time-0845] 1fr [time-0900] 1fr [time-0915] 1fr [time-0930] 1fr [time-0945] 1fr [time-1000] 1fr [time-1015] 1fr [time-1030] 1fr [time-1045] 1fr [time-1100] 1fr [time-1115] 1fr [time-1130] 1fr [time-1145] 1fr [time-1200] 1fr [time-1215] 1fr [time-1230] 1fr [time-1245] 1fr [time-1300] 1fr [time-1315] 1fr [time-1330] 1fr [time-1345] 1fr [time-1400] 1fr [time-1415] 1fr [time-1430] 1fr [time-1445] 1fr [time-1500] 1fr [time-1515] 1fr [time-1530] 1fr [time-1545] 1fr [time-1600] 1fr [time-1615] 1fr [time-1630] 1fr [time-1645] 1fr [time-1700] 1fr [time-1715] 1fr [time-1730] 1fr [time-1745] 1fr [time-1800] 1fr;
-                
+                /* Note 1:
+			Use 24hr time for gridline names for simplicity
+
+			Note 2: Use "auto" instead of "1fr" for a more compact schedule where height of a slot is not proportional to the session length. Implementing a "compact" shortcode attribute might make sense for this!
+			Try 0.5fr for more compact equal rows. I don't quite understand how that works :)
+			*/
 
                 grid-template-columns:
                     [times] 4em [Mon-start] 1fr [Mon-end Tue-start] 1fr [Tue-end Wed-start] 1fr [Wed-end Thu-start] 1fr [Thu-end Fri-start] 1fr [Fri-end Sat-start] 1fr [Sat-end];
@@ -200,14 +207,12 @@ session_start();
         <?php
 
 
-        include('nav.php');
+        include('nav-teacher.php');
 
- 
+
+        $_SESSION['id_user'] = 3;
       
-
-        $sessionGroup = $_SESSION['groupe_user'];
-
-
+ 
 
 
         $currentWeek = isset($_SESSION['currentWeek']) ? $_SESSION['currentWeek'] : date('W') - 1;
@@ -317,25 +322,15 @@ session_start();
 
 
 
-                $requete = "
-    SELECT cours_temps_debut, cours_temps_fin, cours_salle, ext_matiere, groupe, programme, couleur, nom_matiere, ext_prof, user_nom, user_prenom, exam
-    FROM cours
-    LEFT JOIN matiere ON cours.ext_matiere = matiere.id_matiere
-    LEFT JOIN user ON matiere.ext_prof = user.id_user
-    WHERE programme = :prog AND WEEK(cours_temps_debut) = :currentWeek";
+                $requete = " SELECT cours_temps_debut, cours_temps_fin, cours_salle, ext_matiere, groupe, programme, couleur, nom_matiere, ext_prof, user_nom, user_prenom, exam
+                FROM cours
+                LEFT JOIN matiere ON cours.ext_matiere = matiere.id_matiere
+                LEFT JOIN user ON matiere.ext_prof = user.id_user WHERE ext_prof = :id AND WEEK(cours_temps_debut) = :currentWeek";
 
-                if ($sessionGroup === 'c') {
-                    $requete .= " AND cours.groupe IN ('C', 'CD', 'M')";
-                } elseif ($sessionGroup === 'a') {
-                    $requete .= " AND cours.groupe IN ('A', 'AB', 'M')";
-                } elseif ($sessionGroup === 'b') {
-                    $requete .= " AND cours.groupe IN ('B', 'AB', 'M')";
-                } elseif ($sessionGroup === 'd') {
-                    $requete .= " AND cours.groupe IN ('D', 'CD', 'M')";
-                }
+            
 
                 $stmt = $db->prepare($requete);
-                $stmt->bindValue(':prog', $_SESSION['programme_user'], PDO::PARAM_STR);
+                $stmt->bindValue(':id', $_SESSION['id_user'], PDO::PARAM_INT);
                 $stmt->bindValue(':currentWeek', $currentWeek, PDO::PARAM_INT);
                 $stmt->execute();
                 $allcourses = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -392,7 +387,7 @@ session_start();
 
 
                         </span>
-                        <span class="session-teacher"> <?= $cours['user_prenom'] . " " . $cours['user_nom'] ?></span>
+                        <span class="session-teacher"> <?= $cours['programme']  ?></span>
                         <span class="session-room">Salle <?= $cours['cours_salle'] ?></span>
                     </div>
 

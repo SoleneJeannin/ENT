@@ -417,20 +417,23 @@ session_start();
     
 
     <ul>
-        <?php
+    <?php
+$folder = "projet/" . $idProjet;
 
-$folder = "projet/" . $idProjet ;   
-$files = scandir($folder);
-foreach ($files as $file) {
+if (is_dir($folder) && ($files = scandir($folder)) !== false) {
     $allowedExtensions = ["pdf", "jpg", "jpeg", "zip"];
 
- 
-    $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
-    if (in_array($fileExtension, $allowedExtensions)) {
-        echo "<li><a href='$folder/$file' target='_blank'>$file</a></li>";
+    foreach ($files as $file) {
+        $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
+        if (in_array($fileExtension, $allowedExtensions)) {
+            echo "<li><a href='$folder/$file' target='_blank'>$file</a></li>";
+        }
     }
+} else {
+    echo "<p>Pas de projets ajoutés pour l'instant</p>";
 }
-        ?>
+?>
+
     </ul>
 
 </div>
