@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 ?>
 
@@ -147,6 +147,74 @@ session_start();
                 text-align: center;
 
             }
+
+ 
+                        .table {
+                            width: 90%;
+                            margin: auto;
+
+                        }
+
+                        .table td {
+                            padding: 5px;
+                        }
+
+                        tr:nth-child(even) {
+                            background-color: var(--yellow1);
+                        }
+
+                        .form-add {
+                            width: 60%;
+                            margin: auto;
+                        }
+
+                        .ajouter-notes {
+                            display: flex;
+                            margin: auto;
+                        }
+
+                        #aj {
+                            background-color: var(--red);
+                            border: none;
+                            padding: 8px 15px;
+                            border-radius: 5px;
+                            font-size: 1.1rem;
+                        }
+               
+
+            
+        @media (max-width: 800px) {
+ 
+
+ .wrapper-info {
+     flex-direction: column;
+     width: 100%;
+     align-items: center;
+     text-align: center;
+ }
+
+ h1 {    text-align: center;}
+.info h2 {
+padding-left: 0;
+}
+ .data {
+     padding-left: 0;
+ }
+ .description {
+     margin-left: 0 ;
+ }
+ .exam-top-wrapper {
+     padding: 30px 10px;
+ }
+
+ .exam-noted {
+     padding: 20px 20px;
+ }
+
+ table {
+     width: 100%;
+ }
+}
         </style>
 
 
@@ -247,39 +315,6 @@ session_start();
                     <h3>Notes</h3>
                     <br>
 
-                    <style>
-                        .table {
-                            width: 90%;
-                            margin: auto;
-
-                        }
-
-                        .table td {
-                            padding: 5px;
-                        }
-
-                        tr:nth-child(even) {
-                            background-color: var(--yellow1);
-                        }
-
-                        .form-add {
-                            width: 60%;
-                            margin: auto;
-                        }
-
-                        .ajouter-notes {
-                            display: flex;
-                            margin: auto;
-                        }
-
-                        #aj {
-                            background-color: var(--red);
-                            border: none;
-                            padding: 8px 15px;
-                            border-radius: 5px;
-                            font-size: 1.1rem;
-                        }
-                    </style>
                     <div class="all-notes">
 
                         <table class="table">
@@ -356,7 +391,7 @@ session_start();
                             <form class="form-add" action="add_new_note_projet.php" method="POST">
 
                                 <label for="selectedStudents">Select Students:</label>
-                                <select name="selectedStudent" id="selectedStudent">
+                                <select name="selectedStudent" id="selectedStudent" required>
 
                                     <?php foreach ($addnote as $student) : ?>
                                         <option value="<?= $student['id_user'] ?>">
@@ -369,7 +404,7 @@ session_start();
                                 </select>
                                 <br><br>
                                 <label for="note">Note:</label>
-                                <input type="text" name="note" id="note">
+                                <input type="text" name="note" id="note" required>
                                 <br><br>
 
                                 <input type="hidden" name="id_projet" value="<?= $_GET['id_projet'] ?>">
@@ -383,21 +418,7 @@ session_start();
 
                             </form>
 
-                            <?php
-                            $allStudentsEvaluated = true;
-
-                            foreach ($addnote as $student) {
-                                if ($student['evaluated'] === 0) {
-                                    $allStudentsEvaluated = false;
-                                    break;
-                                }
-                            }
-
-                            if ($allStudentsEvaluated) {
-                                echo '<p>Tous.tes les étudiants.es sont évalué.e.s</p>';
-                                echo '<script>document.getElementById("add-add").style.display = "none";</script>';
-                            }
-                            ?>
+                          
                             <div class="moyen">
                                 <h4>Moyen:</h4>
                                 <p>

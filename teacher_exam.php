@@ -165,6 +165,39 @@ session_start();
             border-radius: 5px;
             font-size: 1.1rem;
         }
+
+        @media (max-width: 800px) {
+ 
+
+            .wrapper-info {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                text-align: center;
+            }
+
+            h1 {    text-align: center;}
+.info h2 {
+    padding-left: 0;
+}
+            .data {
+                padding-left: 0;
+            }
+            .description {
+                margin-left: 0 ;
+            }
+            .exam-top-wrapper {
+                padding: 30px 10px;
+            }
+
+            .exam-noted {
+                padding: 20px 20px;
+            }
+
+            table {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -413,21 +446,10 @@ WHERE
 
                             </form>
 
-                            <?php
-                            $allStudentsEvaluated = true;
 
-                            foreach ($addnote as $student) {
-                                if ($student['evaluated'] === 0) {
-                                    $allStudentsEvaluated = false;
-                                    break;
-                                }
-                            }
 
-                            if ($allStudentsEvaluated) {
-                                echo '<p>Tous.tes les étudiants.es sont évalué.e.s</p>';
-                                echo '<script>document.getElementById("add-add").style.display = "none";</script>';
-                            }
-                            ?>
+
+
                             <div class="moyen">
                                 <h4>Moyen de promo:</h4>
                                 <p>
