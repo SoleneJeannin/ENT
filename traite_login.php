@@ -25,7 +25,7 @@ if ($stmt->rowcount() == 1) {
         $_SESSION['user_nom'] = $result['user_nom'];
         $_SESSION['user_prenom'] = $result['user_prenom'];
         
-        header("Location: cours_todo_list.php");
+        header("Location: index.php");
     } else {
         header("Location: login.php?err=mdp");
         session_destroy();

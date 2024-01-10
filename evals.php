@@ -114,7 +114,7 @@ session_start();
 
         <?php
 
-        include('nav-teacher.php');
+        include('nav.php');
 
         ?>
 

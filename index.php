@@ -688,11 +688,17 @@ session_start();
                     <div class="evals2">
                         <div class="retards">
                             <h2>Retards</h2>
-                            <p>12h30</p>
+                            <p><?php if ($result["user_retard"] !== NULL) {
+                                echo $result['user_retard'];
+
+                            } else {
+                                echo 0;
+                            } ?>
+                            minutes</p>
                         </div>
                         <div class="abscents">
                             <h2>Abscents</h2>
-                            <p>23h00</p>
+                            <p><?= $abs_non_justif ?> heures</p>
                         </div>
                     </div>
 
@@ -706,13 +712,9 @@ session_start();
                 <div class="edt cube">
 
                     <?php
-                    $_SESSION['id_user'] = 1;
-                    $_SESSION['groupe_user'] = 'c';
-                    $_SESSION['programme_user'] = 'mmi1';
-                    $_SESSION['user_nom'] = 'prak';
+                    
                     $sessionGroup = $_SESSION['groupe_user'];
-
-
+                   
 
                     $requete = "
         SELECT cours_temps_debut, cours_temps_fin, cours_salle, ext_matiere, groupe, programme, couleur, nom_matiere, ext_prof, user_nom, user_prenom, exam
@@ -721,21 +723,21 @@ session_start();
         LEFT JOIN user ON matiere.ext_prof = user.id_user
         WHERE programme = :prog AND DATE(cours_temps_debut) = CURDATE()";
 
-                    if ($sessionGroup === 'c') {
+                    if ($sessionGroup === 'C') {
                         $requete .= " AND cours.groupe IN ('C', 'CD', 'M')";
-                    } elseif ($sessionGroup === 'a') {
+                    } elseif ($sessionGroup === 'A') {
                         $requete .= " AND cours.groupe IN ('A', 'AB', 'M')";
-                    } elseif ($sessionGroup === 'b') {
+                    } elseif ($sessionGroup === 'B') {
                         $requete .= " AND cours.groupe IN ('B', 'AB', 'M')";
-                    } elseif ($sessionGroup === 'd') {
+                    } elseif ($sessionGroup === 'D') {
                         $requete .= " AND cours.groupe IN ('D', 'CD', 'M')";
                     }
 
                     $stmt = $db->prepare($requete);
-                    $stmt->bindValue(':prog', $_SESSION['programme_user'], PDO::PARAM_STR);
+                    $stmt->bindValue(':prog',  $_SESSION['programme_user'], PDO::PARAM_STR);
                     $stmt->execute();
                     $allcourses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    // echo $currentWeek;
+                   
 
 
                     ?>
@@ -798,7 +800,9 @@ session_start();
 
 
                         <?php
+                        //  var_dump($allcourses) ;
                         foreach ($allcourses as $cours) {
+                            
 
                             $dateTimeStart = new DateTime($cours['cours_temps_debut']);
                             $dateTimeFinish = new DateTime($cours['cours_temps_fin']);
