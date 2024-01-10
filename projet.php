@@ -57,6 +57,7 @@ session_start();
                 padding-block: 30px;
                 border-radius: 10px;
                 margin-block-end: 10px;
+                
             }
 
             .wrapper-info {
@@ -65,8 +66,56 @@ session_start();
 
             }
 
+            @media (max-width: 910px) {
+                .wrapper {
+                    height: auto;
+                }
+
+                main {
+                    background-color: transparent !important;
+                }
+
+                .block {
+                    text-align: center;
+padding: 50px;
+                }
+                
+                .wrapper-info {
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                .info {
+                    width: 95% !important;
+                }
+
+                .wrapper2and3 {
+                    display: flex;
+width: 95% !important;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .deposer {
+                    width: 90% !important;
+                }
+
+                .exam-noted {
+                    padding-inline: 20px !important;
+                }
+                .wrapper-botom {
+                    flex-direction: column;
+                    align-items: center;
+                    width: 90% !important;
+                    text-align: center;
+                    margin: auto !important;
+                }
+            }
+
             .exam-top-wrapper {
-                height: 50%;
+                /* height: 50%; */
+                position: relative;
+                /* top: ; */
             }
 
             /* 
@@ -75,8 +124,7 @@ session_start();
                 border-right:  black solid 1px;
             } */
 
-            .info
-            {
+            .info {
                 width: 30%;
             }
 
@@ -84,12 +132,12 @@ session_start();
                 width: 30%;
             }
 
-            .description > p {
+            .description>p {
                 height: 55%;
                 padding: 0px 20px;
                 font-size: 1rem;
-                 
-            } 
+
+            }
 
             h1 {
                 margin-bottom: 20px;
@@ -119,7 +167,8 @@ session_start();
             .date {
                 margin-bottom: 0;
             }
-            .date > span {
+
+            .date>span {
                 display: block;
                 margin-top: 10px;
                 font-size: 1.5rem;
@@ -129,6 +178,7 @@ session_start();
             .data {
                 margin-top: 50px;
                 padding-left: 50px;
+                margin-bottom: 30px;
 
             }
 
@@ -177,7 +227,7 @@ session_start();
                 border: none;
                 border-radius: 5px;
                 text-decoration: none;
-                
+
             }
 
             .inputfile {
@@ -198,7 +248,7 @@ session_start();
                 border: none;
                 border-radius: 5px;
                 text-decoration: none;
-                
+
                 font-size: 1rem;
             }
 
@@ -209,15 +259,18 @@ session_start();
 
 
             .wrapper2and3 h4 {
-                margin-top: 0; 
-            margin-left: 20px;
+                margin-top: 0;
+                margin-left: 20px;
             }
+
             .description {
                 width: 70%;
             }
 
-form {display: flex;
-justify-content: space-between;}
+            form {
+                display: flex;
+                justify-content: space-between;
+            }
 
             .consigne {
                 margin-left: 50px;
@@ -236,7 +289,6 @@ justify-content: space-between;}
                 text-align: center;
                 font-size: 1.3rem;
             }
-            
         </style>
 
 
@@ -248,10 +300,7 @@ justify-content: space-between;}
 
                 <?php
                 $idProjet = $_GET['id'];
-                $_SESSION['id_user'] = 1; 
-                $_SESSION['nom_user'] = "Ana";
-                $_SESSION['prenom_user'] = "Bon";
-                
+            
 
                 $requete = "SELECT
 
@@ -324,10 +373,10 @@ justify-content: space-between;}
                             <h4>Description:</h4>
                             <p><?= $projet['description_projet'] ?? 'Pas de description ajoutée' ?></p>
                             <?php
-if ($projet['consignes_projet'] !== null) {
-    echo "<a class='consigne button' href='./projet/{$projet['id_eval_projet']}/consignes/{$projet['consignes_projet']}'>Consignes</a>";
-}
-?>
+                            if ($projet['consignes_projet'] !== null) {
+                                echo "<a class='consigne button' href='./projet/{$projet['id_eval_projet']}/consignes/{$projet['consignes_projet']}'>Consignes</a>";
+                            }
+                            ?>
 
 
                         </div>
@@ -340,10 +389,10 @@ if ($projet['consignes_projet'] !== null) {
                                     Choisir un Fichier
                                 </label>
                                 <input type="file" name="file" id="file" class="inputfile" onchange="displayFileName()" />
-                               
+
                                 <input type="hidden" name="title_projet" value="<?= $projet['title_projet'] ?>">
                                 <input type="hidden" name="id_projet" value="<?= $projet['id_eval_projet'] ?>">
-                                <input type="hidden" name="student_name" value="<?=  $_SESSION['prenom_user'] . "_" .  $_SESSION['nom_user'] ?>">
+                                <input type="hidden" name="student_name" value="<?= $_SESSION['user_prenom'] . "_" .  $_SESSION['user_nom'] ?>">
                                 <button type="submit" id="upload" class="button">Envoyer</button>
                             </form>
                             <p style="font-size: 0.8rem;">Les formats: pdf, jpeg, zip</p>
@@ -366,16 +415,16 @@ if ($projet['consignes_projet'] !== null) {
 
                         <?php
 
-$requete2 = " SELECT * FROM `note_projet` WHERE ext_projet = :id AND ext_etudiant = :id_user";
-            $stmt2 = $db->prepare($requete2);
-$stmt2->bindValue(':id', $idProjet, PDO::PARAM_INT);
-$stmt2->bindValue(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
-$stmt2->execute();
-$projet2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+                        $requete2 = " SELECT * FROM `note_projet` WHERE ext_projet = :id AND ext_etudiant = :id_user";
+                        $stmt2 = $db->prepare($requete2);
+                        $stmt2->bindValue(':id', $idProjet, PDO::PARAM_INT);
+                        $stmt2->bindValue(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
+                        $stmt2->execute();
+                        $projet2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 
 
-           
-?>
+
+                        ?>
 
 
 
@@ -391,22 +440,22 @@ $projet2 = $stmt2->fetch(PDO::FETCH_ASSOC);
                         <p class="moyen">
 
 
-<?php
-                        $requete = "SELECT AVG(note_projet) 
+                            <?php
+                            $requete = "SELECT AVG(note_projet) 
                         AS average_note 
                         FROM note_projet 
                         WHERE ext_projet = :id";
 
 
-$stmt = $db->prepare($requete);
-$stmt->bindValue(':id',   $idProjet, PDO::PARAM_INT);
-$stmt->execute();
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+                            $stmt = $db->prepare($requete);
+                            $stmt->bindValue(':id',   $idProjet, PDO::PARAM_INT);
+                            $stmt->execute();
+                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-echo $result['average_note'];
+                            echo $result['average_note'];
 
 
-?>
+                            ?>
 
 
                         </p>
@@ -424,22 +473,21 @@ echo $result['average_note'];
     </main>
 </body>
 <script>
-  function displayFileName() {
-    const fileInput = document.getElementById('file');
-    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    function displayFileName() {
+        const fileInput = document.getElementById('file');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
 
-    if (fileInput) {
-        if (fileInput.files.length > 0) {
-            const fileName = fileInput.files[0].name;
-            fileNameDisplay.innerHTML = '<b> Le fichier sélectionné:</b><br>' + fileName;
+        if (fileInput) {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                fileNameDisplay.innerHTML = '<b> Le fichier sélectionné:</b><br>' + fileName;
+            } else {
+                fileNameDisplay.innerHTML = ''; // Clear the display if no file is selected
+            }
         } else {
-            fileNameDisplay.innerHTML = ''; // Clear the display if no file is selected
+            console.error("Le fichier n'est pas trouvé pas");
         }
-    } else {
-        console.error("Le fichier n'est pas trouvé pas");
     }
-}
-
 </script>
 
 </html>

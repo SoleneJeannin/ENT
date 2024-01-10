@@ -38,7 +38,7 @@ session_start();
             }
 
             .cube2 {
-                height: auto !important;
+                height: 700px !important;
             }
 
             .line {
@@ -55,6 +55,10 @@ session_start();
             .access {
                 height: 8vw !important;
 
+            }
+
+            .search-bar {
+                height: 20% !important;
             }
 
         }
@@ -81,6 +85,7 @@ session_start();
 
             .line2 {
                 flex-direction: column !important;
+                height: 800px;
             }
 
             .cube2 {
@@ -89,6 +94,14 @@ session_start();
 
             #search {
                 width: 70% !important;
+            }
+
+            #search-button {
+                background-color: var(--red) !important;
+            }
+
+            .search-bar {
+                height: 70% !important;
             }
 
             .fast-access {
