@@ -32,6 +32,10 @@ if ($result['ext_role']== 1) {
 if ($result['ext_role']== 2) {
     header("Location: teacher_page.php");
 }
+
+if ($result['ext_role']== 3) {
+    header("Location: admin_page.php");
+}
         
     } else {
         header("Location: login.php?err=mdp");
