@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 ?>
 
@@ -129,6 +129,65 @@ session_start();
             .moyen > p {
                 text-align: center;
 
+            }
+
+            @media (max-width: 910px) {
+                .wrapper {
+                    height: auto;
+                }
+.description {
+    margin-left: 0;
+    margin: auto;
+}
+
+                main {
+                    background-color: transparent !important;
+                }
+
+                .block {
+                    text-align: center;
+padding: 50px;
+                }
+                
+.data, .info > h2 {
+    padding-left: 0;
+    text-align: center;
+}
+
+.comment, .moyen {
+    width: 90%;
+}
+
+                .wrapper-info {
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                .info {
+                    width: 95% !important;
+                }
+
+                .wrapper2and3 {
+                    display: flex;
+width: 95% !important;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .deposer {
+                    width: 90% !important;
+                }
+
+                .exam-noted {
+                    padding-inline: 20px !important;
+                }
+                .wrapper-botom {
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100% !important;
+                    text-align: center;
+                    margin: auto !important;
+                }
             }
   
 

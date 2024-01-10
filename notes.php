@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 ?>
 
@@ -15,8 +15,77 @@ session_start();
         href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
         rel="stylesheet">
          <link rel="stylesheet" href="style_de_base.css"> 
-    <title>CHAGE THIS</title>
+    <title>Les notes</title>
 
+    <style>
+    table {
+        width: 90%;
+        
+        background-color: white;
+        margin: auto;
+        padding: 70px 100px ;
+        margin-block: 50px;
+        border-radius: 15px;
+       
+    }
+
+    @media (max-width: 850px) {
+        table {
+            padding: 50px 20px ;
+            width: 100%;
+        }
+
+        th {
+        font-size: 1.4rem !important;
+       
+    }
+
+    td {
+        font-size: 0.9rem !important;
+       
+    }
+
+
+    }
+
+    th {
+        font-size: 2rem;
+       
+    }
+    tr {
+        height: 2.5rem;
+    }
+
+    thead {
+       height: 4.3rem;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        background-color: transparent;
+  
+        min-height: 90%;
+    }
+    td:not(.titles) {
+        text-align: center;
+    }
+
+    
+    td {
+        height: 1.8rem;
+        font-size: 1.3rem;
+    }
+
+    main {
+        background-color: var(--grey);
+    }
+
+    tbody tr:nth-child(odd) {
+    background-color: var(--yellow1);
+}
+    
+    </style>
+         
     
 </head>
 
@@ -30,10 +99,7 @@ session_start();
 
          include('nav.php');
     
- 
-         
-         $_SESSION['id_user'] = 1;
-         $_SESSION['programme_user'] = "mmi1";
+  
          
          $requete_exam = " 
              SELECT
@@ -41,7 +107,7 @@ session_start();
                  eval_exam.title_exam AS eval_title,
                  note_exam.note_exam AS eval_note,
                  eval_exam.coefficient,
-                 eval_exam.ext_matiere AS matiere,
+                 cours.ext_matiere AS matiere,
                  note_exam.ext_etudiant,
                  note_exam.note_exam AS note,
                  nom_matiere, coef_matiere
@@ -50,8 +116,10 @@ session_start();
                  eval_exam
              LEFT JOIN
                  note_exam ON eval_exam.id_eval_exam = note_exam.ext_eval_exam
+             LEFT JOIN 
+                cours ON ext_cours = id_cours
              LEFT JOIN
-                 matiere ON eval_exam.ext_matiere = matiere.id_matiere
+                 matiere ON cours.ext_matiere = matiere.id_matiere
              WHERE
                  note_exam.ext_etudiant = :id_user;
          ";
@@ -60,6 +128,7 @@ session_start();
          $stmt_exam->bindValue(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
          $stmt_exam->execute();
          $exam_notes = $stmt_exam->fetchAll(PDO::FETCH_ASSOC);
+        //  var_dump($exam_notes);
          
          $requete_project = "
              SELECT
@@ -151,56 +220,6 @@ foreach ($mmi1_matieres as $mmi1_matiere) {
 ?>
 
 
-<style>
-    table {
-        width: 90%;
-        
-        background-color: white;
-        margin: auto;
-        padding: 70px 100px ;
-        margin-block: 50px;
-        border-radius: 15px;
-       
-    }
-
-    th {
-        font-size: 2rem;
-       
-    }
-    tr {
-        height: 2.5rem;
-    }
-
-    thead {
-       height: 4.3rem;
-    }
-
-    .table-wrapper {
-        width: 100%;
-        background-color: transparent;
-  
-        min-height: 90%;
-    }
-    td:not(.titles) {
-        text-align: center;
-    }
-
-    
-    td {
-        height: 1.8rem;
-        font-size: 1.3rem;
-    }
-
-    main {
-        background-color: var(--grey);
-    }
-
-    tbody tr:nth-child(odd) {
-    background-color: var(--yellow1);
-}
-    
-    </style>
-         
         
 
          <div class="table-wrapper">
