@@ -26,10 +26,16 @@ a{
 .bloc_setting a{
     margin: 0;
     font-family: 'Lusitana', serif;
+    transition: 0.5s;
+}
+
+.bloc_general a:hover{
+    text-decoration: underline;
 }
 
 .first_list{
     padding-top: 30px;
+    text-decoration: underline;
 }
 
 
@@ -106,6 +112,11 @@ input{
   justify-content: space-between;
   padding-right: 10px;
   padding-bottom: 10px;
+  transition: 0.5s;
+}
+
+.mail:hover{
+    background-color: var(--yellow1);;
 }
 
 .bouton_aff{

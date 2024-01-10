@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
         settingBloc.style.display = 'none';
         blocRec.classList.remove('overlay');
     } else {
-        settingBloc.style.display = 'block';
+        settingBloc.style.display = 'flex';
         blocRec.classList.add('overlay');
     }
 
