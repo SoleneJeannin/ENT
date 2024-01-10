@@ -33,7 +33,7 @@ if(isset($_POST['etudiant'])){
     $stmt_abs->execute();
 
 
-    header("Location:retard.php");
+    header("Location:retard.php?etat=misajour");
 }
 
 

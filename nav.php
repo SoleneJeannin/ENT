@@ -50,7 +50,7 @@
             </div>
             <div class="personne">
                 <button id="theme">
-
+                    <span class="sr-only">Changer de thèmes</span>
 
 
 
@@ -58,8 +58,9 @@
 
                     <div class="drop-color">
 
-                        <div><svg class="color-change-icone" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 400 400">
+                        <div><svg role="img" aria-label="Changer theme" class="color-change-icone"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%"
+                                height="100%" viewBox="0 0 400 400">
                                 <g>
                                     <path id="path2"
                                         d="M42.770 20.379 C 34.220 22.395,26.397 28.909,22.402 37.343 L 19.922 42.578 19.712 141.602 L 19.502 240.625 130.064 240.625 L 240.625 240.625 240.625 130.078 L 240.625 19.531 143.164 19.610 C 89.561 19.653,44.383 19.999,42.770 20.379 M279.688 80.044 L 279.688 140.625 330.106 140.625 L 380.524 140.625 380.301 91.602 L 380.078 42.578 377.598 37.343 C 374.443 30.683,369.317 25.557,362.657 22.402 L 357.422 19.922 318.555 19.692 L 279.688 19.463 279.688 80.044 M279.688 280.078 L 279.688 380.469 315.977 380.469 C 363.661 380.469,369.331 378.997,376.628 364.723 C 380.539 357.073,380.450 359.359,380.459 266.602 L 380.469 179.688 330.078 179.688 L 279.688 179.688 279.688 280.078 M19.692 318.555 L 19.922 357.422 22.402 362.657 C 26.630 371.582,34.143 377.585,43.593 379.590 C 46.531 380.214,75.745 380.469,144.179 380.469 L 240.625 380.469 240.625 330.078 L 240.625 279.688 130.044 279.688 L 19.463 279.688 19.692 318.555 "
@@ -138,6 +139,7 @@
                             </p>
                         </div>
                         <div class="photo-card">
+                            
                             <img src="./img/etudiants-card/<?= $resultsUser["user_photo"] ?>" alt="">
                             <p>
                                 <?= ucwords($resultsUser["user_prenom"]) . " " . ucwords($resultsUser["user_nom"]) ?>
@@ -154,6 +156,7 @@
 
 
                 <button id="profile">
+                    <span class="sr-only">Votre profils</span>
                     <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%"
                         height="100%" viewBox="0 0 400 400">
                         <g>
@@ -238,7 +241,7 @@
                 <div><img class="menu" src="./img/nav/menu.png" alt="menu"></div>
                 <div class="personne">
                     <button id="theme">
-
+                        <span class="sr-only">Changer de thèmes</span>
                         <div class="drop-color">
 
                             <div><svg class="color-change-icone" xmlns="http://www.w3.org/2000/svg"

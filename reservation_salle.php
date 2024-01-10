@@ -21,6 +21,11 @@
         //Apparition de la popup
         function popup() {
             document.getElementsByClassName("popup")[0].style.top = "140px";
+        
+            // Pour que la popup reste pas longtemps
+            setTimeout(function() {
+                document.getElementsByClassName("popup")[0].style.top = "-80px";
+            }, 3000); // 3000 millisecondes = 3 secondes
         }
     </script>
 

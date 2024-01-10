@@ -1,17 +1,19 @@
 h2{
   font-family: 'Lusitana', serif;
-  font-size: 32px;
+  font-size: 2rem;
   text-align: center;
+  margin: 0;
 }
+
+.cours h2{
+  padding-bottom: 10px;
+}
+
 .todo-lists {
   border: solid 5px #f9d57f;
   border-radius: 26px;
   width: 40%;
   padding: 20px;
-  margin-right: 5%;
-  margin-left: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
 }
 .todo-seul {
   display: flex;
@@ -98,11 +100,12 @@ h2{
 
 .container-cours-todo {
   display: flex;
+  padding: 10px;
+  justify-content: space-around;
 }
 
 .cours-solo {
   border-radius: 26px;
-  margin: 25px 0 20px 50px;
   padding: 25px 100px;
   width: 100%;
   box-sizing: border-box;
@@ -153,16 +156,24 @@ h2{
   font-size: 24px;
 }
 .cours{
-  margin-left: 20px;
-  margin-top:44px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 45%;
 }
 @media (max-width: 916px) {
   .cours h2{
     text-align: left;
   }
   .container-cours-todo {
-    display: block;
+    flex-direction: column;
+    align-items: center;
   }
+
+  .cours{
+    width: 90%;
+  }
+
   .cours-solo {
     margin: 0;
     padding: 0;

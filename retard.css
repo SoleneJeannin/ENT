@@ -151,3 +151,11 @@ select {
 .abs_admin{
   margin: 0;
 }
+.popup{
+  position: absolute;
+  top: -80px;
+  left: 33vw;
+  background-color: #DAFFCD;
+  border: 4px #A8FF89 solid;
+  border-radius: 12px;
+}
