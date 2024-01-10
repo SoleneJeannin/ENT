@@ -322,7 +322,7 @@ session_start();
 
 
                 $requete = "
-    SELECT cours_temps_debut, cours_temps_fin, cours_salle, ext_matiere, groupe, programme, couleur, nom_matiere, ext_prof, user_nom, user_prenom, exam
+    SELECT cours_temps_debut, cours_temps_fin, cours_salle, ext_matiere, groupe, programme, couleur, id_matiere, nom_matiere, ext_prof, user_nom, user_prenom, exam
     FROM cours
     LEFT JOIN matiere ON cours.ext_matiere = matiere.id_matiere
     LEFT JOIN user ON matiere.ext_prof = user.id_user
@@ -364,7 +364,7 @@ session_start();
                             echo "<h4 style='color: var(--red);' class='session-title'>Examen</h4>";
                         }
                         ?>
-                        <h3 class="session-title"><a href="#"><?= $cours['nom_matiere'] ?></a></h3>
+                        <h3 class="session-title"><a href="cours.php?id=<?= $cours['id_matiere'] ?>"><?= $cours['nom_matiere'] ?></a></h3>
                         <span class="session-time"><?= $timeStartVisual ?> - <?= $timeFinishVisual ?></span>
                         <span class="session-group">
                             <?php

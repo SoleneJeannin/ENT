@@ -83,11 +83,7 @@ session_start();
                 width: 95%;
             }
 
-            main {
-                background-color: white !important;
-                padding-top: 20px;
-                padding-inline: 8px;
-            }
+          
 
 
 
@@ -98,6 +94,12 @@ session_start();
             .one-exam {
                 width: 95% !important;
                 margin-block: 0px !important;
+            }
+
+            main {
+                background-color: white !important;
+                padding-top: 20px;
+                padding-inline: 8px;
             }
         }
 

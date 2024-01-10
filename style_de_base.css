@@ -146,7 +146,7 @@ a.active {
     min-width: 41px;
 }
 
-#profile {
+.profile, .profile2 {
     background-color: transparent;
     border: none;
     width: 3.8vw;
@@ -164,7 +164,7 @@ a.active {
 
 
 #theme:hover #path0,
-#profile:hover #path1 {
+.profile:hover #path1, .profile2:hover #path1 {
     fill: var(--blue);
 }
 
@@ -370,9 +370,12 @@ a.active {
 
 /* profile */
 
-.profile-block-wrapper {
+.profile-block-wrapper {     top: 130px;}
+.profile-block-wrapper2 {    top: 85px;}
+
+.profile-block-wrapper, .profile-block-wrapper2 {
     position: absolute;
-    top: 6vw;
+z-index: 50;
     right: 0.7vw;
     width: 340px;
     background-color: white;
@@ -524,8 +527,8 @@ a.active {
         text-decoration: none;
         color: var(--black);
         /* padding: 13px; */
-        padding-block: 20px;
-        line-height: 40px;
+        /* padding-block: 20px; */
+        line-height: 30px;
     }
 
     .menu {
@@ -561,13 +564,13 @@ a.active {
 /* ici couleur logo media */
 
         #theme #path0,
-#profile #path1 {
+.profile #path1, .profile2 #path1 {
     fill: var(--blue);
     transition: 0.5s;
 }
 
 #theme:hover #path0,
-#profile:hover #path1 {
+.profile:hover #path1,  .profile2:hover #path1 {
     fill: var(--yellow1);
 }
 

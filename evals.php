@@ -17,102 +17,98 @@ session_start();
 
 
     <style>
-
- 
-            h1 {
-                font-family: 'Lusitana', serif;
-                margin-left: 4vw;
-            }
-
-         
+        h1 {
+            font-family: 'Lusitana', serif;
+            margin-left: 4vw;
+        }
 
 
+
+
+        .wrapper {
+            background-color: var(--grey);
+            width: 86%;
+            height: 28vh;
+            margin: auto;
+            border-radius: 15px;
+            overflow-y: scroll;
+        }
+
+        .one-eval {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            background-color: white;
+            margin: 10px 30px 10px 50px;
+            border-radius: 15px;
+            padding: 10px 50px 10px 50px;
+        }
+
+        .one-eval a:not(.title-eval) {
+            display: block;
+            margin-left: 5%;
+            color: var(--balck);
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+            cursor: pointer;
+        }
+
+        .one-eval h2,
+        .one-eval p {
+            margin: 0;
+        }
+
+        .one-eval h2 {
+            margin-bottom: 5px;
+        }
+
+
+        .left-info-eval {
+            width: 50%;
+
+        }
+
+        .right-info-eval {
+            text-align: right;
+
+        }
+
+        .date-eval {
+
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .deposer {
+            /* background-color: var(--red); */
+            border: none;
+            font-size: 1rem;
+            background-color: white;
+            text-decoration: underline;
+            padding: 10px 0;
+            font-family: 'Lexend Deca', sans-serif;
+        }
+
+
+        .right-info-eval button {
+            cursor: pointer;
+        }
+
+        .note {
+
+            padding: 10px 0;
+        }
+
+        @media (max-width:900px) {
             .wrapper {
-                background-color: var(--grey);
-                width: 86%;
-                height: 28vh;
-                margin: auto;
-                border-radius: 15px;
-                overflow-y: scroll;
+                width: 100%;
             }
 
             .one-eval {
-                display: flex;
-                justify-content: space-between;
-                width: 90%;
-                background-color: white;
-                margin: 10px 30px 10px 50px;
-                border-radius: 15px;
-                padding: 10px 50px 10px 50px;
+                width: 96%;
+                margin: 5px auto;
             }
-
-            .one-eval a:not(.title-eval) {
-                display: block;
-                margin-left: 5%;
-                color: var(--balck);
-                font-size: 0.9rem;
-                margin-bottom: 3px;
-                cursor: pointer;
-            }
-
-            .one-eval h2,
-            .one-eval p {
-                margin: 0;
-            }
-
-            .one-eval h2 {
-                margin-bottom: 5px;
-            }
-
-
-            .left-info-eval {
-                width: 50%;
-
-            }
-
-            .right-info-eval {
-                text-align: right;
-
-            }
-
-            .date-eval {
-
-                font-weight: 600;
-                font-size: 1.3rem;
-            }
-
-            .deposer {
-                /* background-color: var(--red); */
-                border: none;
-                font-size: 1rem;
-                background-color: white;
-                text-decoration: underline;
-                padding: 10px 0;
-                font-family: 'Lexend Deca', sans-serif;
-            }
-
-
-            .right-info-eval button {
-                cursor: pointer;
-            }
-
-            .note {
-
-                padding: 10px 0;
-            }
-    
-            @media (max-width:900px) {
-                .wrapper {
-                    width: 100%;
-                }
-
-                .one-eval {
-                    width: 96%;
-                    margin: 5px auto;
-                }
-            }
-
-
+        }
     </style>
 
 </head>
@@ -139,8 +135,8 @@ session_start();
                 <!-- dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
 
                 <?php
-              
-                 $sessionGroup = $_SESSION['groupe_user'];
+
+                $sessionGroup = $_SESSION['groupe_user'];
                 $requete = "
 
                 SELECT
@@ -153,6 +149,8 @@ session_start();
                
                NULL AS groupe,
                 NULL AS salle,
+
+                id_matiere,
                 matiere.ext_prof AS prof_id,
                 
                 user_prof.user_nom AS prof_nom,
@@ -177,7 +175,7 @@ session_start();
                 programme,
                 groupe,
                 cours_salle,
-               
+                id_matiere,
               
                 matiere.ext_prof AS prof_id,
                 
@@ -194,7 +192,7 @@ session_start();
             WHERE programme = :sessionProgramme AND   
                 cours.cours_temps_fin > NOW()";
 
- if ($sessionGroup === 'C') {
+                if ($sessionGroup === 'C') {
                     $requete .= " AND cours.groupe IN ('C', 'CD', 'M')";
                 } elseif ($sessionGroup === 'A') {
                     $requete .= " AND cours.groupe IN ('A', 'AB', 'M')";
@@ -263,8 +261,8 @@ session_start();
                                         </a>
                             </h2>
 
-                            <a href="#"> <?= $row['nom_matiere'] ?? '' ?></a>
-                            <a href=""> <?= $row['prof_prenom'] . ' ' . $row['prof_nom'] ?? '' ?></a>
+                            <a href="cours.php?id=<?= $row['id_matiere'] ?? '' ?>"> <?= $row['nom_matiere'] ?? '' ?></a>
+                            <a href="mailto:<?= $row['prof_prenom'] . '.' . $row['prof_nom'] . '@univ-eiffel.fr' ?? '' ?>"> <?= $row['prof_prenom'] . ' ' . $row['prof_nom'] ?? '' ?></a>
                         </div>
 
 
@@ -333,7 +331,7 @@ session_start();
 
 
                 <?php
-               
+
                 $sessionGroup = $_SESSION['groupe_user'];
 
                 $requete2 = " 
@@ -348,6 +346,7 @@ session_start();
                
                NULL AS groupe,
                 NULL AS salle,
+                id_matiere,
                 matiere.ext_prof AS prof_id,
                 
                 user_prof.user_nom AS prof_nom,
@@ -372,6 +371,7 @@ session_start();
                 programme,
                 groupe,
                 cours_salle,
+                id_matiere,
                
               
                 matiere.ext_prof AS prof_id,
@@ -399,10 +399,10 @@ session_start();
                     $requete2 .= " AND cours.groupe IN ('D', 'CD', 'M')";
                 }
                 $stmt2 = $db->prepare($requete2);
-// echo $requete2;
+                // echo $requete2;
                 // Bind the parameters
                 $stmt2->bindParam(':sessionProgramme', $_SESSION['programme_user'], PDO::PARAM_STR);
-                
+
                 $stmt2->execute();
 
                 $evals2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
@@ -426,8 +426,7 @@ session_start();
 
                     $startDate = new DateTime($row2['eval_date_debut']);
                     $startTime = $startDate->format('H:i'); // start of exam
-
-
+ 
                     // echo $deadlineDateFormatted, "   deadlineDateFormatted   ", $deadlineTimeFormatted, "  $deadlineTimeFormatted  ", $startTime;
 
 
@@ -441,52 +440,54 @@ session_start();
                     <div class="one-eval">
 
                         <div class="left-info-eval">
-                        <h2>
+                            <h2>
 
 
-<?php if ($row2['type'] == 1) : ?>
-    <a class="title-eval" href="./examen.php?id=<?= $row2['id_eval'] ?>">
-    <?php elseif ($row2['type'] == 2) : ?>
-        <a class="title-eval" href="./projet.php?id=<?= $row2['id_eval'] ?>">
-        <?php endif; ?>
+                                <?php if ($row2['type'] == 1) : ?>
+                                    <a class="title-eval" href="./examen.php?id=<?= $row2['id_eval'] ?>">
+                                    <?php elseif ($row2['type'] == 2) : ?>
+                                        <a class="title-eval" href="./projet.php?id=<?= $row2['id_eval'] ?>">
+                                        <?php endif; ?>
 
-        <span><?php if ($row2['type'] == 1) : ?>Examen:<?php elseif ($row2['type'] == 2) : ?>Projet:<?php endif; ?></span>
-        <?= $row2['title_projet'] ?? '' ?>
-        </a>
-</h2>
-                            <a href="#"> <?= $row2['nom_matiere'] ?? '' ?></a>
-                            <a href=""> <?= $row2['prof_prenom'] . ' ' . $row2['prof_nom'] ?? '' ?></a>
+                                        <span><?php if ($row2['type'] == 1) : ?>Examen:<?php elseif ($row2['type'] == 2) : ?>Projet:<?php endif; ?></span>
+                                        <?= $row2['title_projet'] ?? '' ?>
+                                        </a>
+                            </h2>
+
+                            <a href="cours.php?id=<?= $row2['id_matiere'] ?? '' ?>"> <?= $row2['nom_matiere'] ?? '' ?></a>
+                            <a href="mailto:<?= $row2['prof_prenom'] . '.' . $row2['prof_nom'] . '@univ-eiffel.fr' ?? '' ?>">
+                                <?= $row2['prof_prenom'] . ' ' . $row2['prof_nom'] ?? '' ?></a>
                         </div>
 
 
 
-                      
-            
 
-            
+
+
+
 
                         <div class="right-info-eval">
                             <p class="date-eval"><?= $deadlineDateFormatted ?? '' ?></p>
                             <p class="note">Note: <span>
-                                
-                            
-                            <?php
-                      if ($row2['type'] == 1) {
-                        $requete3 = "SELECT * FROM `note_exam` WHERE ext_eval_exam = {$row2['id_eval']}";
-                        $stmt3 = $db->query($requete3);
-                        $evals3 = $stmt3->fetch(PDO::FETCH_ASSOC);
-                    }
-                    if ($row2['type'] == 2) {
-                        $requete3 = "SELECT * FROM `note_projet` WHERE ext_projet = {$row2['id_eval']}";
-                        $stmt3 = $db->query($requete3);
-                        $evals3 = $stmt3->fetch(PDO::FETCH_ASSOC);
-                    }
 
 
-                    echo " " . ($evals3['note_projet'] ?? 'pas evalué') . ' / 20';
-                    ?>
-                            
-                              </span></p>
+                                    <?php
+                                    if ($row2['type'] == 1) {
+                                        $requete3 = "SELECT * FROM `note_exam` WHERE ext_eval_exam = {$row2['id_eval']}";
+                                        $stmt3 = $db->query($requete3);
+                                        $evals3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+                                    }
+                                    if ($row2['type'] == 2) {
+                                        $requete3 = "SELECT * FROM `note_projet` WHERE ext_projet = {$row2['id_eval']}";
+                                        $stmt3 = $db->query($requete3);
+                                        $evals3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+                                    }
+
+
+                                    echo " " . ($evals3['note_projet'] ?? 'pas evalué') . ' / 20';
+                                    ?>
+
+                                </span></p>
                         </div>
                     </div>
 

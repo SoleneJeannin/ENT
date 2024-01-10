@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 ?>
 
@@ -16,19 +16,6 @@ session_start();
     <title>Projet</title>
 
 
-</head>
-
-
-<body>
-
-    <main>
-
-
-        <?php
-
-        include('nav.php');
-
-        ?>
 
 
 
@@ -289,10 +276,27 @@ width: 95% !important;
                 text-align: center;
                 font-size: 1.3rem;
             }
+
+            a {
+                color: black;
+            }
         </style>
 
 
 
+</head>
+
+
+<body>
+
+    <main>
+
+
+        <?php
+
+        include('nav.php');
+
+        ?>
 
         <div class="wrapper">
 
@@ -310,6 +314,7 @@ width: 95% !important;
                             eval_date_fin,
                             eval_date_debut,
                             nom_matiere,
+                            id_matiere,
                             coefficient,
                             description_projet,
                          
@@ -358,8 +363,8 @@ width: 95% !important;
 
                 <div class="wrapper-info">
                     <div class="info">
-                        <h2> <?= $projet['nom_matiere'] ?? '' ?></h2>
-                        <h2> <?= $projet['prof_prenom'] . ' ' . $projet['prof_nom'] ?? '' ?></h2>
+                        <h2> <a href="cours.php?id=<?= $projet['id_matiere'] ?? '' ?>"><?= $projet['nom_matiere'] ?? '' ?></a></h2>
+                        <h2> <a href="mailto:<?= $projet['prof_prenom'] . '.' . $projet['prof_nom'] . '@univ-eiffel.fr' ?? '' ?>"><?= $projet['prof_prenom'] . ' ' . $projet['prof_nom'] ?? '' ?></a></h2>
                         <div class="data">
                             <p class="date"> Date de rendue: <br> <span class="date-span"><?= $projetStartDate ?? '' ?></span></p>
                             <p class="time"> jusqu'à <?= $projetEndTime ?? '' ?></p>
