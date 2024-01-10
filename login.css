@@ -31,8 +31,9 @@ input {
 }
 
 button {
+  transition: 0.2s;
   font-size: 20px;
-  background-color: #f1c27a;
+  background-color: #7e6642;
   color: white;
   border-radius: 25px;
   border: none;
@@ -44,7 +45,7 @@ button {
 }
 
 button:hover {
-  background-color: #e5a74a;
+  background-color: #5b4930;
 }
 ::placeholder {
   font-size: 16px;
@@ -68,5 +69,22 @@ button:hover {
   }
   .entete-login p {
     min-width: 70%;
+  }
+}
+
+@media(max-width:600px){
+  h1 img{
+    width:100%;
+  }
+  .login {
+    background: url(./img/connexion/bg-connexion.svg) center/contain no-repeat
+      white;
+  }
+  form{
+    width: 80%;
+  }
+  .entete-login p {
+    min-width:80%;
+    font-size: 16px;
   }
 }
