@@ -710,7 +710,7 @@ session_start();
                             minutes</p>
                         </div>
                         <div class="abscents">
-                            <h2>Abscents</h2>
+                            <h2>Absences</h2>
                             <p><?= $abs_non_justif ?> heures</p>
                         </div>
                     </div>
@@ -1363,7 +1363,7 @@ if ($access4['user_acces_rapide4'] == 1) {
 
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
@@ -1373,7 +1373,7 @@ if ($access4['user_acces_rapide4'] == 1) {
 
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
@@ -1383,18 +1383,7 @@ if ($access4['user_acces_rapide4'] == 1) {
 
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
-                                </div>
-                                <div class="time-notif">
-                                    <p>12.12.2023</p>
-                                    <p>23:10</p>
-                                </div>
-                            </div>
-
-
-                            <div class="one-notif">
-                                <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
@@ -1405,7 +1394,7 @@ if ($access4['user_acces_rapide4'] == 1) {
 
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
@@ -1416,7 +1405,18 @@ if ($access4['user_acces_rapide4'] == 1) {
 
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
+                                </div>
+                                <div class="time-notif">
+                                    <p>12.12.2023</p>
+                                    <p>23:10</p>
+                                </div>
+                            </div>
+
+
+                            <div class="one-notif">
+                                <div class="text-notif">
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
@@ -1425,7 +1425,7 @@ if ($access4['user_acces_rapide4'] == 1) {
                             </div>
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
@@ -1434,7 +1434,7 @@ if ($access4['user_acces_rapide4'] == 1) {
                             </div>
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
@@ -1443,7 +1443,7 @@ if ($access4['user_acces_rapide4'] == 1) {
                             </div>
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
@@ -1452,7 +1452,7 @@ if ($access4['user_acces_rapide4'] == 1) {
                             </div>
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
@@ -1461,7 +1461,7 @@ if ($access4['user_acces_rapide4'] == 1) {
                             </div>
                             <div class="one-notif">
                                 <div class="text-notif">
-                                    <p>Florence Bister vient d'ajouter le block dans R2.2 Gestion d'Information</p>
+                                    <p>Florence Bister vient d'ajouter le bloc dans R2.2 Gestion d'Information</p>
                                 </div>
                                 <div class="time-notif">
                                     <p>12.12.2023</p>
