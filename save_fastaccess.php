@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 
 if (isset($_POST['fastAccess'])) {

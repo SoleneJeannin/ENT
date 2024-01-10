@@ -78,7 +78,7 @@ text-decoration: none;}
 
                 <div class="matiere-block">
                     <?php
-                        $_SESSION['id_user'] = 3;
+                    
                     $idProf = $_SESSION['id_user'];
 
                     $requete2 = " SELECT * FROM `matiere` WHERE ext_prof = :id ";
