@@ -85,8 +85,8 @@
 
 
                             ?>
-
-                            <a href="cours.php?id=<?= $row["ext_contenu"] ?>" class="cours-link">
+                            <!-- Peut-être mettre id_matiere au lieu de ext_contenu -->
+                            <a href="cours.php?id=<?= $row["id_matiere"] ?>" class="cours-link">
                                 <div class="<?= $style ?> cours-solo cours<?= $row["id_matiere"] ?>">
                                     <p class="nom-matiere">
                                         <?= $row["nom_matiere"] ?>
