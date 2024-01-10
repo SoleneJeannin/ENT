@@ -60,12 +60,12 @@ chatgpt.png
             ?>
 
             <div>
-                <h2 class="titre">Les actus <?= $result['user_programme'] ?>:</h2>
+                <h2 class="titre">Les actus <?= $result['formation'] ?>:</h2>
 
                 <div class="bloc_mmi">
                 <?php
                 // Catégorie à sélectionner
-                $ma_categorie = $result['user_programme'];
+                $ma_categorie = $result['formation'];
                 $stmt_cat = $db->query("SELECT id_categorie FROM categorie WHERE categorie_titre = '$ma_categorie'");
                 $id = $stmt_cat->fetch(PDO::FETCH_ASSOC);
 
