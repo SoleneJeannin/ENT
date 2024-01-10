@@ -5,7 +5,7 @@
                 <a href="index.php">Accueil </a>
 
                 <div class="dropdown">
-                    <a class="drop-bt" href="">Études <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
+                    <a class="drop-bt" href="edt.php">Études <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
                             viewBox="0 0 9 6" fill="none">
                             <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                         </svg></a>
@@ -21,7 +21,7 @@
 
 
                 <div class="dropdown">
-                    <a class="drop-bt" href="">Réservations <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
+                    <a class="drop-bt" href="reservation_salle.php">Réservations <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
                             viewBox="0 0 9 6" fill="none">
                             <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                         </svg></a>
@@ -34,7 +34,7 @@
 
 
                 <div class="dropdown">
-                    <a class="drop-bt" href="">Vie Universitaire <svg xmlns="http://www.w3.org/2000/svg" width="12"
+                    <a class="drop-bt" href="campus.php">Vie Universitaire <svg xmlns="http://www.w3.org/2000/svg" width="12"
                             height="10" viewBox="0 0 9 6" fill="none">
                             <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                         </svg></a>
@@ -354,7 +354,7 @@
                     <a href="index.php">Accueil </a>
 
                     <div class="dropdown">
-                        <a class="drop-bt" href="">Études <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
+                        <a class="drop-bt" href="edt.php">Études <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
                                 viewBox="0 0 9 6" fill="none">
                                 <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                             </svg></a>
@@ -370,7 +370,7 @@
 
 
                     <div class="dropdown">
-                        <a class="drop-bt" href="">Réservations <svg xmlns="http://www.w3.org/2000/svg" width="12"
+                        <a class="drop-bt" href="reservation_salle.php">Réservations <svg xmlns="http://www.w3.org/2000/svg" width="12"
                                 height="10" viewBox="0 0 9 6" fill="none">
                                 <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                             </svg></a>
@@ -383,7 +383,7 @@
 
 
                     <div class="dropdown">
-                        <a class="drop-bt" href="">Vie Universitaire <svg xmlns="http://www.w3.org/2000/svg" width="12"
+                        <a class="drop-bt" href="campus.php">Vie Universitaire <svg xmlns="http://www.w3.org/2000/svg" width="12"
                                 height="10" viewBox="0 0 9 6" fill="none">
                                 <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                             </svg></a>
