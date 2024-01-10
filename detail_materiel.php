@@ -33,7 +33,7 @@
         
         
         ?>
-        
+    <br>    
         <?php
         
         $materiel_res = $_GET["id"];
@@ -43,43 +43,60 @@
         if($result['stock'] > 0){ ?>
             
             <!--Materiel selectionné à la page "reservation_materiel-->
-            <div>
-                <h2><?= $result['materiel_titre']?></h2>
-                <div>
-                    <!--Image-->
-                    <?= $result['image']?>
+            <div class="bloc_general">
+                <div class="titre_descr">
+                    <h2 class="titre"><?= $result['materiel_titre']?></h2>
+
                     <!--Description-->
                     <?= $result['description']?>
+
+                     <!--Affiche le bouton de téléchargement de la notice (si il y en a une)-->
+                    <?php if($result['notice'] != ''){ ?>
+                        <div class="div_lien"><a class="notice" href="./document/notices/<?= $result['notice']?>">Télécharger la notice</a></div> 
+                    <?php }else{
+                        echo '';
+                        }
+                    } else{
+                        echo "Ce materiel n'est plus disponible ! Revenez quand il y en aura de nouveau en réserve.";
+                    }
+                    ?>
                 </div>
+                
+                    <!--Image-->
+                    <?= $result['image']?>
             </div>
+
+         <br><br><br>
 
             <!--Formulaire de réservation-->
             <form action="traite_reservation.php?id=<?=$result['id_materiel']?>" method="POST">
                 <input type="hidden" name="id_materiel" value="<?= $result['id_materiel']?>">
-                <p>Date de réservation</p>
-
+                <p class="titre_date">Date de réservation</p>
+<div>
                 <label for="debut">début : </label>
                 <input type="date" id="debut" name="debut">
+</div>
+
                 <br>
+
+<div>
                 <label for="fin">fin : </label>
                 <input type="date" id="fin" name="fin">
+</div>
+
                 <br><br>
+
+<div>
                 <input type="radio" id="conditions" name="conditions" value="conditions"/>
                 <label for="conditions">En cochant cette case, j’accepte <a href="./document/regles_utilisation">les règles d’utilisation</a></label>
+</div>
                 <br><br>
-                <input type="submit" name="reservation" value="Réserver">
+                <div>
+                <input class="reserver" type="submit" name="reservation" value="Réserver">
+                </div>
             </form>
 
-            <!--Affiche le bouton de téléchargement de la notice (si il y en a une)-->
-            <?php if($result['notice'] != ''){ ?>
-            <a href="./document/notices/<?= $result['notice']?>">Télécharger la notice</a>
-            <?php }else{
-                echo '';
-            }
-        } else{
-            echo "Ce materiel n'est plus disponible ! Revenez quand il y en aura de nouveau en réserve.";
-        }
-        ?>
+          <br><br>
 
     </main>
 

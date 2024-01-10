@@ -1,0 +1,195 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.bloc_general{
+    display: flex;
+}
+
+.bloc_setting{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 20px;
+  gap: 10px;
+  width: 20%;
+  margin: 10px;
+}
+
+.nv_mess{
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+.bloc_setting a{
+    margin: 0;
+    font-family: 'Lusitana', serif;
+}
+
+.first_list{
+    padding-top: 30px;
+}
+
+
+
+
+
+.bloc_mess{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    margin: 10px;
+}
+
+
+.bloc_recherche{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+input{
+    border-radius: 5px;
+    width: 40%;
+  height: 42px;
+  border: 1px solid black;
+}
+
+.img_loupe{
+    margin-left: -29px;
+    cursor: pointer;
+    margin-top: 6px;
+    height: 29px;
+}
+
+
+.bloc_reception{
+    border: 1px solid black;
+}
+
+.bloc_right{
+    display: flex;
+    align-items: center;
+    gap: 37px;
+}
+
+
+.affichage{
+    display: flex;
+    flex-direction: column;
+}
+
+.carre{
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+.mail_sujet{
+    font-weight: 700;
+    min-width: 15vw;
+  max-width: 15vw;
+}
+
+.descr{
+    padding-left: 31px;
+    width: 65%;
+} 
+
+.mail{
+    display: flex;
+    align-items: center;
+  padding-left: 10px;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.bouton_aff{
+    display: none;
+}
+
+  .bloc_reception.overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur d'assombrissement avec une opacité de 0.5 */
+  }
+
+
+
+@media (max-width: 999px) {
+    .bloc_setting{
+        width: 25%;
+    }
+}
+
+@media (max-width: 914px) {
+    .bloc_reception, .bloc_setting{
+        background-color: var(--yellow1);
+    }
+}
+
+@media (max-width: 795px) {
+    .bloc_setting{
+        display: none;
+        width: 94%;
+    position: absolute;
+    z-index: 3;
+    margin-top: 75px;
+    border: 5px solid black;
+    /* top: %; */
+    left: 1%;
+transform : translate (-50%, -50%);
+        
+    }
+
+.bloc_mess{
+    width: 100%;
+}
+
+.bouton_aff{
+    display: block;
+    width: 23px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 16px;
+}
+}
+
+@media (max-width: 597px) {
+.bloc_right{
+    gap: 7px;
+}
+
+.mail{
+  padding-bottom: 20px;
+}
+
+.carre {
+    width: 15px;
+    height: 15px;
+}
+
+}
+
+@media (max-width: 452px) {
+   
+    .bloc_mess{
+        margin: 1px;
+    }
+
+    .date{
+        font-size: 0.7rem;
+    }
+}
+
+
+  @media (max-width: 390px) {
+  .mail {
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+
+}
+

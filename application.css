@@ -1,0 +1,124 @@
+.appli a{
+    border: solid 1px black;
+    padding: 5px;
+    border-radius: 10px;
+    width: 76px;
+  height: 76px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bloc_general{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.bloc_general1{
+    display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.bloc_appli, .bloc_appli2{
+    display: flex;
+    align-items: center;
+}
+
+.bloc_appli{
+    padding-right: 25px;
+}
+
+.appli{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 164px;
+}
+
+h1{
+    font-family: 'Lusitana', serif;
+    font-size: 2rem;
+    justify-content: start;
+    height: 162px;
+    display: flex;
+}
+
+.titre0, .titre3{
+    width: 138px;
+}
+
+.titre1, .titre4{
+    width: 238px;
+}
+
+.titre3, .titre4{
+    height: 247px;
+}
+
+
+@media (max-width: 915px) {
+    .bloc_general1{
+        padding-top: 16px;
+    }
+
+
+}
+
+
+@media (max-width: 836px) {
+    .bloc_appli, .bloc_appli2 {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .titre0, .titre1, .titre3, .titre4{
+        height: auto;
+        margin: 0;
+        width: auto;
+    }
+
+    .bloc_general{
+        gap: 55px;
+    }
+
+    .bloc_general1{
+        padding-top: 53px;
+    }
+
+    .appli{
+        justify-content: center;
+  align-items: center;
+    }
+
+}
+
+
+@media (max-width: 485px) {
+h1{
+    font-size: 1.5rem;
+}
+}
+
+
+@media (max-width: 450px) {
+.appli a{
+    padding: 3px;
+    width: 70px;
+    height: 70px;
+    font-size: 0.9rem;
+}
+
+.appli{
+    gap: 4px;
+}
+
+h1{
+    font-size: 1.1rem;
+}
+
+}

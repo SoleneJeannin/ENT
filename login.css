@@ -51,6 +51,22 @@ button:hover {
   margin: auto;
   padding: 0 10px;
 }
-.connexion {
-  margin-top: 50px;
+
+
+.erreur{
+  font-size: 16px;
+  border: solid #e74e4e 2px;
+  padding: 10px;
+}
+.red{
+  color: #e74e4e;
+}
+
+@media(max-width:915px){
+  form{
+    width: 70%;
+  }
+  .entete-login p {
+    min-width: 70%;
+  }
 }

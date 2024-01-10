@@ -14,7 +14,7 @@ h3{
     font-weight: 300;
 }
 
-img{
+.img_mat0, .img_mat{
     width: auto;
     height: 15vw;
     min-height: 136px;
@@ -23,20 +23,27 @@ img{
     padding: 10px;
     display: flex;
     margin: auto;
-     transition: 0.3s; 
+    transition: 0.3s; 
 }
 
-img:hover{
+.img_mat0:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
+.img_mat:hover{
     -ms-transform: scale(1.1); /* IE 9 */
     -webkit-transform: scale(1.1); /* Safari 3-8 */
     transform: scale(1.1);
 }
 
 
+
 .bloc_materiel{
- display: flex;   
- justify-content: space-evenly;
- flex-wrap: wrap;
+    display: flex;   
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 
@@ -49,6 +56,32 @@ img:hover{
 
 .materiel:hover{
     text-decoration: underline;
+}
+
+.popup{
+    position: absolute;
+    top: -80px;
+    left: 42vw;
+    transition: all 0.5s;
+    background-color: #DAFFCD;
+    border: 4px #A8FF89 solid;
+    border-radius: 12px;
+}
+input {
+    width: 4rem;
+}
+
+main .bouton {
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    font-family: 'Lexend Deca', sans-serif;
+    margin: 0 15px;
+    width: fit-content;
+}
+
+form{
+    margin: 0 15px;
 }
 
 
@@ -64,3 +97,4 @@ img:hover{
         gap: 15px;
     }
 }
+

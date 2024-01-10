@@ -11,6 +11,7 @@ $stmt->bindValue(':login', $loginToCheck, PDO::PARAM_STR);
 $stmt->execute();
 
 
+
 if ($stmt->rowcount() == 1) {
     $result = $stmt->fetch();
     $hash = $result['user_mdp'];
