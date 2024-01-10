@@ -39,6 +39,7 @@ font-family: 'Lusitana', serif; */
 	width: 1px !important;
 	white-space: nowrap !important;
 }
+
 body {
     background-color: var(--yellow4);
     display: grid;
@@ -88,6 +89,18 @@ main {
 }
 .links a:hover{
     text-decoration: underline;
+}
+
+a.active {
+    
+}
+
+a.active {
+    background-color: var(--yellow3);
+    border-radius: 9px;
+    text-decoration: underline;
+    
+    /* Add other styling as needed */
 }
 
 .personne {

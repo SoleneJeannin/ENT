@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 ?>
 
@@ -52,11 +52,11 @@ session_start();
         }
 
         .right-block {
-            width: 50%;
+            width: 60%;
         }
 
         .left-block {
-            width: 50%;
+            width: 40%;
         }
 
         .exams {
@@ -67,6 +67,101 @@ session_start();
             width: 95%;
             background-color: white;
             margin: auto;
+        }
+
+
+        @media (max-width: 1250px) {
+            .wrapper {
+                flex-direction: column-reverse;
+            }
+
+            .right-block {
+                width: 95%;
+            }
+
+            .left-block {
+                width: 95%;
+            }
+
+            main {
+                background-color: white !important;
+                padding-top: 20px;
+                padding-inline: 8px;
+            }
+
+
+
+        }
+
+        @media (max-width: 900px) {
+
+            .one-exam {
+                width: 95% !important;
+                margin-block: 0px !important;
+            }
+        }
+
+
+
+
+
+        .exams {
+            padding-block: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            width: 85%;
+            margin: auto;
+            border-radius: 25px;
+            min-height: 30vh;
+        }
+
+        .one-exam p,
+        .one-exam h4 {
+            margin: 0;
+        }
+
+        .right-block,
+        .left-block {
+            padding: 50px;
+        }
+
+        .one-exam {
+            height: min-content;
+            width: 40%;
+            margin: 10px 20px;
+            border-radius: 15px;
+            color: black;
+            padding: 10px 30px;
+        }
+
+        .one-exam a {
+
+            color: black;
+        }
+
+        .wrapper-info-exam {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        .button-add {
+            background-color: var(--red);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin: 0 auto 10px 50px;
+            cursor: pointer;
+        }
+
+        .add-info-form input:not([type='submit']) {
+            width: 65%;
+        }
+
+        textarea {
+            width: 70%;
+            height: 100px;
         }
     </style>
 </head>
@@ -81,8 +176,7 @@ session_start();
 
         include('nav-teacher.php');
 
-        $_SESSION['id_user'] = 3;
-        //  $_SESSION['id_user'] = 3;
+
 
 
         ?>
@@ -130,46 +224,6 @@ session_start();
                     ?>
 
 
-                        <style>
-                            .exams {
-                                padding-block: 20px;
-                                display: flex;
-                                flex-wrap: wrap;
-                                width: 85%;
-                                margin: auto;
-                                border-radius: 25px;
-                                min-height: 30vh;
-                            }
-
-                            .one-exam p,
-                            .one-exam h4 {
-                                margin: 0;
-                            }
-
-                            .right-block,
-                            .left-block {
-                                padding: 50px;
-                            }
-
-                            .one-exam {
-                                height: min-content;
-                                width: 40%;
-                                margin: 10px 20px;
-                                border-radius: 15px;
-                                color: black;
-                                padding: 10px 30px;
-                            }
-
-                            .one-exam a {
-
-                                color: black;
-                            }
-
-                            .wrapper-info-exam {
-                                display: flex;
-                                justify-content: space-between;
-                            }
-                        </style>
 
                         <div class="one-exam">
                             <a href="teacher_exam.php?id_exam=<?= $exam['id_eval_exam'] ?>">
@@ -285,30 +339,7 @@ session_start();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
             <div class="left-block">
 
@@ -339,49 +370,30 @@ session_start();
 
 
 
-                <style>
-                    .button-add {
-                        background-color: var(--red);
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 5px;
-                        font-size: 1rem;
-                        margin: 0 auto 10px 50px;
-                        cursor: pointer;
-                    }
 
-                    .add-info-form input:not([type='submit']) {
-                        width: 65%;
-                    }
-
-                    textarea {
-                        width: 70%;
-                        height: 100px;
-                    }
-                </style>
 
                 <h2>Information</h2>
 
 
                 <button class="button-add" onclick="toggleAddingInfo()">Ajouter Information</button>
 
-<div class="adding-info" id="addingInfoDiv" style="display: none;">
-    <form class="add-info-form" action="add_info.php" method="POST">
-        <label for="title">Titre: <input type="text" name="title" id="title"></label><br>
-        <label for="text">Information: <br><textarea name="text" id="text"></textarea></label>
+                <div class="adding-info" id="addingInfoDiv" style="display: none;">
+                    <form class="add-info-form" action="add_info.php" method="POST">
+                        <label for="title">Titre: <input type="text" name="title" id="title"></label><br>
+                        <label for="text">Information: <br><textarea name="text" id="text"></textarea></label>
 
-        <input type="hidden" name="matiere" value="<?= $one['id_matiere'] ?>">
-        <br>
-        <input class="submit-b" type="submit" value="Envoyer">
-    </form>
-</div>
+                        <input type="hidden" name="matiere" value="<?= $one['id_matiere'] ?>">
+                        <br>
+                        <input class="submit-b" type="submit" value="Envoyer">
+                    </form>
+                </div>
 
-<script>
-    function toggleAddingInfo() {
-        var addingInfoDiv = document.getElementById('addingInfoDiv');
-        addingInfoDiv.style.display = (addingInfoDiv.style.display === 'none' || addingInfoDiv.style.display === '') ? 'block' : 'none';
-    }
-</script>
+                <script>
+                    function toggleAddingInfo() {
+                        var addingInfoDiv = document.getElementById('addingInfoDiv');
+                        addingInfoDiv.style.display = (addingInfoDiv.style.display === 'none' || addingInfoDiv.style.display === '') ? 'block' : 'none';
+                    }
+                </script>
 
 
 

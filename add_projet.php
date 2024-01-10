@@ -1,6 +1,6 @@
 <?php
 // Connect to the database
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 
  

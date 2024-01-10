@@ -382,6 +382,22 @@ session_start();
                                 <input id="aj" type="submit" value="Ajouter">
 
                             </form>
+
+                            <?php
+                            $allStudentsEvaluated = true;
+
+                            foreach ($addnote as $student) {
+                                if ($student['evaluated'] === 0) {
+                                    $allStudentsEvaluated = false;
+                                    break;
+                                }
+                            }
+
+                            if ($allStudentsEvaluated) {
+                                echo '<p>Tous.tes les étudiants.es sont évalué.e.s</p>';
+                                echo '<script>document.getElementById("add-add").style.display = "none";</script>';
+                            }
+                            ?>
                             <div class="moyen">
                                 <h4>Moyen:</h4>
                                 <p>
@@ -411,32 +427,32 @@ session_start();
 
 
 
-<div class="uploaded">
-    <h3>Les documents rendus</h3>
+                        <div class="uploaded">
+                            <h3>Les documents rendus</h3>
 
-    
 
-    <ul>
-    <?php
-$folder = "projet/" . $idProjet;
 
-if (is_dir($folder) && ($files = scandir($folder)) !== false) {
-    $allowedExtensions = ["pdf", "jpg", "jpeg", "zip"];
+                            <ul>
+                                <?php
+                                $folder = "projet/" . $idProjet;
 
-    foreach ($files as $file) {
-        $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
-        if (in_array($fileExtension, $allowedExtensions)) {
-            echo "<li><a href='$folder/$file' target='_blank'>$file</a></li>";
-        }
-    }
-} else {
-    echo "<p>Pas de projets ajoutés pour l'instant</p>";
-}
-?>
+                                if (is_dir($folder) && ($files = scandir($folder)) !== false) {
+                                    $allowedExtensions = ["pdf", "jpg", "jpeg", "zip"];
 
-    </ul>
+                                    foreach ($files as $file) {
+                                        $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
+                                        if (in_array($fileExtension, $allowedExtensions)) {
+                                            echo "<li><a href='$folder/$file' target='_blank'>$file</a></li>";
+                                        }
+                                    }
+                                } else {
+                                    echo "<p>Pas de projets ajoutés pour l'instant</p>";
+                                }
+                                ?>
 
-</div>
+                            </ul>
+
+                        </div>
 
 
 

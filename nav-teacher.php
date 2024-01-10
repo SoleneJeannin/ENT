@@ -1,5 +1,5 @@
  
-<!-- ?php if (isset($_SESSION["login"])) { ?> -->
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 2 ) { ?>
 
 
 <nav>
@@ -315,9 +315,9 @@
         </script>
 
 </nav>
-<!-- ?php }else{
+<?php }else{
     header("Location: login.php?errConnexion");
-} ?> -->
+} ?>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

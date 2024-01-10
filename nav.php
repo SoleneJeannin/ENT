@@ -1,52 +1,77 @@
-<?php if (isset($_SESSION["login"])) { ?>
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1 ) { ?>
+
     <nav>
         <div class="bloc_nav_ordi">
             <div class="links">
-                <a href="index.php">Accueil </a>
+
+
+            <?php
+function isActive($page)
+{
+    $currentPage = basename($_SERVER['PHP_SELF']);
+    return ($currentPage == $page) ? 'active' : '';
+}
+?>
+
+
+
+
+
+                <a class="<?= isActive('index.php'); ?>" href="index.php">Accueil </a>
+
 
                 <div class="dropdown">
-                    <a class="drop-bt" href="edt.php">Études <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
+                    <a class="drop-bt linked1" href="edt.php">Études <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
                             viewBox="0 0 9 6" fill="none">
                             <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                         </svg></a>
                     <div class="dropdown-content drop1">
-                        <a href="edt.php">Agenda</a>
-                        <a href="notes.php">Notes</a>
-                        <a href="evals.php">Évaluations</a>
-                        <a href="cours_todo_list.php">Cours</a>
+                        <a  class="<?= isActive('edt.php'); ?> link1"  href="edt.php">Agenda</a>
+                        <a  class="<?= isActive('notes.php'); ?> link1" href="notes.php">Notes</a>
+                        <a  class="<?= isActive('evals.php'); ?> link1" href="evals.php">Évaluations</a>
+                        <a  class="<?= isActive('cours_todo_list.php'); ?> link1" href="cours_todo_list.php">Cours</a>
                     </div>
                 </div>
 
-                <a href="mail.php">Mail</a>
+              
+
+
+
+                <a class="<?= isActive('mail.php'); ?>" href="mail.php">Mail</a>
+
+
 
 
                 <div class="dropdown">
-                    <a class="drop-bt" href="reservation_salle.php">Réservations <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
+                    <a class="drop-bt linked2" href="reservation_salle.php">Réservations <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
                             viewBox="0 0 9 6" fill="none">
                             <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                         </svg></a>
                     <div class="dropdown-content drop2">
-                        <a href="reservation_salle.php">Salles</a>
-                        <a href="reservation_materiel.php">Matériel</a>
+                        <a  class="<?= isActive('reservation_salle.php'); ?> link2" href="reservation_salle.php">Salles</a>
+                        <a  class="<?= isActive('reservation_materiel.php'); ?> link2" href="reservation_materiel.php">Matériel</a>
                     </div>
                 </div>
 
 
 
                 <div class="dropdown">
-                    <a class="drop-bt" href="campus.php">Vie Universitaire <svg xmlns="http://www.w3.org/2000/svg" width="12"
+                    <a class="drop-bt linked3" href="campus.php"> Vie Universitaire <svg xmlns="http://www.w3.org/2000/svg" width="12"
                             height="10" viewBox="0 0 9 6" fill="none">
                             <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                         </svg></a>
                     <div class="dropdown-content drop3">
-                        <a href="campus.php">Campus</a>
-                        <a href="actualites.php">Actualité</a>
-                        <a href="vie_etudiant.php">Vie étudiante</a>
+                        <a  class="<?= isActive('campus.php'); ?> link3" href="campus.php">Campus</a>
+                        <a  class="<?= isActive('actualites.php'); ?> link3" href="actualites.php">Actualité</a>
+                        <a  class="<?= isActive('vie_etudiant.php'); ?> link3" href="vie_etudiant.php">Vie étudiante</a>
                     </div>
                 </div>
 
 
-                <a href="application.php">Applis</a>
+                <a  class="<?= isActive('application.php'); ?>" href="application.php">Applis</a>
+
+
+
             </div>
             <div class="personne">
                 <button id="theme">
@@ -98,6 +123,8 @@
                 <?php
 
                 include('connexion.php');
+
+
                 $idUser = $_SESSION['id_user'];
                 $requeteUser = "SELECT * FROM user WHERE id_user=:idUser";
                 $stmtUser = $db->prepare($requeteUser);
@@ -474,4 +501,36 @@
         profileButton.addEventListener('click', openProfile);
 
     });
+
+
+
+ 
+var links = document.querySelectorAll('.link1');
+links.forEach(function(link) {
+    if (link.classList.contains('active')) {
+        document.querySelectorAll('.linked1').forEach(function(element) {
+            element.classList.add('active');
+        });
+    }
+});
+
+var links2 = document.querySelectorAll('.link2');
+links2.forEach(function(link2) {
+    if (link2.classList.contains('active')) {
+        document.querySelectorAll('.linked2').forEach(function(element) {
+            element.classList.add('active');
+        });
+    }
+});
+
+var links3 = document.querySelectorAll('.link3');
+links3.forEach(function(link3) {
+    if (link3.classList.contains('active')) {
+        document.querySelectorAll('.linked3').forEach(function(element) {
+            element.classList.add('active');
+        });
+    }
+});
+
+ 
 </script>

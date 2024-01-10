@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 ?>
 
@@ -16,6 +16,156 @@ session_start();
     <title>Examen</title>
 
 
+
+    <style>
+        main {
+            background-color: var(--grey);
+            position: relative;
+        }
+
+        .wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            padding-block: 20px;
+            height: max-content;
+
+            height: 90%;
+        }
+
+        .block {
+            background-color: white;
+            width: 90%;
+            padding-inline: 130px;
+            padding-block: 30px;
+            border-radius: 10px;
+            margin-block-end: 10px;
+        }
+
+        .wrapper-info {
+            display: flex;
+            justify-content: start;
+
+        }
+
+        .exam-top-wrapper {
+            height: 50%;
+        }
+
+        .description {
+            width: 60%;
+            margin-left: 100px;
+        }
+
+        .comment {
+            width: 40%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        h2 {
+            padding-left: 50px;
+            font-weight: 400;
+            margin: 0;
+            font-size: 1.3rem;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+        }
+
+        p {
+            font-size: 1.12rem;
+            margin: 10px;
+        }
+
+        .date {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .data {
+            margin-top: 50px;
+            padding-left: 50px;
+
+        }
+
+        .exam-noted {
+            padding-left: 150px;
+        }
+
+        .exam-noted h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0;
+        }
+
+        .wrapper-botom {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 32px;
+
+
+        }
+
+        .note {
+            font-size: 2.3rem;
+            padding-left: 50px;
+            font-weight: 200;
+
+        }
+
+        .moyen {
+            margin-inline: 100px;
+        }
+
+        .moyen>p {
+            text-align: center;
+
+        }
+
+
+        .table {
+            width: 90%;
+            margin: auto;
+
+        }
+
+        .table td {
+            padding: 5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--yellow1);
+        }
+
+        .form-add {
+            width: 60%;
+            margin: auto;
+        }
+
+        .ajouter-notes {
+            display: flex;
+            margin: auto;
+        }
+
+        #aj {
+            background-color: var(--red);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
 
 
@@ -30,124 +180,6 @@ session_start();
 
         ?>
 
-
-
-        <style>
-            main {
-                background-color: var(--grey);
-                position: relative;
-            }
-
-            .wrapper {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: start;
-                padding-block: 20px;
-                height: max-content;
-
-                height: 90%;
-            }
-
-            .block {
-                background-color: white;
-                width: 90%;
-                padding-inline: 130px;
-                padding-block: 30px;
-                border-radius: 10px;
-                margin-block-end: 10px;
-            }
-
-            .wrapper-info {
-                display: flex;
-                justify-content: start;
-
-            }
-
-            .exam-top-wrapper {
-                height: 50%;
-            }
-
-            .description {
-                width: 60%;
-                margin-left: 100px;
-            }
-
-            .comment {
-                width: 40%;
-            }
-
-            h1 {
-                margin-bottom: 20px;
-                font-weight: 800;
-            }
-
-            h2 {
-                padding-left: 50px;
-                font-weight: 400;
-                margin: 0;
-                font-size: 1.3rem;
-                text-decoration: underline;
-                text-decoration-thickness: 1px;
-                text-underline-offset: 4px;
-            }
-
-            h4 {
-                font-size: 1.3rem;
-            }
-
-            p {
-                font-size: 1.12rem;
-                margin: 10px;
-            }
-
-            .date {
-                font-size: 1.5rem;
-                font-weight: 500;
-            }
-
-            .data {
-                margin-top: 50px;
-                padding-left: 50px;
-
-            }
-
-            .exam-noted {
-                padding-left: 150px;
-            }
-
-            .exam-noted h3 {
-                font-size: 2rem;
-                font-weight: 800;
-                margin-bottom: 0;
-            }
-
-            .wrapper-botom {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                margin-bottom: 32px;
-
-
-            }
-
-            .note {
-                font-size: 2.3rem;
-                padding-left: 50px;
-                font-weight: 200;
-
-            }
-
-            .moyen {
-                margin-inline: 100px;
-            }
-
-            .moyen>p {
-                text-align: center;
-
-            }
-        </style>
 
 
 
@@ -203,35 +235,35 @@ WHERE
 
 
 
-                <h1>Examen: <?= $exam['title_exam'] ?? '' ?>  <span>
-                                <?php
-                                $group = $exam['groupe'];
+                <h1>Examen: <?= $exam['title_exam'] ?? '' ?> <span>
+                        <?php
+                        $group = $exam['groupe'];
 
-                                // Check conditions and format group name accordingly
-                                switch ($group) {
-                                    case 'A':
-                                    case 'B':
-                                    case 'C':
-                                    case 'D':
-                                        $formattedGroup = "TP " . $group;
-                                        break;
+                        // Check conditions and format group name accordingly
+                        switch ($group) {
+                            case 'A':
+                            case 'B':
+                            case 'C':
+                            case 'D':
+                                $formattedGroup = "TP " . $group;
+                                break;
 
-                                    case 'AB':
-                                    case 'CD':
-                                        $formattedGroup = "TD " . $group;
-                                        break;
+                            case 'AB':
+                            case 'CD':
+                                $formattedGroup = "TD " . $group;
+                                break;
 
-                                    case 'M':
-                                        $formattedGroup = 'CM';
-                                        break;
+                            case 'M':
+                                $formattedGroup = 'CM';
+                                break;
 
-                                    default:
-                                        $formattedGroup = $group;
-                                }
-                                echo $formattedGroup;
-                                ?>
+                            default:
+                                $formattedGroup = $group;
+                        }
+                        echo $formattedGroup;
+                        ?>
 
-                            </span></h1>
+                    </span></h1>
 
                 <div class="wrapper-info">
                     <div class="info">
@@ -241,7 +273,7 @@ WHERE
                             <p class="date"> <?= $examStartDate ?? '' ?></p>
                             <p class="time"><?= $examStartTime . ' - ' . $examEndTime ?? '' ?></p>
                             <p>Salle <?= $exam['cours_salle'] ?? '' ?></p>
-                           
+
                         </div>
                     </div>
                     <div class="description">
@@ -258,39 +290,7 @@ WHERE
                     <h3>Notes</h3>
                     <br>
 
-                    <style>
-                        .table {
-                            width: 90%;
-                            margin: auto;
 
-                        }
-
-                        .table td {
-                            padding: 5px;
-                        }
-
-                        tr:nth-child(even) {
-    background-color: var(--yellow1);
-}
-
-.form-add {
-    width: 60%;
-    margin: auto;
-}
-.ajouter-notes  {
-    display: flex;
-    margin: auto;
-}
-
-#aj {
-    background-color: var(--red);
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 1.1rem;
-}
-
-                    </style>
                     <div class="all-notes">
 
                         <table class="table">
@@ -344,10 +344,10 @@ WHERE
                             }
                             ?>
                         </table>
-<br>
+                        <br>
 
                         <h3>Ajouter des notes</h3>
-<br><br>
+                        <br><br>
 
 
                         <div class="ajouter-notes">
@@ -369,17 +369,17 @@ WHERE
                             $stmt2->bindValue(':programme', $_SESSION['user_programme'], PDO::PARAM_INT);
                             $stmt2->execute();
                             $addnote = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-                            
+
 
 
 
 
                             ?>
 
-                            <form class="form-add" action="add_new_note_exam.php" method="POST">
+                            <form id="add-add" class="form-add" action="add_new_note_exam.php" method="POST">
 
                                 <label for="selectedStudents">Select Students:</label>
-                                <select name="selectedStudent" id="selectedStudent">
+                                <select required name="selectedStudent" id="selectedStudent">
 
                                     <?php foreach ($addnote as $student) : ?>
                                         <option value="<?= $student['id_user'] ?>">
@@ -387,12 +387,19 @@ WHERE
                                             <?= $student['user_prenom'] . ' ' . $student['user_nom'] ?>
 
                                         </option>
+
+
                                     <?php endforeach; ?>
 
+
+
                                 </select>
+
+
+
                                 <br><br>
                                 <label for="note">Note:</label>
-                                <input type="text" name="note" id="note">
+                                <input type="text" required name="note" id="note">
                                 <br><br>
 
                                 <input type="hidden" name="id_exam" value="<?= $_GET['id_exam'] ?>">
@@ -405,31 +412,47 @@ WHERE
                                 <input id="aj" type="submit" value="Ajouter">
 
                             </form>
-                            <div class="moyen">
-                        <h4>Moyen de promo:</h4>
-                        <p>
-
 
                             <?php
-                            $requete = "SELECT AVG(note_exam) 
+                            $allStudentsEvaluated = true;
+
+                            foreach ($addnote as $student) {
+                                if ($student['evaluated'] === 0) {
+                                    $allStudentsEvaluated = false;
+                                    break;
+                                }
+                            }
+
+                            if ($allStudentsEvaluated) {
+                                echo '<p>Tous.tes les étudiants.es sont évalué.e.s</p>';
+                                echo '<script>document.getElementById("add-add").style.display = "none";</script>';
+                            }
+                            ?>
+                            <div class="moyen">
+                                <h4>Moyen de promo:</h4>
+                                <p>
+
+
+                                    <?php
+                                    $requete = "SELECT AVG(note_exam) 
                         AS average_note 
                         FROM note_exam 
                         WHERE ext_eval_exam = :id";
 
 
-                            $stmt = $db->prepare($requete);
-                            $stmt->bindValue(':id',   $idExam, PDO::PARAM_INT);
-                            $stmt->execute();
-                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                                    $stmt = $db->prepare($requete);
+                                    $stmt->bindValue(':id',   $idExam, PDO::PARAM_INT);
+                                    $stmt->execute();
+                                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                            echo $result['average_note'] ?? '-';
-
-
-                            ?>
+                                    echo $result['average_note'] ?? '-';
 
 
-                        </p>
-                    </div>
+                                    ?>
+
+
+                                </p>
+                            </div>
                         </div>
 
 
@@ -441,7 +464,7 @@ WHERE
                     </div>
 
 
-                  
+
 
 
 

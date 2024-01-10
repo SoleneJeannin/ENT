@@ -1,5 +1,5 @@
 <?php
-include('connexion_offline.php');
+include('connexion.php');
 session_start();
 ?>
 
@@ -59,8 +59,16 @@ text-decoration: none;}
     }
 
     .matieres {
-        width: 40%;
+        width: 80%;
         padding: 40px 100px;
+    }
+
+    @media (max-width:900px) {
+        .matieres {
+        width: 100%;
+        padding: 40px 50px;
+        margin: auto;
+    }
     }
 
     .big-wrapper {
