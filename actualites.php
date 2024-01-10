@@ -160,11 +160,11 @@ chatgpt.png
             <h1>Nouvelle actualité</h1>
             <form action="traite_actualites.php" method="POST">
                 <label for="nvo_titre">Titre du nouvel article : </label>
-                <input type="text" id="nvo_titre" name="nvo_titre"> <br>
+                <input type="text" id="nvo_titre" name="nvo_titre" required> <br>
                 <label for="nvo_accroche">Accroche du nouvel article : </label> 
-                <input type="text" id="nvo_accroche" name="nvo_accroche"> <br>
+                <input type="text" id="nvo_accroche" name="nvo_accroche" required> <br>
                 <label for="nvo_texte">Contenu du nouvel article : </label>
-                <input type="text" id="nvo_texte" name="nvo_texte"> <br> 
+                <input type="text" id="nvo_texte" name="nvo_texte" required> <br> 
                 <!--Checkbox des catégories de l'article-->
                 <fieldset>
                     <legend>Catégorie(s) du nouvel article :</legend>

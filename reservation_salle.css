@@ -50,6 +50,13 @@ input{
     cursor: pointer;
 }
 
+a{
+    color: #302B52;
+}
+a:hover{
+    text-decoration: none;
+}
+
 
 
 @media (max-width: 740px) {
