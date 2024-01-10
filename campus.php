@@ -52,10 +52,9 @@
         <div class="bloc_description">
             <div class="texte">
                 <h2>CROUS DE l’ESIEE</h2>
-            <p>Le restaurant universitaire (RU)
-D’une capacité de 550 élèves, le restaurant universitaire est ouvert uniquement le midi, du lundi au vendredi, de 11 h 30 à 14 h 00. Il est organisé selon différents pôles afin de proposer des plats variés : végétariens, pizzas, poissons, viandes…</p>
+            <p>Le restaurant universitaire (RU), d’une capacité de 550 élèves, est ouvert uniquement le midi, du lundi au vendredi, de 11 h 30 à 14 h 00. Il est organisé selon différents pôles afin de proposer des plats variés : végétariens, pizzas, poissons, viandes…</p>
 </div>
-            <img class="esiee" src="./img/campus/esiee.jpg" alt="">
+            <img class="esiee" src="./img/campus/esiee.jpg" alt="carte universitaire">
 
 
 

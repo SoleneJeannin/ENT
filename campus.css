@@ -114,9 +114,12 @@ figure{
     .legende{
         flex-direction: row;
         border: 1px solid black;
-        gap: 40px;
-        justify-content: center;
+        justify-content: space-evenly;
     align-items: center;
+    }
+
+    h2{
+font-size: 1.8rem;
     }
 
     figcaption{
@@ -124,9 +127,6 @@ figure{
         width: 92px;
     }
 
-    h2{
-        font-size: 1.5rem;
-    }
 
     .bloc_logo {
         flex-direction: row;
@@ -138,6 +138,9 @@ figure{
         flex-direction: column;
     }
 
+    .img_carte {
+       margin-right: 0px;
+      }
 
 } 
 
@@ -154,6 +157,23 @@ figure{
     .carre{
         min-width: 19.45px;
     }
+
+    .legende{
+    width: 71vw;
+    }
+
+}
+
+
+@media (max-width: 478px){
+.img_carte{
+    min-width: 84vw;
+}
+
+.legende{
+    width: 65vw;
+}
+    
 
 }
 
