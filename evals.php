@@ -101,6 +101,11 @@ session_start();
                 padding: 10px 0;
             }
     
+            @media (max-width:900px) {
+                .wrapper {
+                    width: 100%;
+                }
+            }
 
 
     </style>
