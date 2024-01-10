@@ -17,6 +17,17 @@
 </head>
 
 <body>
+    <script>
+        //Apparition de la popup
+        function popup() {
+            document.getElementsByClassName("popup")[0].style.top = "140px";
+        
+            // Pour que la popup reste pas longtemps
+            setTimeout(function() {
+                document.getElementsByClassName("popup")[0].style.top = "-80px";
+            }, 3000); // 3000 millisecondes = 3 secondes
+        }
+    </script>
 
     <main>
 
@@ -118,6 +129,21 @@
             <?php
         } //Si on est admin
         elseif ($role == 'Admin') {
+
+            //Si on vient d'ajouter un/e retard/absence'
+            if(isset($_GET['etat'])){ 
+                if($_GET['etat']=='misajour') {?>
+
+                <div class="popup">
+                    <p>Les retards et absences ont bien été mises à jour !'</p>
+                </div>
+                
+                <?php 
+                //Appel la fonction js qui fait apparaitre la popup
+                echo "<script> popup(); </script>"; 
+            }}
+
+
             $stmt_admin = $db->query("SELECT * FROM user WHERE ext_role = 1");
             $result_admin = $stmt_admin->fetchAll(PDO::FETCH_ASSOC);
             ?>
