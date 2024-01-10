@@ -118,12 +118,20 @@
                     <div class="card">
                         <div class="deco-card">
                             <img src="./img/logo//logo-eiffel.png" alt="">
-                            <p>carte étudiante</p>
+                            <p>Carte étudiante</p>
                         </div>
                         <div class="info-card">
                             <img class="logo" src="./img/logo//logo-eiffel.png" alt="">
                             <p>Né(e) le :
-                                <?= $resultsUser["user_naissance"] ?>
+                                <?php if (empty($resultUser["user_naissance"])) { ?>
+                                    Non renseigné
+
+                                <?php } else {
+                                    ?>
+                                    <?= $resultsUser["user_naissance"] ?>
+                                    <?php
+
+                                } ?>
                             </p>
                             <p>N d'étudiant :
                                 <?= $resultsUser["id_user"] ?>
@@ -408,7 +416,7 @@
             </script>
 
     </nav>
-<?php }else{
+<?php } else {
     header("Location: login.php?errConnexion");
 } ?>
 

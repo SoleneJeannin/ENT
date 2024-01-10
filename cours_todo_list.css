@@ -1,3 +1,8 @@
+h2{
+  font-family: 'Lusitana', serif;
+  font-size: 32px;
+  text-align: center;
+}
 .todo-lists {
   border: solid 5px #f9d57f;
   border-radius: 26px;
@@ -145,11 +150,16 @@
   margin: auto;
   text-align: center;
   padding-top: 50px;
+  font-size: 24px;
 }
 .cours{
-  margin-left: 20px
+  margin-left: 20px;
+  margin-top:44px;
 }
 @media (max-width: 916px) {
+  .cours h2{
+    text-align: left;
+  }
   .container-cours-todo {
     display: block;
   }

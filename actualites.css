@@ -37,7 +37,6 @@ a {
 .titre {
     text-align: center;
     font-family: 'Lusitana', serif;
-    text-decoration: underline;
     font-size: 2rem;
     width: auto;
 }
@@ -64,9 +63,14 @@ a {
 /* le bloc de chaque actu */
 .actu,
 .un_mmi {
+    transition: 0.2s;
     background-color: var(--white-grey);
+    border: var(--white-grey) 3px solid;
     border-radius: 25px;
     padding: 13px;
+}
+.actu:hover,.un_mmi:hover{
+    border: rgb(122, 122, 122) 3px dashed;
 }
 
 .actu {

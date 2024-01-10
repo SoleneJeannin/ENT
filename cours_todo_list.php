@@ -12,7 +12,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style_de_base.css">
     <link rel="stylesheet" href="cours_todo_list.css">
-    <title>Cours - todoList</title>
+    <title>Cours</title>
 
 
 </head>
@@ -52,10 +52,10 @@
                     $resultsCours = $stmtCours->fetchAll(PDO::FETCH_ASSOC);
 
                     ?>
-
-                    L'utilisateur est de programme :
-                    <?= $resultsProgrammeUser["user_programme"]; ?>
-                    <br><br><br>
+                    <!-- Vérifie le programme de l'utilisateur -->
+                    <!-- L'utilisateur est de programme :
+                    <?= $resultsProgrammeUser["user_programme"]; ?> -->
+                    
                     <?php
 
                     $CoursProgramme = false;
@@ -113,11 +113,7 @@
 
                 <div class="todo-lists">
                     <h2>Votre TodoList</h2>
-                    <form class="actualisation" action="cours_todo_list.php">
 
-                        <input class="reactualisation" type="submit" name="reactualisationTodo"
-                            value="Réactualisation du Todo">
-                    </form>
 
                     <?php
 
@@ -136,6 +132,18 @@
                     $stmt->execute();
 
                     $resultTodo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    if (empty($resultTodo)) {
+
+
+
+                    } else {
+                        ?>
+                        <form class="actualisation" action="cours_todo_list.php">
+                            <input class="reactualisation" type="submit" name="reactualisationTodo"
+                                value="Réactualisation du Todo">
+                        </form>
+                        <?php
+                    }
                     if (empty($resultTodo)) {
                         ?>
                         <p class="task-none">Aucune tâches</p>
