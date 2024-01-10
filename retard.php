@@ -108,7 +108,7 @@
             </div>
             <br><br>
             <div class="contain-info-img">
-                <img src="./img/nav/info.svg" alt="">
+                <img src="./img/nav/info.svg" alt="information">
                 <p class="info">Si vous avez des questions sur vos démarches administratives, vous pouvez vous adresser à
                     votre
                     responsable pédagogique : Sophie DAVID</p>
