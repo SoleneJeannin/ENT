@@ -27,7 +27,18 @@ font-family: 'Lusitana', serif; */
 
 
 }
-
+.sr-only {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+			clip-path: inset(50%) !important;
+	height: 1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+}
 body {
     background-color: var(--yellow4);
     display: grid;
@@ -184,6 +195,7 @@ main {
 }
 
 .dropdown-content {
+    z-index: 50;
     position: absolute;
     top: 65px;
     width: auto;
@@ -208,13 +220,13 @@ main {
 
 .dropdown:hover .dropdown-content {
     display: block !important;
-
 }
 
 .dropdown:hover .drop-bt {
     background-color: var(--yellow3);
     border-radius: 5px;
 }
+
 
 
 .dropdown-content a {

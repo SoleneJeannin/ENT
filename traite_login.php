@@ -22,8 +22,8 @@ if ($stmt->rowcount() == 1) {
         $_SESSION['id_user'] = $result['id_user'];
         $_SESSION['programme_user'] = $result['user_programme'];
         $_SESSION['groupe_user'] = $result['user_groupe'];
-        $_SESSION['nom'] = $result['user_nom'];
-        $_SESSION['prenom'] = $result['user_prenom'];
+        $_SESSION['user_nom'] = $result['user_nom'];
+        $_SESSION['user_prenom'] = $result['user_prenom'];
         
         header("Location: cours_todo_list.php");
     } else {

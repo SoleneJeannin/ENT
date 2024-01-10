@@ -46,10 +46,10 @@
                     ?>
 
                     <label for="login">Login : </label> <br>
-                    <input type="text" id="login" name="login" placeholder="Adresse mail universitaire" required>
+                    <input type="text" id="login" name="login" placeholder="Adresse mail universitaire" required aria-label="login" >
                     <br> <br>
                     <label for="mdp">Mot de passe : </label> <br>
-                    <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
+                    <input type="password" id="mdp" name="mdp"required placeholder="Mot de passe" aria-label="Mot de passe" >
                     <br> <br>
                     <button type="submit" name="connexion_user">Connexion</button>
                 </form>

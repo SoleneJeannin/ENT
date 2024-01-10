@@ -59,7 +59,7 @@
             ?>
 
 
-            <h1>Mes documents</h1>
+            <h1 class="titre_doc">Mes documents</h1>
             <div class="bloc_document">
                 <div class="first_colonne">
                     <a href="./document/étudiants/<?= $_SESSION['id_user'] ?>/certificat_sco.pdf"
@@ -119,7 +119,7 @@
             </div>
             <br><br>
             <div class="contain-info-img">
-                <img src="./img/nav/info.svg" alt="">
+                <img src="./img/nav/info.svg" alt="information">
                 <p class="info">Si vous avez des questions sur vos démarches administratives, vous pouvez vous adresser à
                     votre
                     responsable pédagogique : Sophie DAVID</p>
@@ -147,10 +147,12 @@
             $stmt_admin = $db->query("SELECT * FROM user WHERE ext_role = 1");
             $result_admin = $stmt_admin->fetchAll(PDO::FETCH_ASSOC);
             ?>
-            <h1>Absences et retards des étudiants</h1>
+            <h1 class="titre_admin">Absences et retards des étudiants</h1>
 
+            <div class="bloc_de_form">
             <form action="traite_retard.php" method="POST">
                 <!-- Sélectionner un étudiant -->
+                <div>
                 <select name="etudiant" id="etudiant">
                     <option value="0">--Sélectionnez l'étudiant--</option>
                     <?php foreach ($result_admin as $row2): ?>
@@ -159,21 +161,40 @@
                         </option>
                     <?php endforeach; ?>
                 </select>
+                </div>
                 <br>
+
                 <!-- Sélectionner son nombre de nouveaux retards/absences -->
+                <div>
                 <label for="retard">Nouveau(x) retard(s) en minute(s): </label>
                 <input type="number" name="retard" id="retard">
-                <br>
-                <p>Absence(s) : </p>
+                </div>
+
+                
+                <p class="abs_admin">Absence(s) : </p>
+
+                <div>
                 <label for="duree">Nombre d'heure(s) : </label>
-                <input type="number" name="duree" id="duree"> <br>
+                <input type="number" name="duree" id="duree">
+                </div>
+
+                <div>
                 <label for="cours">Cours : </label>
-                <input type="number" name="cours" id="cours"> <br>
+                <input type="number" name="cours" id="cours">
+                </div>
+
+                <div>
                 <label for="justif">Si l'absence est justifiée, entrer le motif : </label>
                 <input type="text" name="justif" id="justif">
-                <br><br>
+                </div>
+
+                <br>
+                <div>
                 <input type="submit" value="Mettre à jour" class="bouton">
+                </div>
+                <br>
             </form>
+            </div>
             <?php
         }
         ?>
