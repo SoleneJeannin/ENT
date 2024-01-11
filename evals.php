@@ -119,7 +119,7 @@ session_start();
 
 
         <?php
-
+if (isset($_SESSION["login"])) {
         include('nav.php');
 
         ?>
@@ -559,7 +559,10 @@ session_start();
         </div>
     </main>
 
-
+<?php }else{
+    header("location:login.php?errConnexion");
+    }
+    ?>
 </body>
 
 </html>

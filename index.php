@@ -533,7 +533,7 @@ session_start();
 
         <?php
 
-
+if (isset($_SESSION["login"])) {
         include('nav.php');
 
 
@@ -1500,7 +1500,9 @@ if ($access4['user_acces_rapide4'] == 1) {
             </div>
 
 
-
+<?php }else{
+    header("location:login.php?errConnexion");
+    }?>
 
     </main>
 

@@ -201,7 +201,7 @@ session_start();
 
 
         <?php
-
+if (isset($_SESSION["login"])) {
         include('nav.php');
 
         ?>
@@ -338,7 +338,10 @@ WHERE
 
 
 
-
+<?php }else{
+    header("location:login.php?errConnexion");
+    }
+    ?>
 
 
     </main>

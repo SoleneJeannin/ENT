@@ -203,7 +203,7 @@ session_start();
 
         <?php
 
-
+if (isset($_SESSION["login"])) {
         include('nav.php');
 
  
@@ -400,7 +400,9 @@ session_start();
                         <span class="session-room">Salle <?= $cours['cours_salle'] ?></span>
                     </div>
 
-                <?php } ?>
+                <?php }}else{
+                    header("location:login.php?errConnexion");
+                } ?>
 
 
 

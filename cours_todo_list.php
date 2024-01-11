@@ -23,11 +23,11 @@
 
         <?php
 
-        include('nav.php');
+
         include('connexion.php');
 
         if (isset($_SESSION["login"])) {
-
+            include('nav.php');
             ?>
 
             <div class="container-cours-todo">
@@ -72,7 +72,7 @@
                             $resultsProfesseur = $stmtProfesseur->fetch(PDO::FETCH_ASSOC);
 
                             $style = $row["couleur"];
-                        
+
 
 
                             ?>
@@ -214,6 +214,8 @@
                     console.error(error);
                 }
             });
+        }else {
+            header("location:login.php?errConnexion");
         }
 
     </script>

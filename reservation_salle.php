@@ -34,6 +34,7 @@
 
         <?php
         session_start();
+        if (isset($_SESSION["login"])) {
         include('nav.php');
         include('connexion.php');
         ?>
@@ -98,7 +99,9 @@
                 </div>
         </div>
     </main>
-
+<?php }else{
+    header("location:login.php?errConnexion");
+}?>
 
 </body>
 

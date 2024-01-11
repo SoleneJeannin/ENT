@@ -20,6 +20,7 @@
 <body>
     <main>
         <?php
+         if (isset($_SESSION["login"])) {
         if (isset($_SESSION['role']) && $_SESSION['role'] == 3) {
             include('nav_admin.php');
         } else {
@@ -160,7 +161,9 @@
                     });
                 });
             </script>
-
+<?php }else{
+    header("location:login.php?errConnexion");
+}?>
 
     </main>
 </body>

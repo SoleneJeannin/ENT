@@ -9,11 +9,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="style_de_base.css"> 
-        <link rel="stylesheet" href="detail_actualite.css"> 
+    <link rel="stylesheet" href="style_de_base.css">
+    <link rel="stylesheet" href="detail_actualite.css">
     <title>Articles</title>
 
-    
+
 </head>
 
 <body>
@@ -21,32 +21,43 @@
     <main>
         <?php
         session_start();
-        include('nav.php');
-        include('connexion.php');
-        //Récupère l'id de l'article pour afficher les bonnes informations
-        $id_actu = $_GET['id'];
-        $stmt=$db->query("SELECT * FROM actualite WHERE id_actu = $id_actu");
-        $result=$stmt->fetch(PDO::FETCH_ASSOC); 
-        
-        $date = $result['actu_date'];
-        ?>
-            
-        <div class="article">
-        <p class="date"><?= $date ?></p>
-            <div class="titre_img">
-                <?php
-                if(isset($id_actu)){
-                ?>
-                <h1><?= $result['actu_titre']?></h1>
-                
-                <img src="./img/actualites/<?= $result['actu_img']?>" alt="">
-            </div>
-            
-            <p class="text_actu"><?= $result['actu_text']?></p>
+        if (isset($_SESSION["login"])) {
+            include('nav.php');
+            include('connexion.php');
+            //Récupère l'id de l'article pour afficher les bonnes informations
+            $id_actu = $_GET['id'];
+            $stmt = $db->query("SELECT * FROM actualite WHERE id_actu = $id_actu");
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            <?php } else { ?>
-            <p>Cet article n'est pas disponible</p>
-            <?php }?>
+            $date = $result['actu_date'];
+            ?>
+
+            <div class="article">
+                <p class="date">
+                    <?= $date ?>
+                </p>
+                <div class="titre_img">
+                    <?php
+                    if (isset($id_actu)) {
+                        ?>
+                        <h1>
+                            <?= $result['actu_titre'] ?>
+                        </h1>
+
+                        <img src="./img/actualites/<?= $result['actu_img'] ?>" alt="">
+                    </div>
+
+                    <p class="text_actu">
+                        <?= $result['actu_text'] ?>
+                    </p>
+
+                <?php } else { ?>
+                    <p>Cet article n'est pas disponible</p>
+                <?php }
+        } else {
+            header("location:login.php?errConnexion");
+        }
+        ?>
         </div>
 
     </main>

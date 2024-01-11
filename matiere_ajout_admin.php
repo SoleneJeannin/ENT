@@ -24,6 +24,7 @@
         <?php
 
         session_start();
+        if (isset($_SESSION["login"])) {
         include('nav_admin.php');
         include('connexion.php');
 
@@ -123,7 +124,9 @@
         </form>
         <br><br>
     </main>
-
+<?php }else{
+    header("location:login.php?errConnexion");
+}?>
 
 </body>
 
