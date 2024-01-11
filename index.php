@@ -211,7 +211,7 @@ session_start();
         }
 
         .session-title a {
-            color: #fff;
+            color: black;
             text-decoration-style: dotted;
 
             &:hover {
@@ -273,6 +273,7 @@ session_start();
             position: relative;
             padding-block: 8px;
             overflow-y: auto;
+            max-height: 600px;
         }
 
         .one-eval {
@@ -848,7 +849,7 @@ session_start();
                         ?>
 
                             <div class="session session-1" style="grid-column: Mon
-; grid-row: time-<?= $timeStart ?> / time-<?= $timeFinish ?>; background-color: <?= $cours['couleur'] ?>; color: white;">
+; grid-row: time-<?= $timeStart ?> / time-<?= $timeFinish ?>; background-color: <?= $cours['couleur'] ?>; color: black;">
                                 <?php
                                 if ($cours['exam'] !== null) {
                                     echo "<h4 style='color: var(--red);' class='session-title'>Examen</h4>";

@@ -1,6 +1,8 @@
 <?php 
 include('connexion.php');
  session_start() ?>
+
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 2) { ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -153,3 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 
 </html>
+
+<?php } else {
+    header("Location: login.php?errConnexion");
+}; ?>
