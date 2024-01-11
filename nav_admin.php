@@ -36,6 +36,10 @@
 
             <a class="<?= isActive('retard.php'); ?>" href="retard.php">Retards/Absences</a>
 
+            <a class="<?= isActive('matiere_ajout_admin.php'); ?>" href="matiere_ajout_admin.php">Ajout matière</a>
+
+            <a class="<?= isActive('matere_ajout_admin.php'); ?>" href="actualites.php">Actualité</a>
+
 
 
         </div>

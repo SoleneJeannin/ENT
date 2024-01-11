@@ -35,8 +35,16 @@ chatgpt.png
 
     <?php
         session_start();
-        include('nav.php');
         include('connexion.php');
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 3) {
+            include('nav_admin.php');
+        } elseif(isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+            include('nav-teacher.php');
+        }else{
+            include('nav.php');
+        }
+    
+        
 
         if (isset($_SESSION['login'])) {
             $user = $_SESSION['login'];

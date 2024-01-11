@@ -21,8 +21,13 @@
     <main>
         <?php
         session_start();
-        include('nav.php');
         include('connexion.php');
+        if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 2)  {
+            include('nav-teacher.php');
+        } else {
+            include('nav.php');
+        }
+        
         ?>
 
         <h1>Votre Campus</h1>
