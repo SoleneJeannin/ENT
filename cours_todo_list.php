@@ -30,19 +30,11 @@ include('connexion.php');
 
         <?php
 
-<<<<<<< Updated upstream
-
-        include('connexion.php');
-
-        if (isset($_SESSION["login"])) {
-            include('nav.php');
-=======
         include('nav.php');
      
 
   
 
->>>>>>> Stashed changes
             ?>
 
             <div class="container-cours-todo">

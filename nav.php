@@ -118,7 +118,7 @@
 
                 ?>
 
-                <button id="carte">Ta carte</button>
+                <button class="carte">Ta carte</button>
 
 
 
@@ -278,36 +278,51 @@
 
 
 
-                    <button id="carte">Ta carte</button>
+                    <button class="carte2">Ta carte</button>
 
 
 
 
 
 
-                    <div class="student-card-wrapper" style="display: none;">
+                    <div class="student-card-wrapper2" style="display: none;">
 
-                        <div class="card">
-                            <div class="deco-card">
-                                <img src="./img/logo//logo-eiffel.png" alt="">
-                                <p>carte étudiante</p>
-                            </div>
-                            <div class="info-card">
-                                <img class="logo" src="./img/logo//logo-eiffel.png" alt="">
-                                <p>Né(e) le : 01/01/2022</p>
-                                <p>N d'étudiant</p>
-                            </div>
-                            <div class="photo-card">
-                                <img class="photo-student" src="./img/etudiants-card/111111.jpg" alt="">
-                                <p>Thomas DUPONT</p>
-                            </div>
-                        </div>
+<div class="card">
+    <div class="deco-card">
+        <img src="./img/logo//logo-eiffel.png" alt="">
+        <p>Carte étudiante</p>
+    </div>
+    <div class="info-card">
+        <img class="logo" src="./img/logo//logo-eiffel.png" alt="">
+        <p>Né(e) le :
+            <?php if (empty($resultUser["user_naissance"])) { ?>
+                Non renseigné
 
-                        <div class="izly">
-                            <img src="./img/izly/111111.jpg" alt="">
-                        </div>
+            <?php } else {
+            ?>
+                <?= $resultsUser["user_naissance"] ?>
+            <?php
 
-                    </div>
+            } ?>
+        </p>
+        <p>N d'étudiant :
+            <?= $resultsUser["id_user"] ?>
+        </p>
+    </div>
+    <div class="photo-card">
+
+        <img src="./img/etudiants-card/<?= $resultsUser["user_photo"] ?>" alt="">
+        <p>
+            <?= ucwords($resultsUser["user_prenom"]) . " " . ucwords($resultsUser["user_nom"]) ?>
+        </p>
+    </div>
+</div>
+
+<div class="izly">
+    <img src="./img/izly/111111.jpg" alt="">
+</div>
+
+</div>
 
 
 
@@ -446,7 +461,7 @@
 
 
     document.addEventListener('DOMContentLoaded', function() {
-        var cardButton = document.querySelector('#carte');
+        var cardButton = document.querySelector('.carte');
         var card = document.querySelector('.student-card-wrapper');
 
         function openCard() {
@@ -459,6 +474,19 @@
 
         cardButton.addEventListener('click', openCard);
 
+
+        var cardButton2 = document.querySelector('.carte2');
+        var card2 = document.querySelector('.student-card-wrapper2');
+
+        function openCard2() {
+            if (card2.style.display === 'none') {
+                card2.style.display = 'flex';
+            } else {
+                card2.style.display = 'none';
+            }
+        }
+
+        cardButton2.addEventListener('click', openCard2);
 
 
 

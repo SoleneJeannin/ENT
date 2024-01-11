@@ -1,7 +1,20 @@
-<?php session_start(); 
-  include('connexion.php');?>
+<?php
+
+
+
+ 
+include('connexion.php');
+session_start();
+
+
+
+?>
 
 <?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) { ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -172,16 +185,9 @@
 
     <main>
         <?php
-<<<<<<< Updated upstream
-        if (isset($_SESSION["login"])) {
-            include('nav.php');
-            include('connexion.php');
-            ?>
-=======
         include('nav.php');
       
         ?>
->>>>>>> Stashed changes
 
             <?php
 
@@ -247,7 +253,7 @@
                             <p>Le professeur n'a pas encore posté de contenu pour votre matière</p>
                         </div>
                         <?php
-                    } ?>
+                    }; ?>
                 </div>
                 <div class="bottom">
                     <?php
@@ -282,7 +288,7 @@
                             JOIN matiere ON eval_projet.ext_matiere = matiere.id_matiere
             
                             JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
-                            WHERE programme = :sessionProgramme AND
+                            WHERE programme = :sessionProgramme AND id_matiere = :id AND
                                 eval_projet.eval_date_fin > NOW()
             
                             UNION
@@ -309,7 +315,7 @@
                             JOIN matiere ON matiere.id_matiere = cours.ext_matiere
             
                             JOIN user AS user_prof ON matiere.ext_prof = user_prof.id_user
-                            WHERE programme = :sessionProgramme AND
+                            WHERE programme = :sessionProgramme AND  id_matiere = :id AND
                                 cours.cours_temps_fin > NOW()";
                             if ($sessionGroup === 'C') {
                                 $requete .= " AND cours.groupe IN ('C', 'CD', 'M')";
@@ -323,6 +329,7 @@
                             $stmt = $db->prepare($requete);
                             // Bind the parameters
                             $stmt->bindParam(':sessionProgramme', $_SESSION['programme_user'], PDO::PARAM_STR);
+                            $stmt->bindParam(':id', $_GET['id'], PDO::PARAM_STR);
                             // echo $requete;
                             $stmt->execute();
                             $evals = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -396,11 +403,9 @@
                                         </a>
                                     <?php endif; ?>
                                 </div>
-                            <?php }
-        } else {
-            header("location:login.php?errConnexion");
-        }
-        ; ?>
+                            <?php } ; 
+   
+         ?>
                     </div>
                 </div>
     </main>
@@ -416,7 +421,7 @@
 </script>
 
 </html>
-
 <?php } else {
     header("Location: login.php?errConnexion");
 }; ?>
+ 

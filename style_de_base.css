@@ -113,7 +113,7 @@ a.active {
     gap: 8px;
 }
 
-#carte {
+.carte, .carte2 {
     background-color: var(--blue);
     color: var(--yellow1);
     font-family: 'Lusitana', serif;
@@ -126,7 +126,7 @@ a.active {
 
 }
 
-#carte:hover{
+.carte:hover, .carte2:hover, {
     -webkit-transform:scale(1.1); /* Safari and Chrome */
     -moz-transform:scale(1.1); /* Firefox */
     -ms-transform:scale(1.1); /* IE 9 */
@@ -266,11 +266,11 @@ a.active {
 
 /* design card pop-up */
 
-.student-card-wrapper {
+.student-card-wrapper, .student-card-wrapper2 {
     position: absolute;
     background-color: var(--grey);
     width: 800px;
-    height: 320px;
+
     display: flex;
     top: 6vw;
     right: 3vw;
@@ -281,6 +281,18 @@ a.active {
     justify-content: center;
     z-index: 50;
 
+}
+
+@media (max-width: 900px) {
+    .student-card-wrapper2 {
+        width: 100%;
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .card {
+        width: 100%;
+    }
 }
 
 
@@ -466,7 +478,7 @@ z-index: 50;
 
 
 @media (max-width: 1184px) {
-    #carte {
+    .carte, .carte2 {
         font-size: 1.1rem;
     }
 
@@ -485,7 +497,7 @@ z-index: 50;
         font-size: 1.3rem;
     }
 
-    #carte {
+    .carte, .carte2  {
         font-size: 1rem;
     }
 
