@@ -3,6 +3,14 @@
 chatgpt.png
 -->
 
+<?php 
+
+        
+ include('connexion.php');
+
+  session_start();
+ if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1 || ($_SESSION["role"]) == 2 || ($_SESSION["role"]) == 3) {
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -34,8 +42,7 @@ chatgpt.png
     <main>
 
     <?php
-        session_start();
-        include('connexion.php');
+       
         if (isset($_SESSION['role']) && $_SESSION['role'] == 3) {
             include('nav_admin.php');
         } elseif(isset($_SESSION['role']) && $_SESSION['role'] == 2) {
@@ -195,6 +202,8 @@ chatgpt.png
                     <input type="submit" name="modif_contenu" value="Créer l'article" class="bouton">
             </form>
         <?php        
+        }}else{
+            header("location:login.php?errConnexion");
         }
         ?>
     </main>
