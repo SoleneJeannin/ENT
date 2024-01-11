@@ -72,7 +72,7 @@ main {
     color: var(--black);
     /* padding: 13px; */
     padding-block: 20px;
-    line-height: 40px;
+    /* line-height: 3px; */
 }
 
 .links {

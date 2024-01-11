@@ -213,9 +213,10 @@
                     </div>
 
                     <div class="nav-profile">
-                        <p class="name-profile">
+                        <p style="margin-bottom: 0;" class="name-profile">
                             <?= ucwords($resultsUser["user_prenom"]) . " " . ucwords($resultsUser["user_nom"]) ?>
                         </p>
+                        <p style="margin-top: 0;">TP <?= $resultsUser["user_groupe"] ?></p>
                         <a class="document" href="retard.php"><img src="./img/nav/file-text.svg" alt="">Mes documents</a>
                         <a href="retard.php"><img src="./img/nav/clock.svg" alt=""> Retards :
                             <?php if ($result["user_retard"] !== NULL) {
