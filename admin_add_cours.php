@@ -51,7 +51,7 @@
     margin: auto;
 }
 
-input {
+input, select {
     width: 100%;
     background-color: var(--grey);
     border: none;
@@ -62,6 +62,9 @@ input {
 
 #sub {
     width: 30%;
+    background-color: var(--red);
+    cursor: pointer;
+    margin-bottom: 40px;
 }
 
 .programme a {
@@ -70,12 +73,33 @@ input {
     padding: 20px 25px;
     background-color: var(--yellow1);
     color: black;
-    font-weight: bold;
+    font-weight: bolder;
     text-decoration: none;
     font-size: 1.8rem;
+    margin: 0 5px;
     
 
 }
+
+@media (max-width: 900px) {
+    main {background-color: white;
+    padding: 15px;}
+
+    
+.programme a {
+    
+    padding: 20px 25px;
+    background-color: var(--yellow1);
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 0 5px;
+    
+
+}
+}
+ 
 </style>
 
         <div class="wrapper">
@@ -88,7 +112,8 @@ input {
                 <a href="admin_add_cours.php?programme=MMI2">MMI2</a>
                 <a href="admin_add_cours.php?programme=MMI3">MMM3</a>
             </div>
-            
+            <br>
+            <br>
             <form action="add_cours.php" method="POST">
                 <span>S'il vous plait, choisissez l'heure entre 8:00 et 18:00 avec des minutes multiples de 15 :</span>
                 <br><br>
@@ -97,6 +122,9 @@ input {
                 <br><br>
                 <label for="time-finish">La fin: </label>
                 <input type="time" id="time-finish" name="time-finish" min="08:00" max="18:00" step="900" required>
+                <br><br>
+                <label for="date">La date: </label>
+                <input type="date" id="date" name="date" required>
                 <br><br>
                 <label for="salle">La salle: </label>
                 <input type="text" id="salle" name="salle" required>
@@ -120,15 +148,17 @@ WHERE   programme = :prog ";
 
 
         ?>
+
+        <label for="metiere">La matière:</label><br>
 <select name="matiere" id="matiere">
 <?php foreach ($matiere as $mat){?>
 <option value="<?= $mat['id_matiere']   ?>"><?= $mat['nom_matiere']   ?></option>
 
 <?php };?>
 </select>
+<br><br>
 
-
-
+<label for="groupe">Le groupe:</label><br>
 <select name="groupe" id="groupe">
     <option value="A">TP A</option>
     <option value="B">TP B</option>

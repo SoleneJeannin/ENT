@@ -4,8 +4,6 @@ session_start();
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -28,12 +26,7 @@ session_start();
                 grid-gap: 0.1rem;
                 grid-template-rows:
                     [tracks] auto [time-0800] 1fr [time-0815] 1fr [time-0830] 1fr [time-0845] 1fr [time-0900] 1fr [time-0915] 1fr [time-0930] 1fr [time-0945] 1fr [time-1000] 1fr [time-1015] 1fr [time-1030] 1fr [time-1045] 1fr [time-1100] 1fr [time-1115] 1fr [time-1130] 1fr [time-1145] 1fr [time-1200] 1fr [time-1215] 1fr [time-1230] 1fr [time-1245] 1fr [time-1300] 1fr [time-1315] 1fr [time-1330] 1fr [time-1345] 1fr [time-1400] 1fr [time-1415] 1fr [time-1430] 1fr [time-1445] 1fr [time-1500] 1fr [time-1515] 1fr [time-1530] 1fr [time-1545] 1fr [time-1600] 1fr [time-1615] 1fr [time-1630] 1fr [time-1645] 1fr [time-1700] 1fr [time-1715] 1fr [time-1730] 1fr [time-1745] 1fr [time-1800] 1fr;
-                /* Note 1:
-			Use 24hr time for gridline names for simplicity
-
-			Note 2: Use "auto" instead of "1fr" for a more compact schedule where height of a slot is not proportional to the session length. Implementing a "compact" shortcode attribute might make sense for this!
-			Try 0.5fr for more compact equal rows. I don't quite understand how that works :)
-			*/
+                
 
                 grid-template-columns:
                     [times] 4em [Mon-start] 1fr [Mon-end Tue-start] 1fr [Tue-end Wed-start] 1fr [Wed-end Thu-start] 1fr [Thu-end Fri-start] 1fr [Fri-end Sat-start] 1fr [Sat-end];
@@ -41,7 +34,6 @@ session_start();
         }
 
 
-        
 
         @media  (max-width: 600px) {
             .schedule {
@@ -63,13 +55,15 @@ session_start();
         }
 
 
+
+
         .time-slot {
             grid-column: times;
         }
 
         .track-slot {
             display: none;
-            /* hidden on small screens and browsers without grid support */
+           
         }
 
 
@@ -199,13 +193,24 @@ session_start();
             text-align: center;
             margin: auto;
         }
-
-        @media (max-width: 900px) {
-            .schedule-wrapper {
-                background-color: white;
-               
-                border-radius: 10px;
-            }
+        
+        .session {
+            position: relative;
+        }
+        .delete {
+            position: absolute;
+            color: black;
+            background-color: darkred;
+          text-align: center;
+          padding:0 3px;
+          border-radius: 1px;
+            aspect-ratio: 1;
+            right: 5px;
+            top: 2px;
+            
+        }
+        .delete > a{
+            color: black;
         }
     </style>
 </head>
@@ -218,12 +223,14 @@ session_start();
         <?php
 
 
-        include('nav-teacher.php');
+        include('nav_admin.php');
 
-
-  
-      
  
+      
+
+       
+
+
 
 
         $currentWeek = isset($_SESSION['currentWeek']) ? $_SESSION['currentWeek'] : date('W') - 1;
@@ -259,16 +266,20 @@ session_start();
 
 
         setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
-
+        $programme = $_GET['programme'];
+        $sessionGroup = $_GET['groupe'];
+        
 
         ?>
 
 
-        <div class="week-wrapper">
-            <a class="week-change" href="?direction=previous"><--  </a>
-                    <a class="week-change" href="?direction=today">Cette Semaine</a>
-                    <a class="week-change" href="?direction=next">  --></a>
-        </div>
+<div class="week-wrapper">
+    <a class="week-change" href="?programme=<?= $programme ?>&groupe=<?= $sessionGroup ?>&direction=previous"><--</a>
+    <a class="week-change" href="?programme=<?= $programme ?>&groupe=<?= $sessionGroup ?>&direction=today">Cette Semaine</a>
+    <a class="week-change" href="?programme=<?= $programme ?>&groupe=<?= $sessionGroup ?>&direction=next">--></a>
+</div>
+
+       
 
 
 
@@ -329,19 +340,27 @@ session_start();
 
                 <?php
 
+ 
 
+                $requete = "
+    SELECT cours_temps_debut, cours_temps_fin, cours_salle, ext_matiere, groupe, programme, couleur, id_matiere, id_cours, nom_matiere, ext_prof, user_nom, user_prenom, exam
+    FROM cours
+    LEFT JOIN matiere ON cours.ext_matiere = matiere.id_matiere
+    LEFT JOIN user ON matiere.ext_prof = user.id_user
+    WHERE programme = :prog AND WEEK(cours_temps_debut) = :currentWeek";
 
-
-
-                $requete = " SELECT cours_temps_debut, cours_temps_fin, cours_salle, ext_matiere, groupe, programme, couleur, nom_matiere, ext_prof, user_nom, user_prenom, exam
-                FROM cours
-                LEFT JOIN matiere ON cours.ext_matiere = matiere.id_matiere
-                LEFT JOIN user ON matiere.ext_prof = user.id_user WHERE ext_prof = :id AND WEEK(cours_temps_debut) = :currentWeek";
-
-            
+                if ($sessionGroup === 'C') {
+                    $requete .= " AND cours.groupe IN ('C', 'CD', 'M')";
+                } elseif ($sessionGroup === 'A') {
+                    $requete .= " AND cours.groupe IN ('A', 'AB', 'M')";
+                } elseif ($sessionGroup === 'B') {
+                    $requete .= " AND cours.groupe IN ('B', 'AB', 'M')";
+                } elseif ($sessionGroup === 'D') {
+                    $requete .= " AND cours.groupe IN ('D', 'CD', 'M')";
+                }
 
                 $stmt = $db->prepare($requete);
-                $stmt->bindValue(':id', $_SESSION['id_user'], PDO::PARAM_INT);
+                $stmt->bindValue(':prog', $programme, PDO::PARAM_STR);
                 $stmt->bindValue(':currentWeek', $currentWeek, PDO::PARAM_INT);
                 $stmt->execute();
                 $allcourses = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -360,13 +379,13 @@ session_start();
 
                 ?>
                     <div class="session session-1" style="grid-column: <?= $dayOfWeek ?>
-; grid-row: time-<?= $timeStart ?> / time-<?= $timeFinish ?>; background-color: <?= $cours['couleur'] ?>; color: black;">
+; grid-row: time-<?= $timeStart ?> / time-<?= $timeFinish ?>; background-color: <?= $cours['couleur'] ?>; color: black;" ><span class="delete"><a href="delete_cours.php?id=<?= $cours['id_cours'] ?>&exam=<?= $cours['exam'] ?>">x</a></span>
                         <?php
                         if ($cours['exam'] !== null) {
                             echo "<h4 style='color: var(--red);' class='session-title'>Examen</h4>";
                         }
                         ?>
-                        <h3 class="session-title"><a href="#"><?= $cours['nom_matiere'] ?></a></h3>
+                        <h3 class="session-title"><a href="cours.php?id=<?= $cours['id_matiere'] ?>"><?= $cours['nom_matiere'] ?></a></h3>
                         <span class="session-time"><?= $timeStartVisual ?> - <?= $timeFinishVisual ?></span>
                         <span class="session-group">
                             <?php
@@ -398,7 +417,7 @@ session_start();
 
 
                         </span>
-                        <span class="session-teacher"> <?= $cours['programme']  ?></span>
+                        <span class="session-teacher"> <?= $cours['user_prenom'] . " " . $cours['user_nom'] ?></span>
                         <span class="session-room">Salle <?= $cours['cours_salle'] ?></span>
                     </div>
 

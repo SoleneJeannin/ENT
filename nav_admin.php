@@ -36,7 +36,20 @@
 
             <a class="<?= isActive('retard.php'); ?>" href="retard.php">Retards/Absences</a>
 
-            <a class="<?= isActive('matiere_ajout_admin.php'); ?>" href="matiere_ajout_admin.php">Ajout matière</a>
+            <a class="<?= isActive('admin_cours.php'); ?>" href="admin_cours.php">Agenda</a>
+
+
+
+            <div class="dropdown">
+                    <a class="drop-bt linked2" >Ajout <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 9 6" fill="none">
+                            <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
+                        </svg></a>
+                    <div class="dropdown-content drop2">
+                        <a class="<?= isActive('matiere_ajout_admin.php'); ?> link2" href="matiere_ajout_admin.php">Matière</a>
+                        <a class="<?= isActive('admin_add_cours.php'); ?> link2" href="admin_add_cours.php">Cours</a>
+                    </div>
+                </div>
+
 
             <a class="<?= isActive('matere_ajout_admin.php'); ?>" href="actualites.php">Actualité</a>
 
