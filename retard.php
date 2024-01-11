@@ -34,7 +34,11 @@
 
         <?php
         session_start();
-        include('nav.php');
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 3) {
+            include('nav_admin.php');
+        } else {
+            include('nav.php');
+        }
         include('connexion.php');
 
         if (isset($_SESSION['login'])) {

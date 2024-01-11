@@ -1,0 +1,59 @@
+h1,
+h2 {
+  font-family: "Lusitana", serif;
+  text-align: center;
+  font-size: 2.3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+table{
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto; 
+}
+.photo {
+  width: 100px;
+  height: auto;
+}
+
+th, td {
+    border: 1px solid #000000;
+    padding: 8px;
+}
+.student{
+    background-color: var(--yellow1);
+}
+.prof{
+    background-color: var(--yellow2);
+}
+.admin{
+    background-color: var(--yellow4);
+}
+
+
+@media(max-width:915px){
+    table{
+        width: 90%;
+    }
+    th, td {
+        padding: 3px;
+    }
+    .phone-photo{
+        display: none;
+    }
+
+}
+
+@media(max-width:475px){
+    table{
+        width: 5%;
+        font-size: 0.875rem;
+    }
+    th, td {
+        padding: 0px;
+    }
+
+
+}

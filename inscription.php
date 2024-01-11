@@ -24,7 +24,7 @@
         <?php
 
         session_start();
-        include('nav.php');
+        include('nav_admin.php');
 
         include('connexion.php');
 
@@ -35,34 +35,42 @@
         $stmtAdmin->execute();
         $resultsAdmin = $stmtAdmin->fetch(PDO::FETCH_ASSOC);
         ?>
-        <h1>Inscription des élèves/professeurs</h1>
+       
         <?php
         if (isset($resultsAdmin["ext_role"]) && $resultsAdmin["ext_role"] == 3) {
 
             ?>
-            <form action="inscription_traite.php" method="GET">
-                <?php if(isset($_GET["ok"])){
+            <form class="form-inscription" action="inscription_traite.php" method="GET">
+            <h1>Inscription des élèves/professeurs</h1>
+            <p class="redPetit">Les éléments en <span class="red">*</span> sont obligatoires</p>
+                <?php if (isset($_GET["ok"])) {
                     ?>
                     <p class="inscription-ok">L'inscription a bien été effectuée !</p>
-                    <?php }?>
+                <?php } ?>
+                <?php
+                if (isset($_GET["loginExistant"])) {
+                    ?>
+                    <p class="inscription-non">Le login existe déjà</p>
+                <?php } ?>
+
                 <div class="form-container">
                     <div class="part1">
                         <label for="prenom">
-                            Insérez son prénom :
+                            Insérez son prénom<span class="red">*</span> :
                         </label><br>
                         <input type="text" name="prenom" id="prenom" required>
 
                         <br><br>
 
                         <label for="nom">
-                            Insérez son nom :
+                            Insérez son nom<span class="red">*</span> :
                         </label><br>
                         <input type="text" name="nom" id="nom" required>
 
                         <br><br>
 
                         <label for="mdp">
-                            Insérez son mot de passe provisoire :
+                            Insérez son mot de passe<span class="red">*</span> :
                         </label><br>
                         <input type="text" name="mdp" id="mdp" required>
 
@@ -70,22 +78,28 @@
 
 
                         <label for="role">
-                            Insérez son rôle :
+                            Insérez son rôle<span class="red">*</span> :
                         </label><br>
                         <select name="role" id="role" required>
                             <?php
+
+
                             // Récupération des formations existant dans la base de données
                         
-
                             $requeteRoleExistant = "SELECT DISTINCT ext_role FROM user ";
                             $stmtRoleExistant = $db->prepare($requeteRoleExistant);
                             $stmtRoleExistant->execute();
                             $resultsRoleExistant = $stmtRoleExistant->fetchall(PDO::FETCH_ASSOC);
                             foreach ($resultsRoleExistant as $row) {
+                                $requeteNomRole = "SELECT role_titre FROM role WHERE id_role=:ext_role";
+                                $stmtNomRole = $db->prepare($requeteNomRole);
+                                $stmtNomRole->bindParam(':ext_role', $row["ext_role"], PDO::PARAM_INT);
+                                $stmtNomRole->execute();
+                                $resultsNomRole = $stmtNomRole->fetch(PDO::FETCH_ASSOC);
                                 ?>
 
                                 <option value="<?= $row["ext_role"] ?>">
-                                    <?= $row["ext_role"] ?>
+                                    <?= $resultsNomRole["role_titre"] ?>
                                 </option>
                                 <?php
                             }
@@ -96,7 +110,7 @@
                     <br><br>
                     <div class="part2">
                         <label for="formation">
-                            Insérez sa formation :
+                            Insérez sa formation<span class="red">*</span> :
                         </label><br>
                         <select name="formation" id="formation" required>
                             <?php
@@ -120,7 +134,7 @@
 
                         <br><br>
                         <label for="programme">
-                            Insérez son programme :
+                            Insérez son programme<span class="red">*</span> :
                         </label><br>
                         <select name="programme" id="programme" required>
                             <?php
@@ -135,6 +149,7 @@
                                 <option value="<?= $row["user_programme"] ?>">
                                     <?= $row["user_programme"] ?>
                                 </option>
+
                                 <?php
                             }
                             ?>
@@ -142,19 +157,20 @@
                         <br><br>
 
                         <label for="groupe">
-                            Insérez son groupe :
+                            Insérez son groupe<span class="red">*</span> :
                         </label><br>
                         <select name="groupe" id="groupe" required>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
                             <option value="D">D</option>
+                            <option value=""></option>
                         </select>
 
                         <br><br>
 
                         <label for="naissance">
-                            Insérez sa date de naissance :
+                            Insérez sa date de naissance<span class="red">*</span> :
                         </label><br>
                         <input type="date" name="naissance" id="naissance" required>
                     </div>

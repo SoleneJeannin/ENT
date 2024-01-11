@@ -3,6 +3,7 @@ h1 {
   text-align: center;
   font-size: 2.3rem;
 }
+
 .form-container {
   display: flex;
   justify-content: center;
@@ -12,15 +13,83 @@ h1 {
 }
 .part1,
 .part2 {
-  padding: 30px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .submit-button {
   display: flex;
   margin: auto;
 }
-.inscription-ok {
+.inscription-ok,
+.inscription-non {
   display: flex;
   justify-content: center;
   color: green;
   font-size: 1.5rem;
+}
+input {
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 26px;
+  border: none;
+}
+.inscription-non,.red {
+  color: red;
+}
+.red{
+    font-size: 1.5rem;
+}
+.redPetit{
+    text-align: center;
+    color: red;
+    font-size: 1rem;
+}
+
+.form-inscription {
+  margin: auto;
+  margin-top: 4%;
+  background-color: var(--yellow1);
+  width: 60%;
+  padding: 20px;
+  border-radius: 26px;
+}
+select {
+  text-align: center;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  border-radius: 10px;
+  background-color: var(--yellow2);
+}
+.submit-button {
+  transition: 0.2s;
+  margin-top: 30px;
+  cursor: pointer;
+  border-radius: 26px;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: var(--yellow4) solid 3px;
+  background-color: #ffcc54;
+}
+.submit-button:hover {
+  background-color: white;
+}
+
+@media(max-width:915px){
+    .form-inscription {
+        width: 90%;
+      }
+}
+
+@media(max-width:550px){
+    .form-container {
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+      }
+
 }
