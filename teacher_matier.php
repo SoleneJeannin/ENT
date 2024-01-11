@@ -12,7 +12,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&family=Lusitana:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style_de_base.css">
     <title>ENT Enseignant - Université Gustave Eiffel</title>
 
@@ -83,7 +85,7 @@ session_start();
                 width: 95%;
             }
 
-          
+
 
 
 
@@ -165,6 +167,35 @@ session_start();
             width: 70%;
             height: 100px;
         }
+
+        .supp-examens {
+            text-align: right;
+
+        }
+
+        .button-submitSupp {
+            position: absolute;
+            cursor: pointer;
+            background-color: var(--red);
+            border-radius: 26px;
+            border: none;
+            padding: 5px 8px;
+        }
+
+        .suppOk {
+            color: green;
+        }
+
+        .suppNon {
+            color: red;
+        }
+        .none-exam{
+            font-size: 1.3rem;
+            padding: 15px;
+        }
+        .link-ajout{
+            color: black;
+        }
     </style>
 </head>
 
@@ -194,8 +225,17 @@ session_start();
         <div class="wrapper">
             <div class="right-block ">
                 <h3>Examens</h3>
+                <?php if (isset($_GET["confirmation"]) && $_GET["confirmation"] === "ok") {
+                    ?>
+                    <p class="suppOk">Vous avez bien supprimé l'examen.</p>
+                    <?php
+                }
+                if (isset($_GET["confirmation"]) && $_GET["confirmation"] === "non") {
+                    ?>
+                    <p class="suppNon">Un problème est survenu lors de votre suppression</p>
+                    <?php
+                } ?>
                 <div class="exams">
-
                     <?php
 
 
@@ -213,6 +253,12 @@ session_start();
 
                     $exams = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 
+
+                    if (empty($exams)) {
+                        ?><p class="none-exam"> Pas d'examen : <a class="link-ajout" href="teacher_new_exam.php">Ajoutez un examen</a></p>
+                        <?php
+                    }else{
+
                     foreach ($exams as $exam) {
 
                         $start = new DateTime($exam['cours_temps_debut']);
@@ -223,20 +269,33 @@ session_start();
                         $TimeStart = $start->format('H:i');
                         $TimeEnd = $end->format('H:i');
 
-                    ?>
+                        ?>
 
 
 
                         <div class="one-exam">
+                            <form class="supp-examens" action="teacher_matiere_supp_exam.php" method="POST">
+                                <input type="hidden" name="idMatiere" value="<?= $_GET["id_matiere"] ?>">
+                                <input type="hidden" name="idExam" value="<?= $exam["id_eval_exam"] ?>">
+                                <input class="button-submitSupp" type="submit" value="X">
+                            </form>
                             <a href="teacher_exam.php?id_exam=<?= $exam['id_eval_exam'] ?>">
-                                <h4><?= $exam['title_exam'] ?></h4>
+                                <h4>
+                                    <?= $exam['title_exam'] ?>
+                                </h4>
                                 <div class="wrapper-info-exam">
                                     <div>
-                                        <p class="date-exam"><?= $dateStart ?></p>
-                                        <p class="time-exam"><?= $TimeStart . ' - ' . $TimeEnd ?></p>
+                                        <p class="date-exam">
+                                            <?= $dateStart ?>
+                                        </p>
+                                        <p class="time-exam">
+                                            <?= $TimeStart . ' - ' . $TimeEnd ?>
+                                        </p>
                                     </div>
                                     <div style="text-align: right;">
-                                        <p class="salle_exam"> Salle: <?= $exam['cours_salle'] ?></p>
+                                        <p class="salle_exam"> Salle:
+                                            <?= $exam['cours_salle'] ?>
+                                        </p>
                                         <p class="group_exam">
 
 
@@ -273,13 +332,26 @@ session_start();
 
                             </a>
                         </div>
-                    <?php }; ?>
+                    <?php }}
+                    ; ?>
 
 
 
 
                 </div>
                 <h3>Projets</h3>
+                <?php if (isset($_GET["confirmationProj"]) && $_GET["confirmationProj"] === "ok") {
+                    ?>
+                    <p class="suppOk">Vous avez bien supprimé l'examen.</p>
+                    <?php
+                } else
+                    echo "";
+                if (isset($_GET["confirmationProj"]) && $_GET["confirmationProj"] === "non") {
+                    ?>
+                    <p class="suppNon">Un problème est survenu lors de votre suppression</p>
+                    <?php
+                } else
+                    echo ""; ?>
                 <div class="exams">
 
                     <?php
@@ -299,6 +371,10 @@ session_start();
 
                     $projets = $stmt4->fetchAll(PDO::FETCH_ASSOC);
 
+                    if (empty($projets)) {
+                        ?><p class="none-exam"> Pas de projet : <a class="link-ajout" href="teacher_new_projet.php">Ajoutez un projet</a></p><?php
+                    }else{
+
                     foreach ($projets as $projet) {
 
                         $start = new DateTime($projet['eval_date_debut']);
@@ -307,16 +383,27 @@ session_start();
                         $dateEndProjet = $end->format('n/j/Y');
                         $TimeEndProjet = $end->format('H:i');
 
-                    ?>
+                        ?>
 
 
                         <div class="one-exam">
+                            <form class="supp-examens" action="teacher_matiere_supp_projets.php" method="POST">
+                                <input type="hidden" name="idMatiere" value="<?= $_GET["id_matiere"] ?>">
+                                <input type="hidden" name="idProjet" value="<?= $projet["id_eval_projet"] ?>">
+                                <input class="button-submitSupp" type="submit" value="X">
+                            </form>
                             <a href="teacher_projet.php?id_projet=<?= $projet['id_eval_projet'] ?>">
-                                <h4><?= $projet['title_projet'] ?></h4>
+                                <h4>
+                                    <?= $projet['title_projet'] ?>
+                                </h4>
                                 <div class="wrapper-info-exam">
                                     <div>
-                                        <p class="date-exam"><?= $dateEndProjet ?></p>
-                                        <p class="time-exam"><?= "jusqu'à " . $TimeEndProjet ?></p>
+                                        <p class="date-exam">
+                                            <?= $dateEndProjet ?>
+                                        </p>
+                                        <p class="time-exam">
+                                            <?= "jusqu'à " . $TimeEndProjet ?>
+                                        </p>
                                     </div>
                                     <div style="text-align: right;">
 
@@ -327,7 +414,8 @@ session_start();
 
                             </a>
                         </div>
-                    <?php }; ?>
+                    <?php }}
+                    ; ?>
 
 
 
@@ -341,7 +429,7 @@ session_start();
 
 
 
- 
+
 
             <div class="left-block">
 
@@ -364,11 +452,15 @@ session_start();
 
 
 
-                <h1><?= $one['nom_matiere'] ?></h1>
+                <h1>
+                    <?= $one['nom_matiere'] ?>
+                </h1>
 
 
                 <h4>Description:</h4>
-                <p><?= $one['description'] ?></p>
+                <p>
+                    <?= $one['description'] ?>
+                </p>
 
 
 
@@ -427,7 +519,7 @@ session_start();
                     $date = new DateTime($info['info_date']);
                     $dateFormated = $date->format('n/j/Y');
 
-                ?>
+                    ?>
 
                     <style>
                         .delete-info {
@@ -445,16 +537,22 @@ session_start();
 
 
 
-                    <button class="accordion"><?= $dateFormated . '  ' . $info['info_titre'] ?> <a href="./delete_info.php?id_info=<?= $info['id_info'] ?>"><span class="delete-info">X</span></a></button>
+                    <button class="accordion">
+                        <?= $dateFormated . '  ' . $info['info_titre'] ?> <a
+                            href="./delete_info.php?id_info=<?= $info['id_info'] ?>"><span class="delete-info">X</span></a>
+                    </button>
                     <div class="panel">
 
-                        <p><?= $info['information'] ?></p>
+                        <p>
+                            <?= $info['information'] ?>
+                        </p>
                     </div>
 
-                <?php
+                    <?php
 
 
-                };
+                }
+                ;
 
                 ?>
             </div>
@@ -471,7 +569,7 @@ session_start();
     var i;
 
     for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
+        acc[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.display === "block") {

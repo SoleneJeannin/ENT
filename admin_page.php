@@ -104,7 +104,6 @@
                         <td>
                             <form class="form-supp" action="admin_page_supp.php" method="POST">
                                 <input type="hidden" name="idUser" value="<?= $row["id_user"] ?>">
-                                <input type="hidden" name="extRole" value="<?= $row["ext_role"] ?>">
                                 <input class="supp" type="submit" value="Supprimer">
                             </form>
                         </td>
