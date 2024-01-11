@@ -1,3 +1,12 @@
+<?php 
+session_start();
+        
+        include('connexion.php');
+
+
+        ?>
+
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 3) { ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -23,10 +32,9 @@
 
         <?php
 
-
-        session_start();
-        include('nav_admin.php');
-        include('connexion.php');
+ 
+include('nav_admin.php');
+ 
 
         $idUser = $_SESSION['id_user'];
         $requeteInscrit = "SELECT * FROM user ORDER BY ext_role";
@@ -123,3 +131,7 @@
 </body>
 
 </html>
+
+<?php } else {
+    header("Location: login.php?errConnexion");
+}; ?>
