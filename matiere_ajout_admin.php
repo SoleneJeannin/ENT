@@ -31,6 +31,7 @@
 
         <form action="matiere_traite_ajout_admin.php">
             <h1>Ajoutez des matières</h1>
+            <p class="obli"> <span>*</span>Champs Obligatoire</p>
             <div class="centrer">
             <div class="bloc_form">
             <?php if(isset($_GET["ok"])){
@@ -41,7 +42,7 @@
 
             <div>
             <label for="programme">
-                Programme :<span class="red">*</span> :
+                Programme<span class="red">*</span> :
             </label><br>
             <select name="programme" id="programme" required>
                 <option value="MMI1">MMI1</option>
@@ -53,7 +54,7 @@
 
             <div>
             <label for="matiere-titre">
-                Le titre de la matière :<span class="red">*</span> :
+                Le titre de la matière<span class="red">*</span> :
             </label><br>
             <input type="text" name="matiere-titre" id="matiere-titre" required>
             </div>
@@ -63,7 +64,7 @@
 
             <div>
             <label for="description">
-                Description :<span class="red">*</span> :
+                Description<span class="red">*</span> :
             </label><br>
             <input type="text" name="description" id="description" required>
             </div>
@@ -73,7 +74,7 @@
 
             <div>
             <label for="couleur">
-                Couleur :<span class="red">*</span> :
+                Couleur<span class="red">*</span> :
             </label>
 
             <select name="couleur" id="couleur" required>
@@ -94,7 +95,7 @@
             ?>
             <div>
             <label for="professeur">
-                Le professeur :<span class="red">*</span> :
+                Le professeur<span class="red">*</span> :
             </label>
 
             <select name="professeur" id="professeur" required>
@@ -113,7 +114,7 @@
 
             <div>
             <label for="coef">
-                Coefficient :<span class="red">*</span> :
+                Coefficient<span class="red">*</span> :
             </label><br>
             <input type="number" name="coef" id="coef" required min="1">
             </div>

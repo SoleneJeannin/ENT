@@ -1,3 +1,7 @@
+span{
+  color: #ff0000d9;
+}
+
 h1 {
     font-family: "Lusitana", serif;
     text-align: center;
@@ -26,6 +30,9 @@ h1 {
 
 .div_input{
   justify-content: end;
+}
+.obli{
+  padding-left: 10px;
 }
 
 @media(max-width:442px){
