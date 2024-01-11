@@ -124,30 +124,6 @@ h2{
   color: black;
 }
 
-.color-blue {
-  background-color: #d1f4ff;
-}
-.color-blue:hover {
-  transition: 0.2s;
-  background-color: #8be1fb;
-}
-.color-red {
-  transition: 0.2s;
-  background-color: #ffbdbd;
-}
-.color-red:hover {
-  transition: 0.2s;
-  background-color: #ff8e8e;
-}
-.color-green {
-  transition: 0.2s;
-  background-color: #daffcd;
-}
-.color-green:hover {
-  transition: 0.2s;
-  background-color: #adff8f;
-}
-
 .task-none {
   color: rgb(255, 45, 45);
   margin: auto;

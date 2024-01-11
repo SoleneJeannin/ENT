@@ -77,11 +77,7 @@
                 Couleur<span class="red">*</span> :
             </label>
 
-            <select name="couleur" id="couleur" required>
-                <option value="red">Rouge</option>
-                <option value="blue">Bleu</option>
-                <option value="green">Vert</option>
-            </select>
+            <input type="color" id="couleur" name="couleur">
             </div>
 
 
@@ -121,7 +117,7 @@
 
 
             <br><br>
-            <div class="div_input"><input class="submit-button" type=submit value="Valider votre inscription"></div>
+            <div class="div_input"><input class="submit-button" type=submit value="Valider la matière"></div>
             </div>
             </div>
         </form>

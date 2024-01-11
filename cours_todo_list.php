@@ -55,7 +55,7 @@
                     <!-- Vérifie le programme de l'utilisateur -->
                     <!-- L'utilisateur est de programme :
                     <?= $resultsProgrammeUser["user_programme"]; ?> -->
-                    
+
                     <?php
 
                     $CoursProgramme = false;
@@ -71,23 +71,14 @@
                             $stmtProfesseur->execute();
                             $resultsProfesseur = $stmtProfesseur->fetch(PDO::FETCH_ASSOC);
 
-                            $couleur = $row["couleur"];
-                            // Vérifie que la condition "$couleur" soit égale à blue, si oui alors $style="color-blue", sinon rien.
-                            if ($style = ($couleur == "blue")) {
-                                $style = "color-red";
-                            } elseif ($style = ($couleur == "red")) {
-                                $style = "color-blue";
-                            } elseif ($style = ($couleur == "green")) {
-                                $style = "color-green";
-                            } else {
-                                $style = "";
-                            }
+                            $style = $row["couleur"];
+                        
 
 
                             ?>
                             <!-- Peut-être mettre id_matiere au lieu de ext_contenu -->
                             <a href="cours.php?id=<?= $row["id_matiere"] ?>" class="cours-link">
-                                <div class="<?= $style ?> cours-solo cours<?= $row["id_matiere"] ?>">
+                                <div style="background-color:<?= $style ?>;" class="cours-solo cours<?= $row["id_matiere"] ?>">
                                     <p class="nom-matiere">
                                         <?= $row["nom_matiere"] ?>
                                     </p><br>
