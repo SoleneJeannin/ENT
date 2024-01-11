@@ -383,7 +383,7 @@
                                 <path d="M4.5 6L0.602887 0.749999L8.39711 0.75L4.5 6Z" fill="var(--blue)" />
                             </svg></a>
                         <div class="dropdown-content drop2">
-                            <a href="#reservation_salle.php">Salles</a>
+                            <a href="reservation_salle.php">Salles</a>
                             <a href="reservation_materiel.php">Matériel</a>
                         </div>
                     </div>
