@@ -224,7 +224,7 @@ session_start();
                 <?php
                 $idExam = $_GET['id_exam'];
 
-                $_SESSION['id_user'] = 3;
+               
 
 
                 $requete = "SELECT

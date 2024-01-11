@@ -75,7 +75,7 @@ session_start();
     <br><br>
     
 <?php 
-    $_SESSION['id_user'] = 3;
+ 
     $requete2 = "SELECT DISTINCT *
          FROM matiere 
 WHERE   ext_prof = :prof ";

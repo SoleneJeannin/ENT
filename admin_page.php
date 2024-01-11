@@ -93,7 +93,7 @@
                             <?= ucfirst($row["user_nom"]) ?>
                         </td>
                         <td>
-                            <?= $row["formation"] ?>
+                            <?= $row["user_programme"] ?>
                         </td>
                         <td>
                             <?= $row["user_groupe"] ?>

@@ -17,88 +17,94 @@ session_start();
     <title>ENT Enseignant - Université Gustave Eiffel</title>
 
     <style>
-.big-wrapper {
-    display: flex;
-}
+        .big-wrapper {
+            display: flex;
+        }
 
-.add-exam {
-    width: 40%;
-    padding: 50px 100px;
-}
+        .add-exam {
+            width: 40%;
+            padding: 50px 100px;
+        }
 
-.one-matiere a {
-    color: black;
-    font-size: 1rem;
- 
-}
+        .one-matiere a {
+            color: black;
+            font-size: 1rem;
 
-.one-matiere {
-    background-color: var(--yellow1);
-    border-radius: 15px;
-    padding: 15px 15px;
-    margin-block: 5px ;
-}
+        }
 
-.one-matiere h2 {
-    margin: 0 ;
-    padding-left: 30px;
+        .one-matiere {
+            background-color: var(--yellow1);
+            border-radius: 15px;
+            padding: 15px 15px;
+            margin-block: 5px;
+        }
 
-}
- 
-                .choose-class {
-                    width: 60%;
-                    padding: 50px;
-                }
+        .one-matiere h2 {
+            margin: 0;
+            padding-left: 30px;
 
-                .choose-class input, textarea {
-width: 13vw;
+        }
 
-                }
+        .choose-class {
+            width: 60%;
+            padding: 50px;
+        }
 
-                #form-cours {
-margin-left: 50px;
-                }
+        .choose-class input,
+        textarea {
+            width: 13vw;
 
-                .submit {
-                    background-color: var(--red);
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 1.1rem;
-                }
+        }
 
-                @media (max-width: 900px) {
-                    main {background-color: white;
-                    padding: 10px;}
-                }
+        #form-cours {
+            margin-left: 50px;
+        }
 
-                @media (max-width: 1220px) {
-                    .big-wrapper {
-                        flex-direction: column;
-                        align-items: center;
-                    }
-.add-exam {
-    width: 80%;
-    padding-inline: 0;
-}
+        .submit {
+            background-color: var(--red);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
 
-.choose-class {
-    width: 80%;
-    margin: auto;
-}
+        @media (max-width: 900px) {
+            main {
+                background-color: white;
+                padding: 10px;
+            }
+        }
 
-input, textarea {
-    width: 300px !important;
-}
+        @media (max-width: 1220px) {
+            .big-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
 
-form {display: block;
-margin: auto !important;}
+            .add-exam {
+                width: 80%;
+                padding-inline: 0;
+            }
+
+            .choose-class {
+                width: 80%;
+                margin: auto;
+            }
+
+            input,
+            textarea {
+                width: 300px !important;
+            }
+
+            form {
+                display: block;
+                margin: auto !important;
+            }
 
 
 
-                }
-
-            </style>
+        }
+    </style>
 </head>
 
 <body>
@@ -110,7 +116,7 @@ margin: auto !important;}
 
 
         include('nav-teacher.php');
-        $_SESSION['id_user'] = 3;
+ 
         $prof = $_SESSION['id_user'];
 
         $requete2 = "SELECT DISTINCT *
@@ -125,7 +131,7 @@ WHERE   ext_prof = :prof ";
 
         ?>
 
-      
+
 
 
         <div class="big-wrapper">
@@ -143,8 +149,8 @@ WHERE   ext_prof = :prof ";
             </div>
 
 
-           
-            
+
+
             <Div class="choose-class">
                 <h1>Choisir le cours</h1>
                 <?php
@@ -160,12 +166,12 @@ WHERE   ext_prof = :prof ";
                     $stmt->execute();
                     $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    if ( $courses == NULL ) {
+                    if ($courses == NULL) {
                         echo "Pas de cours pour lq matière choisie";
                     }
                 }
 
-                
+
                 ?>
                 <form id="form-cours" name="form-cours" action="add_exam.php" method="POST">
                     <select name="cours" id="cours">
@@ -177,10 +183,10 @@ WHERE   ext_prof = :prof ";
                             $examEndDate =    $dateEnd->format('j F Y');
                             $examEndTime =  $dateEnd->format('H:i');
 
-                            
+
                         ?>
 
-                        
+
                             <option value="<?= $cours['id_cours'] ?>">
                                 <?= $examStartDate . '  ' . $examStartTime  . ' - ' . $examEndTime  ?> <span>
                                     <?php
@@ -205,7 +211,7 @@ WHERE   ext_prof = :prof ";
                                     }
                                     echo $formattedGroup;
 
-                                  
+
                                     ?>
                                 </span>
                             </option>

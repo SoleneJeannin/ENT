@@ -221,7 +221,7 @@ session_start();
         include('nav-teacher.php');
 
 
-        $_SESSION['id_user'] = 3;
+  
       
  
 

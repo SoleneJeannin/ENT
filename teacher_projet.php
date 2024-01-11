@@ -244,8 +244,7 @@ padding-left: 0;
                 <?php
                 $idProjet = $_GET['id_projet'];
 
-                $_SESSION['id_user'] = 3;
-
+            
 
                 $requete = "SELECT
 
