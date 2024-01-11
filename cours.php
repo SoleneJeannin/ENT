@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start(); 
+  include('connexion.php');?>
+
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) { ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -169,10 +172,16 @@
 
     <main>
         <?php
+<<<<<<< Updated upstream
         if (isset($_SESSION["login"])) {
             include('nav.php');
             include('connexion.php');
             ?>
+=======
+        include('nav.php');
+      
+        ?>
+>>>>>>> Stashed changes
 
             <?php
 
@@ -407,3 +416,7 @@
 </script>
 
 </html>
+
+<?php } else {
+    header("Location: login.php?errConnexion");
+}; ?>

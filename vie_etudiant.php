@@ -1,3 +1,9 @@
+<?php
+session_start();
+include('connexion.php');
+?>
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) { ?>
+
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,7 +29,7 @@
 
 
         <?php
-        if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) {
+        if (isset($_SESSION["login"])) {
             include('nav.php');
 
             ?>
@@ -187,3 +193,6 @@
 </body>
 
 </html>
+<?php } else {
+            header("location:login.php?errConnexion");
+        } ?>

@@ -1,3 +1,11 @@
+<?php session_start();
+       
+        include('connexion.php');
+
+
+?>
+
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) { ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,6 +28,7 @@
 
     <main>
         <?php
+<<<<<<< Updated upstream
         session_start();
         if (isset($_SESSION["login"])) {
             include('nav.php');
@@ -28,6 +37,31 @@
             $id_actu = $_GET['id'];
             $stmt = $db->query("SELECT * FROM actualite WHERE id_actu = $id_actu");
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+=======
+  
+        include('nav.php');
+       
+        //Récupère l'id de l'article pour afficher les bonnes informations
+        $id_actu = $_GET['id'];
+        $stmt=$db->query("SELECT * FROM actualite WHERE id_actu = $id_actu");
+        $result=$stmt->fetch(PDO::FETCH_ASSOC); 
+        
+        $date = $result['actu_date'];
+        ?>
+            
+        <div class="article">
+        <p class="date"><?= $date ?></p>
+            <div class="titre_img">
+                <?php
+                if(isset($id_actu)){
+                ?>
+                <h1><?= $result['actu_titre']?></h1>
+                
+                <img src="./img/actualites/<?= $result['actu_img']?>" alt="">
+            </div>
+            
+            <p class="text_actu"><?= $result['actu_text']?></p>
+>>>>>>> Stashed changes
 
             $date = $result['actu_date'];
             ?>
@@ -66,3 +100,7 @@
 </body>
 
 </html>
+
+<?php } else {
+            header("location:login.php?errConnexion");
+        } ?>

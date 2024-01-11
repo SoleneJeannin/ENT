@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php session_start();
+
+include('connexion.php');
+?>
+
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) { ?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -23,11 +30,19 @@
 
         <?php
 
+<<<<<<< Updated upstream
 
         include('connexion.php');
 
         if (isset($_SESSION["login"])) {
             include('nav.php');
+=======
+        include('nav.php');
+     
+
+  
+
+>>>>>>> Stashed changes
             ?>
 
             <div class="container-cours-todo">
@@ -190,10 +205,7 @@
                 </div>
             </div>
         </main>
-    <?php } else {
-            echo "Vous n'êtes pas connecté";
-        } ?>
-
+  
     <script>
         // Aidé par ChatGPT 
         function updateDatabase(checkbox) {
@@ -226,3 +238,6 @@
 </body>
 
 </html>
+<?php } else {
+            header("location:login.php?errConnexion");
+        } ?>

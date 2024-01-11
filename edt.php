@@ -3,7 +3,7 @@ include('connexion.php');
 session_start();
 ?>
 
-
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) { ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -417,3 +417,7 @@ if (isset($_SESSION["login"])) {
 </body>
 
 </html>
+
+<?php } else {
+    header("Location: login.php?errConnexion");
+}; ?>

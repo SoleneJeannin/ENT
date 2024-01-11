@@ -1,3 +1,13 @@
+<?php
+        session_start();
+       
+        include('connexion.php');
+        
+        
+        ?>
+
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) { ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -27,10 +37,25 @@
         ?>
 
         <?php
+<<<<<<< Updated upstream
         session_start();
         if (isset($_SESSION["login"])) {
             include('nav.php');
             include('connexion.php');
+=======
+       
+        include('nav.php');
+       
+        
+        
+        ?>
+    <br>    
+        <?php
+        
+        $materiel_res = $_GET["id"];
+        $stmt=$db->query("SELECT * FROM materiel WHERE id_materiel= '$materiel_res'");
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+>>>>>>> Stashed changes
 
 
             ?>
@@ -111,3 +136,7 @@
 </body>
 
 </html>
+
+<?php } else {
+    header("Location: login.php?errConnexion");
+}; ?>

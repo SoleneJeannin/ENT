@@ -1,3 +1,11 @@
+<?php
+        session_start();
+        include('connexion.php');
+
+            ?>
+<?php if (isset($_SESSION["login"])) { ?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,10 +28,9 @@
 
     <main>
         <?php
-        session_start();
-        include('connexion.php');
-        if (isset($_SESSION["login"])) {
-            if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 2) {
+         
+  
+            if (($_SESSION["role"]) == 2) {
                 include('nav-teacher.php');
             } else {
                 include('nav.php');
@@ -71,8 +78,9 @@
 
 
     </body>
-<?php } else {
-            header("location:login.php?errConnexion");
-        } ?>
+
 
 </html>
+<?php } else {
+    header("Location: login.php?errConnexion");
+}; ?>

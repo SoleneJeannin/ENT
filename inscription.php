@@ -1,3 +1,12 @@
+<?php
+        session_start();
+    
+        include('connexion.php');
+        
+        
+        ?>
+
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 3) { ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -22,12 +31,15 @@
 
 
         <?php
+<<<<<<< Updated upstream
 
         session_start();
         if (isset($_SESSION["login"])) {
+=======
+ 
+>>>>>>> Stashed changes
         include('nav_admin.php');
-
-        include('connexion.php');
+ 
 
         $idUser = $_SESSION['id_user'];
         $requeteAdmin = "SELECT * FROM user WHERE id_user=:idUser";
@@ -195,3 +207,7 @@
 </body>
 
 </html>
+
+<?php } else {
+            header("location:login.php?errConnexion");
+        } ?>

@@ -3,6 +3,8 @@ include('connexion.php');
 session_start();
 ?>
 
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) { ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -266,3 +268,7 @@ foreach ($mmi1_matieres as $mmi1_matiere) {
 </body>
 
 </html>
+
+<?php } else {
+            header("location:login.php?errConnexion");
+        } ?>

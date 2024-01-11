@@ -1,5 +1,14 @@
+<?php
+        session_start();
+      
+        include('connexion.php');
+    
+      if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 1) { ?>
+            
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -17,10 +26,10 @@
 <body>
     <main>
         <?php
-        session_start();
+      
         include('nav.php');
-        include('connexion.php');
-        if (isset($_SESSION["login"])) {
+   
+       
             ?>
 
             <div class="bloc_general">

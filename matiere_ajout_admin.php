@@ -1,3 +1,13 @@
+<?php
+        session_start();
+       
+        include('connexion.php');
+        
+        
+        ?>
+
+<?php if (isset($_SESSION["login"]) && ($_SESSION["role"]) == 3) { ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -23,11 +33,14 @@
 
         <?php
 
+<<<<<<< Updated upstream
         session_start();
         if (isset($_SESSION["login"])) {
+=======
+ 
+>>>>>>> Stashed changes
         include('nav_admin.php');
-        include('connexion.php');
-
+      
         ?>
 
         <form action="matiere_traite_ajout_admin.php">
@@ -131,3 +144,7 @@
 </body>
 
 </html>
+
+<?php } else {
+            header("location:login.php?errConnexion");
+        } ?>

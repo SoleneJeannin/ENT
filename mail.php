@@ -1,4 +1,13 @@
-<?php session_start() ?>
+<?php
+        session_start();
+       
+        include('connexion.php');
+        
+        
+        ?>
+
+
+<?php if (isset($_SESSION["login"])) { ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,8 +29,12 @@
 <body>
     <main>
         <?php
+<<<<<<< Updated upstream
          if (isset($_SESSION["login"])) {
         if (isset($_SESSION['role']) && $_SESSION['role'] == 3) {
+=======
+        if ( $_SESSION['role'] == 3) {
+>>>>>>> Stashed changes
             include('nav_admin.php');
         } else {
             include('nav.php');
@@ -169,3 +182,7 @@
 </body>
 
 </html>
+
+<?php } else {
+            header("location:login.php?errConnexion");
+        } ?>
