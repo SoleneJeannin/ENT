@@ -32,7 +32,34 @@ th, td {
     background-color: var(--yellow4);
 }
 
+.supp{
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: var(--red);
+    border-radius: 26px;
+    border: none;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    font-weight: bold;
 
+}
+.supp:hover{
+    background-color: white;
+}
+.form-supp{
+    display: flex;
+    justify-content: center;
+
+}
+.suppOk,.suppNon{
+    text-align: center;
+    font-size: 1.3rem;
+    color: green;
+}
+.suppNon{
+    color: red;
+}
 @media(max-width:915px){
     table{
         width: 90%;
@@ -46,9 +73,9 @@ th, td {
 
 }
 
-@media(max-width:475px){
+@media(max-width:570px){
     table{
-        width: 5%;
+        width: 3%;
         font-size: 0.875rem;
     }
     th, td {

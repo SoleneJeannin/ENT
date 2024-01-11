@@ -38,6 +38,14 @@
 
         <h1>Côté administratif</h1>
         <h2>Les étudiants inscrits</h2>
+        <?php if (isset($_GET["suppOk"])) {
+            ?>
+            <p class="suppOk">Vous avez bien supprimer cet utilisateur</p>
+        <?php } ?>
+        <?php if (isset($_GET["suppNon"])) {
+            ?>
+            <p>Un problème est survenu lors de la suppression de l'utilisateur</p>
+        <?php } ?>
         <table>
 
             <thead>
@@ -49,6 +57,7 @@
                     <th>Formation</th>
                     <th>Groupe</th>
                     <th>Rôle</th>
+                    <th>Supprimer</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,16 +81,16 @@
                         }
                     }
                     ?>>
-                    <td>
-                        <?= $row["id_user"] ?>
-                    </td>
-                    <td class="phone-photo"><img class="photo" src="./img/etudiants-card/<?= $row["user_photo"] ?>"
+                        <td>
+                            <?= $row["id_user"] ?>
+                        </td>
+                        <td class="phone-photo"><img class="photo" src="./img/etudiants-card/<?= $row["user_photo"] ?>"
                                 alt=""></td>
                         <td>
-                            <?= $row["user_prenom"] ?>
+                            <?= ucfirst($row["user_prenom"]) ?>
                         </td>
                         <td>
-                            <?= $row["user_nom"] ?>
+                            <?= ucfirst($row["user_nom"]) ?>
                         </td>
                         <td>
                             <?= $row["formation"] ?>
@@ -91,6 +100,13 @@
                         </td>
                         <td>
                             <?= $resultsNomRole["role_titre"] ?>
+                        </td>
+                        <td>
+                            <form class="form-supp" action="admin_page_supp.php" method="POST">
+                                <input type="hidden" name="idUser" value="<?= $row["id_user"] ?>">
+                                <input type="hidden" name="extRole" value="<?= $row["ext_role"] ?>">
+                                <input class="supp" type="submit" value="Supprimer">
+                            </form>
                         </td>
                     </tr>
                     <?php

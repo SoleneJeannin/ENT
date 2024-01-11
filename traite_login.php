@@ -20,6 +20,7 @@ if ($stmt->rowcount() == 1) {
         session_start();
         $_SESSION["login"] = $result["user_login"];
         $_SESSION['id_user'] = $result['id_user'];
+        $_SESSION['ext_role'] = $result['ext_role'];
         $_SESSION['programme_user'] = $result['user_programme'];
         $_SESSION['groupe_user'] = $result['user_groupe'];
         $_SESSION['user_nom'] = $result['user_nom'];
