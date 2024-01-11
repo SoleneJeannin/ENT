@@ -31,11 +31,15 @@
 
         <form action="matiere_traite_ajout_admin.php">
             <h1>Ajoutez des matières</h1>
+            <div class="centrer">
+            <div class="bloc_form">
             <?php if(isset($_GET["ok"])){
                 ?> 
                 <p>Vous avez bien inséré une matière</p>
                 <?php
             }?>
+
+            <div>
             <label for="programme">
                 Programme :<span class="red">*</span> :
             </label><br>
@@ -44,31 +48,43 @@
                 <option value="MMI2">MMI2</option>
                 <option value="MMI3">MMI3</option>
             </select>
+            </div>
 
-            <br><br>
+
+            <div>
             <label for="matiere-titre">
                 Le titre de la matière :<span class="red">*</span> :
             </label><br>
             <input type="text" name="matiere-titre" id="matiere-titre" required>
+            </div>
 
-            <br><br>
+
+          
+
+            <div>
             <label for="description">
                 Description :<span class="red">*</span> :
             </label><br>
             <input type="text" name="description" id="description" required>
+            </div>
 
-            <br><br>
+
+            
+
+            <div>
             <label for="couleur">
                 Couleur :<span class="red">*</span> :
-            </label><br>
+            </label>
 
             <select name="couleur" id="couleur" required>
                 <option value="red">Rouge</option>
                 <option value="blue">Bleu</option>
                 <option value="green">Vert</option>
             </select>
+            </div>
 
-            <br><br>
+
+            
             <!-- Récupérer tous les identifiants des professeur dont le role est = 2 DISTINCT -->
             <?php
             $requeteProfesseur = "SELECT * FROM user WHERE ext_role=2";
@@ -76,9 +92,10 @@
             $stmtProfesseur->execute();
             $resultsProfesseur = $stmtProfesseur->fetchall(PDO::FETCH_ASSOC);
             ?>
+            <div>
             <label for="professeur">
                 Le professeur :<span class="red">*</span> :
-            </label><br>
+            </label>
 
             <select name="professeur" id="professeur" required>
                 <?php foreach ($resultsProfesseur as $row) {
@@ -89,15 +106,25 @@
                     </option>
                 <?php } ?>
             </select>
+            </div>
 
-            <br><br>
+
+         
+
+            <div>
             <label for="coef">
                 Coefficient :<span class="red">*</span> :
             </label><br>
             <input type="number" name="coef" id="coef" required min="1">
+            </div>
+
+
             <br><br>
-            <input class="submit-button" type=submit value="Valider votre inscription">
+            <div class="div_input"><input class="submit-button" type=submit value="Valider votre inscription"></div>
+            </div>
+            </div>
         </form>
+        <br><br>
     </main>
 
 

@@ -4,3 +4,32 @@ h1 {
     font-size: 2.3rem;
   }
   
+.bloc_form{
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border: 1px solid;
+  padding: 26px;
+  border-radius: 25px;
+}
+
+.bloc_form div{
+  display: flex;
+  gap: 5px;
+}
+
+.centrer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div_input{
+  justify-content: end;
+}
+
+@media(max-width:442px){
+  .bloc_form {
+    padding: 15px;
+  }
+}
